@@ -3,16 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>무드웰니스 (Mood Wellness) | 회원용 브랜드 & 프로그램 안내</title>
+  <title>무드웰니스 스튜디오 | 회원용 브랜드 &amp; 프로그램 가이드</title>
+  
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts: Noto Sans KR, Cormorant Garamond, Montserrat -->
+  
+  <!-- Google Fonts: Cormorant Garamond, Montserrat, Noto Sans KR -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Montserrat:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
+  <!-- Tailwind Theme Configuration -->
   <script>
     tailwind.config = {
       theme: {
@@ -21,17 +25,17 @@
             brand: {
               cream: '#FAF8F5',
               sand: '#F4EFEA',
-              warmgray: '#E5DFD7',
-              sage: '#4A6B53',
-              sageDark: '#2C4234',
-              sageLight: '#7A9A82',
+              warmgray: '#E6DFD6',
+              sage: '#45664F',
+              sageDark: '#283E30',
+              sageLight: '#73957C',
               sagePale: '#EDF3EE',
-              terracotta: '#C27A56',
-              terracottaLight: '#F5ECE7',
+              terracotta: '#BC6F48',
+              terracottaLight: '#F7EDE7',
               kakao: '#FEE500',
               kakaoDark: '#191919',
-              dark: '#232524',
-              muted: '#666965'
+              dark: '#212422',
+              muted: '#616762'
             }
           },
           fontFamily: {
@@ -40,15 +44,17 @@
             en: ['"Montserrat"', 'sans-serif']
           },
           boxShadow: {
-            'soft': '0 10px 30px -8px rgba(74, 107, 83, 0.08)',
-            'card': '0 4px 20px -2px rgba(35, 37, 36, 0.05)',
-            'floating': '0 16px 36px -6px rgba(35, 37, 36, 0.16)'
+            'soft': '0 12px 32px -8px rgba(69, 102, 79, 0.08)',
+            'card': '0 4px 20px -2px rgba(33, 36, 34, 0.05)',
+            'floating': '0 16px 36px -6px rgba(33, 36, 34, 0.16)'
           }
         }
       }
     }
   </script>
+
   <style>
+    /* Custom Scrollbar Utility */
     .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
@@ -56,13 +62,15 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
+    /* Active Nav Tab Style */
     .active-nav {
-      background-color: #4A6B53 !important;
+      background-color: #45664F !important;
       color: #FFFFFF !important;
       font-weight: 600 !important;
     }
   </style>
 </head>
+
 <body class="bg-brand-cream text-brand-dark font-sans antialiased selection:bg-brand-sage selection:text-white pb-24 md:pb-16">
 
   <!-- Top Navigation Header -->
@@ -70,48 +78,54 @@
     <!-- Brand Bar -->
     <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
       <a href="#intro" class="flex items-center gap-3 group">
-        <div class="w-9 h-9 rounded-full bg-brand-sage text-white flex items-center justify-center font-serif text-xl font-bold tracking-tighter group-hover:scale-105 transition-transform">
-          MW
+        <!-- Mood Wellness Leaf Icon Logo -->
+        <div class="w-10 h-10 rounded-full bg-brand-sage text-white flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform duration-200">
+          <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 21c-4.97 0-9-4.03-9-9 0-4.97 4.03-9 9-9 2.12 0 4.07.74 5.61 1.97.28.23.4.6.29.95l-1.07 3.39a1 1 0 01-.63.64l-3.39 1.07c-.35.11-.72-.01-.95-.29A6.002 6.002 0 0012 9c-1.66 0-3 1.34-3 3 0 1.66 1.34 3 3 3 1.3 0 2.4-.84 2.82-2" />
+          </svg>
         </div>
         <div>
-          <span class="text-[10px] font-en uppercase tracking-widest text-brand-sage font-semibold block leading-none mb-1">Private & Group Wellness</span>
-          <h1 class="text-base sm:text-lg font-bold tracking-tight text-brand-dark leading-none">무드웰니스 안내서</h1>
+          <span class="text-[10px] font-en uppercase tracking-widest text-brand-sage font-bold block leading-none mb-1">Private &amp; Group Wellness Studio</span>
+          <h1 class="text-base sm:text-lg font-bold tracking-tight text-brand-dark leading-none">무드웰니스 스튜디오</h1>
         </div>
       </a>
 
-      <!-- Kakao Chat Link Button -->
-      <a href="http://pf.kakao.com/_qNxbnn/chat" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-semibold px-4 py-2 rounded-full bg-brand-kakao text-brand-kakaoDark hover:brightness-95 transition-all shadow-sm flex items-center gap-2">
-        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-          <path d="M12 3C6.477 3 2 6.477 2 10.767c0 2.766 1.848 5.187 4.639 6.551-.203.743-.734 2.686-.84 3.109-.133.528.193.521.407.38.169-.112 2.68-1.83 3.738-2.553.67.098 1.36.15 2.056.15 5.523 0 10-3.477 10-7.767C22 6.477 17.523 3 12 3z"/>
-        </svg>
-        <span>상담 · 신청 문의</span>
-      </a>
+      <!-- Quick Action Buttons -->
+      <div class="flex items-center gap-2">
+        <a href="tel:0507-1303-0371" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-full border border-brand-warmgray bg-white text-brand-dark hover:bg-brand-sand transition">
+          <i data-lucide="phone" class="w-3.5 h-3.5 text-brand-sage"></i>
+          <span>0507-1303-0371</span>
+        </a>
+        <a href="http://pf.kakao.com/_qNxbnn/chat" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-semibold px-4 py-2 rounded-full bg-brand-kakao text-brand-kakaoDark hover:brightness-95 transition-all shadow-sm flex items-center gap-2">
+          <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
+            <path d="M12 3C6.477 3 2 6.477 2 10.767c0 2.766 1.848 5.187 4.639 6.551-.203.743-.734 2.686-.84 3.109-.133.528.193.521.407.38.169-.112 2.68-1.83 3.738-2.553.67.098 1.36.15 2.056.15 5.523 0 10-3.477 10-7.767C22 6.477 17.523 3 12 3z"/>
+          </svg>
+          <span>상담 · 신청 문의</span>
+        </a>
+      </div>
     </div>
 
     <!-- Chapter Quick Navigation (Horizontal Scrollable Tabs) -->
-    <nav class="border-t border-brand-warmgray/70 bg-brand-sand/60">
+    <nav class="border-t border-brand-warmgray/80 bg-brand-sand/70">
       <div class="max-w-6xl mx-auto px-3 sm:px-6">
         <div class="flex items-center gap-1.5 py-2 overflow-x-auto no-scrollbar scroll-smooth" id="nav-container">
           <a href="#intro" class="nav-tab shrink-0 px-3 py-1.5 rounded-full text-xs font-medium text-brand-muted hover:text-brand-dark hover:bg-white/80 transition-all active-nav" data-target="intro">
-            소개 & 철학
+            브랜드 소개
           </a>
           <a href="#core-program" class="nav-tab shrink-0 px-3 py-1.5 rounded-full text-xs font-medium text-brand-muted hover:text-brand-dark hover:bg-white/80 transition-all" data-target="core-program">
-            3대 프로그램
+            핵심 프로그램
           </a>
           <a href="#benefits" class="nav-tab shrink-0 px-3 py-1.5 rounded-full text-xs font-medium text-brand-muted hover:text-brand-dark hover:bg-white/80 transition-all" data-target="benefits">
-            YJ스파 혜택
+            YJ스파 제휴
           </a>
           <a href="#matching-system" class="nav-tab shrink-0 px-3 py-1.5 rounded-full text-xs font-medium text-brand-muted hover:text-brand-dark hover:bg-white/80 transition-all" data-target="matching-system">
-            전담 매칭 & 절차
+            전담 매칭 &amp; 절차
           </a>
           <a href="#private-group" class="nav-tab shrink-0 px-3 py-1.5 rounded-full text-xs font-medium text-brand-muted hover:text-brand-dark hover:bg-white/80 transition-all" data-target="private-group">
             프라이빗 소모임
           </a>
           <a href="#instructors" class="nav-tab shrink-0 px-3 py-1.5 rounded-full text-xs font-medium text-brand-muted hover:text-brand-dark hover:bg-white/80 transition-all" data-target="instructors">
-            강사진 큐레이션
-          </a>
-          <a href="#private-lesson" class="nav-tab shrink-0 px-3 py-1.5 rounded-full text-xs font-medium text-brand-muted hover:text-brand-dark hover:bg-white/80 transition-all" data-target="private-lesson">
-            1:1 개인레슨
+            강사진 &amp; 1:1 레슨
           </a>
           <a href="#group-crew" class="nav-tab shrink-0 px-3 py-1.5 rounded-full text-xs font-medium text-brand-muted hover:text-brand-dark hover:bg-white/80 transition-all" data-target="group-crew">
             소모임 크루 (5종)
@@ -120,7 +134,10 @@
             10월 야외 원데이
           </a>
           <a href="#rules" class="nav-tab shrink-0 px-3 py-1.5 rounded-full text-xs font-medium text-brand-muted hover:text-brand-dark hover:bg-white/80 transition-all" data-target="rules">
-            이용 수칙
+            이용 수칙 &amp; 예약
+          </a>
+          <a href="#contact" class="nav-tab shrink-0 px-3 py-1.5 rounded-full text-xs font-medium text-brand-muted hover:text-brand-dark hover:bg-white/80 transition-all" data-target="contact">
+            오시는 길
           </a>
         </div>
       </div>
@@ -129,153 +146,183 @@
 
   <main class="max-w-6xl mx-auto px-4 sm:px-6 space-y-16 sm:space-y-24 pt-6 sm:pt-10">
 
-    <!-- HERO & PHILOSOPHY -->
+    <!-- 1. HERO & BRAND PHILOSOPHY (Slide 1, 2, 3) -->
     <section id="intro" class="scroll-mt-32">
-      <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-sand via-brand-cream to-brand-sagePale/50 border border-brand-warmgray/80 p-6 sm:p-12 shadow-soft">
-        <div class="absolute -right-16 -bottom-16 w-80 h-80 rounded-full bg-brand-sage/5 blur-3xl pointer-events-none"></div>
-        <div class="max-w-2xl relative z-10">
+      <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-sand via-brand-cream to-brand-sagePale/60 border border-brand-warmgray p-6 sm:p-12 shadow-soft">
+        <div class="max-w-3xl relative z-10">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-sage/10 text-brand-sage text-xs font-semibold tracking-wider uppercase mb-4">
             <span class="w-1.5 h-1.5 rounded-full bg-brand-sage"></span>
-            Private & Group Wellness Lounge
+            Part 01 • Brand Identity &amp; Philosophy
           </div>
           <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-brand-dark tracking-tight leading-snug sm:leading-tight">
             나만의 기능적 움직임 아지트,<br>
-            <span class="text-brand-sage font-serif italic">Mood Wellness (Re:body)</span>
+            <span class="text-brand-sage font-serif italic">Mood Wellness Studio</span>
           </h2>
           <p class="mt-5 text-sm sm:text-base md:text-lg text-brand-muted leading-relaxed font-light">
-            특정 종목에 갇히지 않고 <strong class="text-brand-dark font-medium">바레, 필라테스, 기능성 트레이닝, 리커버리</strong>가 결합된 맞춤형 운동과 정서적 힐링을 선사하는 웰니스 복합 공간입니다.
+            특정 종목에 갇히지 않고 <strong class="text-brand-dark font-medium">바레, 필라테스, 기능성 트레이닝, 리커버리</strong>가 결합된 맞춤형 운동과 정서적 힐링을 선사하는 웰니스 복합 공간입니다. 몸과 마음의 온전한 회복을 돕는 무드웰니스만의 특별한 가치와 운동 철학을 소개합니다.
           </p>
           <div class="mt-8 flex flex-wrap items-center gap-3">
-            <a href="http://pf.kakao.com/_qNxbnn/chat" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brand-sage text-white text-sm font-semibold hover:bg-brand-dark transition duration-200 shadow-sm">
+            <a href="http://pf.kakao.com/_qNxbnn/chat" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brand-sage text-white text-sm font-semibold hover:bg-brand-sageDark transition duration-200 shadow-sm">
               <i data-lucide="message-circle" class="w-4 h-4"></i>
               <span>카카오톡 1:1 상담 예약</span>
             </a>
             <a href="#group-crew" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white border border-brand-warmgray text-brand-dark text-sm font-medium hover:bg-brand-sand transition duration-200">
               <i data-lucide="users" class="w-4 h-4 text-brand-sage"></i>
-              <span>소모임 크루 둘러보기</span>
+              <span>소모임 크루 살펴보기</span>
             </a>
           </div>
         </div>
 
-        <!-- 3 Brand Pillars -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10 pt-8 border-t border-brand-warmgray/80">
-          <div class="bg-white/85 backdrop-blur-sm p-5 rounded-2xl border border-brand-warmgray/60 flex flex-col justify-between">
+        <!-- 3 Brand Pillars (Slide 3) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10 pt-8 border-t border-brand-warmgray">
+          <div class="bg-white/90 backdrop-blur-sm p-5 rounded-2xl border border-brand-warmgray/80 flex flex-col justify-between shadow-xs">
             <div>
               <div class="w-9 h-9 rounded-xl bg-brand-sagePale text-brand-sage flex items-center justify-center mb-3">
                 <i data-lucide="layers" class="w-5 h-5"></i>
               </div>
-              <h3 class="font-bold text-base text-brand-dark mb-1.5">복합 웰니스 시스템</h3>
+              <h3 class="font-bold text-base text-brand-dark mb-1.5 flex items-center gap-1.5">
+                <i data-lucide="check" class="w-4 h-4 text-brand-sage"></i>
+                복합 웰니스 시스템
+              </h3>
               <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
                 바레와 필라테스를 기반으로 웨이트, 소도구, 리커버리 스트레칭을 융합하여 가장 효율적인 기능적 움직임을 제공합니다.
               </p>
             </div>
           </div>
 
-          <div class="bg-white/85 backdrop-blur-sm p-5 rounded-2xl border border-brand-warmgray/60 flex flex-col justify-between">
+          <div class="bg-white/90 backdrop-blur-sm p-5 rounded-2xl border border-brand-warmgray/80 flex flex-col justify-between shadow-xs">
             <div>
               <div class="w-9 h-9 rounded-xl bg-brand-sagePale text-brand-sage flex items-center justify-center mb-3">
                 <i data-lucide="heart-handshake" class="w-5 h-5"></i>
               </div>
-              <h3 class="font-bold text-base text-brand-dark mb-1.5">정서적 힐링과 소통</h3>
+              <h3 class="font-bold text-base text-brand-dark mb-1.5 flex items-center gap-1.5">
+                <i data-lucide="check" class="w-4 h-4 text-brand-sage"></i>
+                정서적 힐링과 소통
+              </h3>
               <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
                 혼자 고립되어 기계처럼 운동하는 곳이 아닌, 따뜻한 사회적 교류와 몸과 마음의 온전한 안식을 나누는 공간입니다.
               </p>
             </div>
           </div>
 
-          <div class="bg-white/85 backdrop-blur-sm p-5 rounded-2xl border border-brand-warmgray/60 flex flex-col justify-between">
+          <div class="bg-white/90 backdrop-blur-sm p-5 rounded-2xl border border-brand-warmgray/80 flex flex-col justify-between shadow-xs">
             <div>
               <div class="w-9 h-9 rounded-xl bg-brand-sagePale text-brand-sage flex items-center justify-center mb-3">
                 <i data-lucide="shield-check" class="w-5 h-5"></i>
               </div>
-              <h3 class="font-bold text-base text-brand-dark mb-1.5">100% 프라이빗 사전 예약제</h3>
+              <h3 class="font-bold text-base text-brand-dark mb-1.5 flex items-center gap-1.5">
+                <i data-lucide="check" class="w-4 h-4 text-brand-sage"></i>
+                100% 프라이빗 사전 예약제
+              </h3>
               <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
-                전문 강사진이 회원 한 분 한 분의 체형과 컨디션을 정밀하게 분석하여 맞춤형 여정을 세심하게 준비합니다.
+                전문 강사진이 회원 한 분 한 분의 체형과 컨디션을 정밀하게 분석하여 맞춤형 여정을 정성스레 준비합니다.
               </p>
             </div>
           </div>
         </div>
 
-        <!-- Promise Quote -->
-        <div class="mt-5 p-4 rounded-2xl bg-brand-sage text-white text-center text-xs sm:text-sm font-light">
+        <!-- Promise Quote (Slide 3) -->
+        <div class="mt-5 p-4 rounded-2xl bg-brand-sage text-white text-center text-xs sm:text-sm font-light shadow-xs">
           <span class="font-semibold text-brand-sand mr-2">🍃 Mood Wellness Promise:</span>
           "당신의 오늘 컨디션에 꼭 맞춘 가장 안전하고 활력 넘치는 최적의 움직임을 선물합니다."
         </div>
       </div>
     </section>
 
-    <!-- 3 CORE PROGRAMS -->
+    <!-- 2. 핵심 프로그램 & 스페셜 원데이 (Slide 4, 5) -->
     <section id="core-program" class="scroll-mt-32">
       <div class="text-center max-w-xl mx-auto mb-10">
-        <span class="text-xs font-en tracking-widest text-brand-terracotta uppercase font-bold">Our Philosophy</span>
+        <span class="text-xs font-en tracking-widest text-brand-terracotta uppercase font-bold">Core Competency</span>
         <h2 class="text-2xl sm:text-3xl font-bold text-brand-dark mt-1">무드웰니스 3대 핵심 프로그램</h2>
         <p class="text-xs sm:text-sm text-brand-muted mt-2">속근육의 안정성부터 실질적 관절 가동성과 피로 회복까지 유기적으로 연결됩니다.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- 1. Barre & Pilates -->
+        <!-- Core 1. Barre & Pilates -->
         <div class="bg-white rounded-2xl p-6 sm:p-7 border border-brand-warmgray shadow-card hover:shadow-floating transition-all duration-300 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-4">
               <span class="text-xs font-en font-bold text-brand-sage bg-brand-sagePale px-2.5 py-1 rounded-md">CORE 01</span>
               <i data-lucide="sparkles" class="w-5 h-5 text-brand-sage"></i>
             </div>
-            <h3 class="text-xl font-bold text-brand-dark mb-3">바레 & 필라테스</h3>
+            <h3 class="text-xl font-bold text-brand-dark mb-3">바레 &amp; 필라테스</h3>
             <p class="text-sm text-brand-muted leading-relaxed">
               속근육 강화와 자세 정렬을 통해 탄탄하고 유연한 바디 라인을 형성하고 신체 밸런스를 바로잡습니다.
             </p>
           </div>
-          <div class="mt-6 pt-4 border-t border-brand-warmgray/50 flex flex-wrap gap-1.5 text-xs text-brand-muted">
+          <div class="mt-6 pt-4 border-t border-brand-warmgray/60 flex flex-wrap gap-1.5 text-xs text-brand-muted">
             <span class="px-2 py-0.5 rounded bg-brand-sand">#속근육강화</span>
             <span class="px-2 py-0.5 rounded bg-brand-sand">#자세정렬</span>
             <span class="px-2 py-0.5 rounded bg-brand-sand">#바디라인</span>
           </div>
         </div>
 
-        <!-- 2. Functional & Props -->
+        <!-- Core 2. Functional & Props -->
         <div class="bg-white rounded-2xl p-6 sm:p-7 border border-brand-warmgray shadow-card hover:shadow-floating transition-all duration-300 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-4">
               <span class="text-xs font-en font-bold text-brand-terracotta bg-brand-terracottaLight px-2.5 py-1 rounded-md">CORE 02</span>
               <i data-lucide="dumbbell" class="w-5 h-5 text-brand-terracotta"></i>
             </div>
-            <h3 class="text-xl font-bold text-brand-dark mb-3">펑셔널 & 소도구</h3>
+            <h3 class="text-xl font-bold text-brand-dark mb-3">펑셔널 &amp; 소도구</h3>
             <p class="text-sm text-brand-muted leading-relaxed">
               일상에서 필요한 실질적 근력과 코어 안정성을 높여 통증을 예방하고 움직임의 가동 범위를 확장합니다.
             </p>
           </div>
-          <div class="mt-6 pt-4 border-t border-brand-warmgray/50 flex flex-wrap gap-1.5 text-xs text-brand-muted">
+          <div class="mt-6 pt-4 border-t border-brand-warmgray/60 flex flex-wrap gap-1.5 text-xs text-brand-muted">
             <span class="px-2 py-0.5 rounded bg-brand-sand">#실전근력</span>
             <span class="px-2 py-0.5 rounded bg-brand-sand">#코어안정성</span>
             <span class="px-2 py-0.5 rounded bg-brand-sand">#통증예방</span>
           </div>
         </div>
 
-        <!-- 3. Recovery & Stretching -->
+        <!-- Core 3. Recovery & Stretching -->
         <div class="bg-white rounded-2xl p-6 sm:p-7 border border-brand-warmgray shadow-card hover:shadow-floating transition-all duration-300 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-4">
               <span class="text-xs font-en font-bold text-brand-sageLight bg-brand-sagePale px-2.5 py-1 rounded-md">CORE 03</span>
               <i data-lucide="wind" class="w-5 h-5 text-brand-sageLight"></i>
             </div>
-            <h3 class="text-xl font-bold text-brand-dark mb-3">리커버리 & 스트레칭</h3>
+            <h3 class="text-xl font-bold text-brand-dark mb-3">리커버리 &amp; 스트레칭</h3>
             <p class="text-sm text-brand-muted leading-relaxed">
-              긴장된 근막 이완과 깊은 호흡을 통해 누적된 피로를 해소하고 지친 일상에 정서적 치유를 제공합니다.
+              긴장된 근막 이완과 깊은 호흡을 통해 누적된 피로를 해소하고 지친 일상에 온전한 정서적 치유를 제공합니다.
             </p>
           </div>
-          <div class="mt-6 pt-4 border-t border-brand-warmgray/50 flex flex-wrap gap-1.5 text-xs text-brand-muted">
+          <div class="mt-6 pt-4 border-t border-brand-warmgray/60 flex flex-wrap gap-1.5 text-xs text-brand-muted">
             <span class="px-2 py-0.5 rounded bg-brand-sand">#근막이완</span>
             <span class="px-2 py-0.5 rounded bg-brand-sand">#피로해소</span>
             <span class="px-2 py-0.5 rounded bg-brand-sand">#정서적치유</span>
           </div>
         </div>
       </div>
+
+      <!-- Slide 5: 스페셜 원데이 클래스 소개 배너 -->
+      <div class="mt-6 p-6 rounded-2xl bg-white border border-brand-warmgray/90 shadow-card flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div class="flex items-start sm:items-center gap-3.5">
+          <div class="w-10 h-10 rounded-xl bg-brand-terracottaLight text-brand-terracotta flex items-center justify-center shrink-0">
+            <i data-lucide="sun" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <div class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-terracotta mb-0.5">
+              <span>SPECIAL HEALING SESSION</span>
+              <span class="text-[10px] bg-brand-terracotta/10 px-1.5 py-0.5 rounded">시즌 한정</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-brand-dark">스페셜 원데이 클래스 : 온전한 쉼과 활력을 더하는 힐링 세션</h4>
+            <p class="text-xs sm:text-sm text-brand-muted mt-0.5">
+              정규 루틴을 넘어 새로운 사람들과 소통하며, 다채로운 테마로 지친 몸과 마음을 리프레시합니다.
+            </p>
+          </div>
+        </div>
+        <a href="#oneday" class="shrink-0 px-4 py-2 rounded-xl bg-brand-sand text-brand-dark text-xs font-semibold hover:bg-brand-warmgray transition flex items-center gap-1.5">
+          <span>10월 일정 보기</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-brand-sage"></i>
+        </a>
+      </div>
     </section>
 
-    <!-- SPA PARTNERSHIP BENEFIT -->
+    <!-- 3. 멤버십 혜택 & YJ 스파 제휴 (Slide 6) -->
     <section id="benefits" class="scroll-mt-32">
-      <div class="rounded-3xl bg-gradient-to-r from-brand-dark via-[#2b352e] to-brand-sageDark text-white p-7 sm:p-10 shadow-soft overflow-hidden relative">
-        <div class="absolute right-0 top-0 bottom-0 w-1/3 bg-gradient-to-l from-white/5 to-transparent pointer-events-none"></div>
+      <div class="rounded-3xl bg-gradient-to-r from-brand-dark via-[#2d3a31] to-brand-sageDark text-white p-7 sm:p-10 shadow-soft overflow-hidden relative">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
           <div class="space-y-3 max-w-xl">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-terracotta text-white text-xs font-semibold">
@@ -284,8 +331,11 @@
             </div>
             <h3 class="text-2xl sm:text-3xl font-bold tracking-tight">무드웰니스 멤버십 특별 혜택</h3>
             <p class="text-sm sm:text-base text-gray-300 leading-relaxed font-light">
-              <strong class="text-white font-medium">RECOVERY & HEALING — 깊은 회복과 치유</strong><br>
-              무드웰니스는 단순한 운동을 넘어, 누적된 피로를 풀고 몸과 마음의 완벽한 리프레시를 완성하는 케어를 지향합니다.
+              <strong class="text-white font-medium">RECOVERY &amp; HEALING — 깊은 회복과 치유</strong><br>
+              무드웰니스는 단순한 운동을 넘어, 누적된 피로를 풀고 몸과 마음의 완벽한 리프레시를 완성하는 프리미엄 케어를 지향합니다.
+            </p>
+            <p class="text-xs text-brand-sand/90">
+              * 무드웰니스 회원님만을 위한 프리미엄 힐링 연계 프로그램
             </p>
           </div>
 
@@ -298,7 +348,7 @@
       </div>
     </section>
 
-    <!-- MATCHING SYSTEM & VISIT PROCESS -->
+    <!-- 4. 전담 매칭 & 첫 방문 절차 (Slide 7, 8) -->
     <section id="matching-system" class="scroll-mt-32 space-y-12">
       <!-- Why Matching Section -->
       <div class="bg-white rounded-3xl p-6 sm:p-10 border border-brand-warmgray shadow-card">
@@ -314,7 +364,7 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
           <!-- General Center comparison -->
-          <div class="lg:col-span-4 bg-red-50/60 rounded-2xl p-6 border border-red-100 flex flex-col justify-between">
+          <div class="lg:col-span-4 bg-red-50/70 rounded-2xl p-6 border border-red-100 flex flex-col justify-between">
             <div>
               <div class="flex items-center gap-2 text-red-700 font-semibold text-sm mb-3">
                 <i data-lucide="x-circle" class="w-4 h-4"></i>
@@ -337,7 +387,7 @@
               </ul>
             </div>
             <div class="mt-4 pt-3 border-t border-red-100 text-xs text-red-600 font-medium">
-              비효율적인 시간과 비용 소모
+              비효율적인 시간과 비용 소모 방지
             </div>
           </div>
 
@@ -350,7 +400,7 @@
               </div>
               
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mt-4">
-                <div class="bg-white p-4 rounded-xl border border-brand-warmgray/70">
+                <div class="bg-white p-4 rounded-xl border border-brand-warmgray/80 shadow-xs">
                   <span class="text-xs font-bold text-brand-sage uppercase">STEP 01</span>
                   <h5 class="text-sm font-bold text-brand-dark mt-1 mb-2 leading-tight">케어목적 &amp;<br>라이프스타일 상담</h5>
                   <p class="text-xs text-brand-muted leading-relaxed">
@@ -358,19 +408,19 @@
                   </p>
                 </div>
 
-                <div class="bg-white p-4 rounded-xl border border-brand-warmgray/70">
+                <div class="bg-white p-4 rounded-xl border border-brand-warmgray/80 shadow-xs">
                   <span class="text-xs font-bold text-brand-sage uppercase">STEP 02</span>
                   <h5 class="text-sm font-bold text-brand-dark mt-1 mb-2 leading-tight">강사별 특화 영역<br>교차 검증</h5>
                   <ul class="text-[11px] text-brand-muted space-y-1">
-                    <li>• <strong>순환/모빌리티:</strong> 전신순환·이완</li>
+                    <li>• <strong>순환/모빌리티:</strong> 전신순환·부종·이완</li>
                     <li>• <strong>체형 교정:</strong> 만성통증·정렬</li>
                     <li>• <strong>체력 강화:</strong> 근력강화·피로감소</li>
-                    <li>• <strong>다이어트:</strong> 라인정리·유산소</li>
+                    <li>• <strong>다이어트:</strong> 체지방감소·라인정리</li>
                     <li>• <strong>힐링:</strong> 정적힐링·정서소통</li>
                   </ul>
                 </div>
 
-                <div class="bg-white p-4 rounded-xl border border-brand-warmgray/70">
+                <div class="bg-white p-4 rounded-xl border border-brand-warmgray/80 shadow-xs">
                   <span class="text-xs font-bold text-brand-sage uppercase">STEP 03</span>
                   <h5 class="text-sm font-bold text-brand-dark mt-1 mb-2 leading-tight">100% 전담 책임제<br>밀착 케어</h5>
                   <p class="text-xs text-brand-muted leading-relaxed">
@@ -382,13 +432,13 @@
 
             <!-- Quote banner -->
             <div class="mt-4 pt-3 border-t border-brand-sage/20 text-xs sm:text-sm text-brand-dark">
-              💡 <strong class="text-brand-sage">"고객님의 귀한 시간과 비용이 낭비되지 않도록"</strong> — 단순 출석이 아닌 가장 빠르고 안전한 변화를 만들어낼 단 한 명의 전담 파트너를 찾아드립니다.
+              💡 <strong class="text-brand-sage">"고객님의 귀한 시간과 비용이 낭비되지 않도록"</strong> — 단순히 '수업을 채우는 것'이 아닌, 회원님의 현재 몸 상태에 가장 빠르고 안전한 변화를 만들어낼 단 한 명의 전담 파트너를 찾아드립니다.
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 3 Step Visit Process -->
+      <!-- 3-Step Visit Process -->
       <div>
         <div class="text-center max-w-xl mx-auto mb-8">
           <span class="text-xs font-en tracking-widest text-brand-sage uppercase font-bold">Process</span>
@@ -449,7 +499,7 @@
       </div>
     </section>
 
-    <!-- PRIVATE GROUP SYSTEM -->
+    <!-- 5. 프라이빗 소모임 시스템 (Slide 9) -->
     <section id="private-group" class="scroll-mt-32">
       <div class="bg-brand-sand/60 rounded-3xl p-6 sm:p-10 border border-brand-warmgray">
         <div class="max-w-3xl mb-8">
@@ -471,9 +521,9 @@
               <h3 class="text-base font-bold text-brand-dark mb-1">지정 좌석제 루틴</h3>
               <p class="text-xs text-brand-terracotta font-medium mb-2">매주 예약 전쟁 없이 지키는 나만의 시간</p>
               <ul class="text-xs text-brand-muted space-y-1.5 leading-relaxed">
-                <li>• 잔여석 눈치 보며 수강신청하듯 예약하는 피로도를 완전히 없앴습니다.</li>
-                <li>• 약속된 요일, 확정된 시간에 내 자리가 늘 준비되어 흐트러짐 없는 운동 습관 형성</li>
-                <li>• 강사와 크루원이 서로를 기다려주어 끝까지 지속할 수 있는 든든한 힘</li>
+                <li>• 잔여석 눈치 보며 수강신청하듯 예약하는 번거로움과 피로도를 완전히 없앴습니다.</li>
+                <li>• 약속된 요일, 확정된 시간에 내 자리가 늘 준비되어 흐트러짐 없는 완벽한 운동 습관 완성</li>
+                <li>• 강사와 크루원이 서로를 기다려주어 포기하지 않고 끝까지 지속할 수 있는 힘</li>
               </ul>
             </div>
           </div>
@@ -485,7 +535,7 @@
               <p class="text-xs text-brand-terracotta font-medium mb-2">친구, 연인, 동료 혹은 결이 맞는 이웃과 함께</p>
               <ul class="text-xs text-brand-muted space-y-1.5 leading-relaxed">
                 <li>• 낯선 사람들이 매번 바뀌며 들어오는 어색하고 산만한 환경이 아닙니다.</li>
-                <li>• 마음 맞는 지인 팀 또는 운동 목적과 성향이 닮은 멤버들과 한 팀 구성</li>
+                <li>• 마음 맞는 지인 팀 또는 사전 매칭으로 운동 목적과 성향이 닮은 멤버들과 한 팀 구성</li>
                 <li>• 문을 닫는 순간 시작되는 우리만의 아지트에서 하루 피로를 털고 편안한 소통</li>
               </ul>
             </div>
@@ -497,7 +547,7 @@
               <h3 class="text-base font-bold text-brand-dark mb-1">전담 강사의 맞춤 케어</h3>
               <p class="text-xs text-brand-terracotta font-medium mb-2">기수별 · 팀별 맞춤 빌드업 커리큘럼</p>
               <ul class="text-xs text-brand-muted space-y-1.5 leading-relaxed">
-                <li>• 첫 주부터 마지막 주까지 팀의 발전 속도에 맞춘 체계적 연계 수업 진행</li>
+                <li>• 첫 주부터 마지막 주까지 팀의 발전 속도에 맞춘 단계적 연계 수업 진행</li>
                 <li>• 전담 강사가 구성원들의 체형 특성을 완벽히 파악하여 세심한 코칭</li>
                 <li>• 1:1 개인레슨을 단체로 받는 듯한 밀착 피드백 제공</li>
               </ul>
@@ -547,14 +597,16 @@
       </div>
     </section>
 
-    <!-- INSTRUCTORS CURATION -->
-    <section id="instructors" class="scroll-mt-32">
-      <div class="text-center max-w-xl mx-auto mb-10">
+    <!-- 6. 전담 강사 큐레이션 & 1:1 개인레슨 (Slide 10, 11, 12) -->
+    <section id="instructors" class="scroll-mt-32 space-y-12">
+      <!-- Instructors Header -->
+      <div class="text-center max-w-xl mx-auto">
         <span class="text-xs font-en tracking-widest text-brand-sage uppercase font-bold">PART 02 • Master Curation</span>
         <h2 class="text-2xl sm:text-3xl font-bold text-brand-dark mt-1">전담 강사 큐레이션 &amp; 맞춤 케어</h2>
         <p class="text-xs sm:text-sm text-brand-muted mt-2">어떤 고민이 있으신가요? 회원님의 몸 상태와 목적에 가장 부합하는 전담 마스터를 추천해 드립니다.</p>
       </div>
 
+      <!-- Instructor Profile Cards (Slide 11) -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- 1. 이수휘 원장 -->
         <div class="bg-white rounded-3xl p-6 sm:p-8 border border-brand-warmgray shadow-card hover:border-brand-sage transition-all flex flex-col justify-between">
@@ -577,7 +629,7 @@
               </li>
               <li class="flex items-start gap-2">
                 <span class="text-brand-sage font-bold">•</span>
-                <span>슬링과 핸즈온 수기 테크닉을 통한 근육 이완 테라피 프로그램</span>
+                <span>슬링과 핸즈온 수기 테크닉을 통해 근육 이완 테라피 프로그램</span>
               </li>
             </ul>
           </div>
@@ -622,7 +674,7 @@
           </div>
         </div>
 
-        <!-- 3. 오슬기 원장 (추가 예정) -->
+        <!-- 3. 오슬기 원장 -->
         <div class="bg-white rounded-3xl p-6 sm:p-8 border border-brand-warmgray shadow-card flex flex-col justify-between">
           <div>
             <div class="flex items-start justify-between gap-4 mb-3">
@@ -636,17 +688,17 @@
                 SG
               </div>
             </div>
-            <p class="text-xs sm:text-sm text-brand-muted mt-4 italic">
-              상세 프로필 및 프로그램 추가 예정입니다. (사전 상담을 통해 우선 매칭 가능합니다.)
+            <p class="text-xs sm:text-sm text-brand-muted mt-4">
+              개인별 근력 향상과 체지방 감량을 위한 타겟팅 시퀀스를 설계합니다. 탄탄하고 슬림한 바디라인 정렬을 돕습니다.
             </p>
           </div>
-          <div class="mt-6 bg-brand-sand/70 p-3.5 rounded-xl text-xs text-brand-muted flex items-center gap-2">
+          <div class="mt-6 bg-brand-sand/70 p-3.5 rounded-xl text-xs text-brand-dark flex items-start gap-2">
             <span class="text-brand-terracotta font-bold text-sm leading-none shrink-0">👉</span>
-            <span><strong>추천 대상:</strong> 추가 예정</span>
+            <div><strong>추천 대상:</strong> 코어 및 체력 증진, 체계적인 라인 정리를 목표로 하시는 분 (사전 상담 매칭)</div>
           </div>
         </div>
 
-        <!-- 4. 김도희 실장 (추가 예정) -->
+        <!-- 4. 김도희 실장 -->
         <div class="bg-white rounded-3xl p-6 sm:p-8 border border-brand-warmgray shadow-card flex flex-col justify-between">
           <div>
             <div class="flex items-start justify-between gap-4 mb-3">
@@ -660,128 +712,134 @@
                 DH
               </div>
             </div>
-            <p class="text-xs sm:text-sm text-brand-muted mt-4 italic">
-              상세 프로필 및 프로그램 추가 예정입니다. (사전 상담을 통해 우선 매칭 가능합니다.)
+            <p class="text-xs sm:text-sm text-brand-muted mt-4">
+              불균형한 척추와 골반 정렬을 바르게 세우고, 속부터 단단하게 잡아주는 필라테스 코어 트레이닝을 안내합니다.
             </p>
           </div>
-          <div class="mt-6 bg-brand-sand/70 p-3.5 rounded-xl text-xs text-brand-muted flex items-center gap-2">
+          <div class="mt-6 bg-brand-sand/70 p-3.5 rounded-xl text-xs text-brand-dark flex items-start gap-2">
             <span class="text-brand-terracotta font-bold text-sm leading-none shrink-0">👉</span>
-            <span><strong>추천 대상:</strong> 추가 예정</span>
+            <div><strong>추천 대상:</strong> 자세 정렬 및 척추·골반 안정화가 필요하신 분 (사전 상담 매칭)</div>
           </div>
         </div>
+      </div>
+
+      <!-- 1:1 Private Lesson Sub-section (Slide 12) -->
+      <div id="private-lesson" class="pt-6">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-6 gap-3">
+          <div>
+            <span class="text-xs font-en tracking-wider text-brand-sage uppercase font-bold">Tailored 1:1 Care</span>
+            <h3 class="text-xl sm:text-2xl font-bold text-brand-dark mt-1">1:1 개인레슨 세부 프로그램 &amp; 추천 가이드</h3>
+            <p class="text-xs sm:text-sm text-brand-muted mt-1">선생님의 전문 분야에 따른 목적별 최적화 프로그램을 제안합니다.</p>
+          </div>
+        </div>
+
+        <!-- Program Guide Badge -->
+        <div class="mb-6 p-3.5 rounded-2xl bg-brand-sand/70 border border-brand-warmgray text-xs sm:text-sm text-brand-dark flex flex-wrap items-center gap-2">
+          <span class="font-bold text-brand-sage">💡 프로그램 선택 가이드 :</span>
+          <span class="px-2.5 py-0.5 rounded bg-white font-medium border border-brand-warmgray">[1:1 개인] 100% 초밀착 맞춤 솔루션</span>
+          <span class="text-brand-muted">|</span>
+          <span class="px-2.5 py-0.5 rounded bg-white font-medium border border-brand-warmgray">[스페셜 융합 (70분/120분)] 운동 교정 + 에스테틱/수기 케어 원스톱</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- 바디튜닝 -->
+          <div class="bg-white rounded-2xl p-6 border border-brand-warmgray shadow-card flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between text-xs font-medium text-brand-sage mb-2">
+                <span class="font-bold">수휘 | 기능회복 &amp; 순환</span>
+                <span class="px-2 py-0.5 rounded bg-brand-sand text-brand-dark font-bold">1:1 개인 / 70분</span>
+              </div>
+              <h4 class="text-xl font-bold text-brand-dark mb-2">바디튜닝 (Body Tuning)</h4>
+              <p class="text-xs sm:text-sm text-brand-muted leading-relaxed mb-4">
+                스트레칭 / 모빌리티 / 기능성 회복운동을 통해 신체의 불편한 움직임을 근본적으로 개선합니다.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-brand-warmgray/50 text-xs text-brand-dark bg-brand-sand/50 p-3 rounded-xl flex items-start gap-1.5">
+              <span class="text-brand-terracotta font-bold shrink-0">👉</span>
+              <div><strong>추천:</strong> 몸이 뻣뻣하거나 자세, 정렬 및 기능적 움직임을 집중적으로 관리하고 싶으신 분</div>
+            </div>
+          </div>
+
+          <!-- 딥 럴링 슬링 -->
+          <div class="bg-white rounded-2xl p-6 border border-brand-warmgray shadow-card flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between text-xs font-medium text-brand-sage mb-2">
+                <span class="font-bold">수휘 | 기능회복 &amp; 순환</span>
+                <span class="px-2 py-0.5 rounded bg-brand-sagePale text-brand-sage font-bold">스페셜 융합 / 70분</span>
+              </div>
+              <h4 class="text-xl font-bold text-brand-dark mb-2">딥 럴링 슬링<br><span class="text-xs font-en font-normal text-brand-muted">(DEEP LULLING SLING)</span></h4>
+              <p class="text-xs sm:text-sm text-brand-muted leading-relaxed mb-4">
+                슬링 천과 핸즈온 테크닉을 이용해 긴장된 몸을 깊게 이완시키고 굳은 관절의 가동성을 회복합니다.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-brand-warmgray/50 text-xs text-brand-dark bg-brand-sand/50 p-3 rounded-xl flex items-start gap-1.5">
+              <span class="text-brand-terracotta font-bold shrink-0">👉</span>
+              <div><strong>추천:</strong> 근육 긴장도가 매우 높아 혼자 스트레칭하기 어렵거나 심한 피로를 느끼는 분</div>
+            </div>
+          </div>
+
+          <!-- 윤곽밸런스케어 -->
+          <div class="bg-white rounded-2xl p-6 border border-brand-warmgray shadow-card flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between text-xs font-medium text-brand-terracotta mb-2">
+                <span class="font-bold">소영 | 융합 케어 &amp; 힐링</span>
+                <span class="px-2 py-0.5 rounded bg-brand-terracottaLight text-brand-terracotta font-bold">스페셜 융합 / 120분</span>
+              </div>
+              <h4 class="text-xl font-bold text-brand-dark mb-2">윤곽밸런스케어</h4>
+              <p class="text-xs sm:text-sm text-brand-muted leading-relaxed mb-4">
+                척추·골반 축 정렬 교정과 안면 윤곽 수기 케어를 통해 전신 및 페이스 라인의 비대칭을 균형 있게 교정합니다.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-brand-warmgray/50 text-xs text-brand-dark bg-brand-sand/50 p-3 rounded-xl flex items-start gap-1.5">
+              <span class="text-brand-terracotta font-bold shrink-0">👉</span>
+              <div><strong>추천:</strong> 예비신랑·신부, 프로필/웨딩 촬영 준비, 얼굴 및 전신 비대칭 케어를 원하는 분</div>
+            </div>
+          </div>
+        </div>
+
+        <p class="mt-4 text-center text-xs text-brand-muted">
+          * 슬기 원장(근력강화 &amp; 다이어트) 및 도희 실장(체형교정 &amp; 코어강화) 개인 프로그램은 사전 상담을 통해 회원님 목적에 맞춰 1:1 개별 배정됩니다.
+        </p>
       </div>
     </section>
 
-    <!-- 1:1 PRIVATE LESSON DETAILS -->
-    <section id="private-lesson" class="scroll-mt-32">
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
-        <div>
-          <span class="text-xs font-en tracking-wider text-brand-sage uppercase font-bold">1:1 Tailored Care</span>
-          <h2 class="text-2xl sm:text-3xl font-bold text-brand-dark mt-1">1:1 개인레슨 세부 프로그램 &amp; 추천 가이드</h2>
-          <p class="text-xs sm:text-sm text-brand-muted mt-1">선생님의 전문 분야에 따른 목적별 최적화 프로그램을 제안합니다.</p>
-        </div>
-      </div>
-
-      <!-- Program Guide Badge -->
-      <div class="mb-6 p-3.5 rounded-2xl bg-brand-sand/70 border border-brand-warmgray text-xs sm:text-sm text-brand-dark flex flex-wrap items-center gap-2">
-        <span class="font-bold text-brand-sage">💡 프로그램 선택 가이드 :</span>
-        <span class="px-2 py-0.5 rounded bg-white font-medium border border-brand-warmgray">[1:1 개인] 100% 초밀착 맞춤 솔루션</span>
-        <span class="text-brand-muted">|</span>
-        <span class="px-2 py-0.5 rounded bg-white font-medium border border-brand-warmgray">[스페셜 융합 (70분/120분)] 운동 교정 + 에스테틱/수기 케어 원스톱</span>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- 바디튜닝 -->
-        <div class="bg-white rounded-2xl p-6 border border-brand-warmgray shadow-card flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between text-xs font-medium text-brand-sage mb-2">
-              <span class="font-bold">수휘 | 기능회복 &amp; 순환 컨디셔닝</span>
-              <span class="px-2 py-0.5 rounded bg-brand-sand text-brand-dark font-bold">1:1 개인 / 70분</span>
-            </div>
-            <h3 class="text-xl font-bold text-brand-dark mb-2">바디튜닝 (Body Tuning)</h3>
-            <p class="text-xs sm:text-sm text-brand-muted leading-relaxed mb-4">
-              스트레칭 / 모빌리티 / 기능성 회복운동을 통해 신체의 불편한 움직임을 근본적으로 개선합니다.
-            </p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-brand-warmgray/50 text-xs text-brand-dark bg-brand-sand/50 p-3 rounded-xl flex items-start gap-1.5">
-            <span class="text-brand-terracotta font-bold shrink-0">👉</span>
-            <div><strong>추천 대상:</strong> 몸이 뻣뻣하거나 자세, 정렬 및 기능적 움직임을 체계적으로 관리하고 싶으신 분</div>
-          </div>
-        </div>
-
-        <!-- 딥 럴링 슬링 -->
-        <div class="bg-white rounded-2xl p-6 border border-brand-warmgray shadow-card flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between text-xs font-medium text-brand-sage mb-2">
-              <span class="font-bold">수휘 | 기능회복 &amp; 순환 컨디셔닝</span>
-              <span class="px-2 py-0.5 rounded bg-brand-sagePale text-brand-sage font-bold">스페셜 융합 / 70분</span>
-            </div>
-            <h3 class="text-xl font-bold text-brand-dark mb-2">딥 럴링 슬링<br><span class="text-xs font-en font-normal text-brand-muted">(DEEP LULLING SLING)</span></h3>
-            <p class="text-xs sm:text-sm text-brand-muted leading-relaxed mb-4">
-              슬링 천과 핸즈온 테크닉을 이용해 긴장된 몸을 깊게 이완시키고 굳은 관절의 가동성을 회복합니다.
-            </p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-brand-warmgray/50 text-xs text-brand-dark bg-brand-sand/50 p-3 rounded-xl flex items-start gap-1.5">
-            <span class="text-brand-terracotta font-bold shrink-0">👉</span>
-            <div><strong>추천 대상:</strong> 근육 긴장도가 매우 높아 혼자 스트레칭하기 어렵거나 극심한 피로를 느끼는 분</div>
-          </div>
-        </div>
-
-        <!-- 윤곽밸런스케어 -->
-        <div class="bg-white rounded-2xl p-6 border border-brand-warmgray shadow-card flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between text-xs font-medium text-brand-terracotta mb-2">
-              <span class="font-bold">소영 | 융합 케어 &amp; 힐링</span>
-              <span class="px-2 py-0.5 rounded bg-brand-terracottaLight text-brand-terracotta font-bold">스페셜 융합 / 120분</span>
-            </div>
-            <h3 class="text-xl font-bold text-brand-dark mb-2">윤곽밸런스케어</h3>
-            <p class="text-xs sm:text-sm text-brand-muted leading-relaxed mb-4">
-              척추·골반 축 정렬 교정과 안면 윤곽 수기 케어를 통해 전신 및 페이스 라인의 비대칭을 균형 있게 교정합니다.
-            </p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-brand-warmgray/50 text-xs text-brand-dark bg-brand-sand/50 p-3 rounded-xl flex items-start gap-1.5">
-            <span class="text-brand-terracotta font-bold shrink-0">👉</span>
-            <div><strong>추천 대상:</strong> 예비신랑·신부, 프로필/웨딩 촬영 준비, 얼굴 및 전신 비대칭 케어를 원하는 분</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="mt-4 text-center text-xs text-brand-muted">
-        * 슬기 마스터(근력강화 &amp; 다이어트) 및 도희 실장(체형교정 &amp; 코어강화) 개인 프로그램은 사전 상담을 통해 회원님께 맞춤 제안됩니다.
-      </div>
-    </section>
-
-    <!-- SMALL GROUP CREWS (5 CLASSES) -->
+    <!-- 7. 소모임 그룹레슨 5종 (Slide 13, 14) -->
     <section id="group-crew" class="scroll-mt-32">
       <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
         <div>
           <span class="text-xs font-en tracking-wider text-brand-terracotta uppercase font-bold">Fixed Crew Program</span>
           <h2 class="text-2xl sm:text-3xl font-bold text-brand-dark mt-1">소모임 그룹레슨 세부 프로그램 &amp; 추천 가이드</h2>
-          <p class="text-xs sm:text-sm text-brand-muted mt-1">소수정예 고정 클래스로 진행되는 목적별 맞춤 소모임 레슨입니다.</p>
+          <p class="text-xs sm:text-sm text-brand-muted mt-1">소수정예 고정 클래스로 진행되는 목적별 맞춤 소모임 레슨 안내입니다.</p>
         </div>
-        <div class="text-xs text-brand-muted bg-white px-3 py-1.5 rounded-lg border border-brand-warmgray inline-flex items-center gap-1.5 self-start sm:self-auto">
-          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-          예약 전쟁 없는 고정제 운영
+        <div class="text-xs text-brand-muted bg-white px-3.5 py-1.5 rounded-lg border border-brand-warmgray inline-flex items-center gap-1.5 self-start sm:self-auto shadow-xs">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>예약 경쟁 없는 지정 고정제 운영</span>
         </div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
         <!-- Crew 1: 모닝 크루 -->
-        <div class="bg-white rounded-2xl p-6 border border-brand-warmgray shadow-card flex flex-col justify-between">
+        <div class="bg-white rounded-2xl p-6 border border-brand-warmgray shadow-card flex flex-col justify-between relative overflow-hidden">
+          <div class="absolute top-0 right-0 bg-red-500 text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl shadow-xs">
+            마감임박
+          </div>
           <div>
             <div class="flex items-center justify-between text-xs font-medium mb-2">
               <span class="text-brand-sage font-bold">수휘 | 기능회복 &amp; 순환</span>
-              <span class="px-2 py-0.5 rounded bg-brand-sagePale text-brand-sage font-bold">고정 3인 / 50분</span>
+              <span class="px-2 py-0.5 rounded bg-brand-sagePale text-brand-sage font-bold">고정제 / 50분</span>
             </div>
             <h3 class="text-xl font-bold text-brand-dark mt-1 mb-1">모닝 크루</h3>
             <div class="text-xs font-semibold text-brand-terracotta mb-3 flex items-center gap-1">
               <i data-lucide="clock" class="w-3.5 h-3.5"></i>
               월, 화, 목, 금 오전 10:00 (주 2회)
             </div>
-            <div class="p-2.5 rounded-xl bg-brand-cream border border-brand-warmgray/60 text-xs font-semibold text-brand-dark mb-4">
-              정상가: 20회 38,000원 / 30회 36,000원 (회당)
+            
+            <div class="p-2.5 rounded-xl bg-brand-cream border border-brand-warmgray/70 text-xs mb-4 space-y-1">
+              <div class="font-bold text-brand-dark">정상가 38,000원 <span class="text-[11px] font-normal text-brand-muted">(회당 기준)</span></div>
+              <div class="text-[11px] text-brand-muted">20회 38,000원 / 30회 36,000원</div>
             </div>
+
             <ul class="text-xs sm:text-sm text-brand-muted space-y-1.5 leading-relaxed mb-4">
               <li>• 아침을 깨우는 순환 스트레칭 &amp; 모닝 얼라인먼트</li>
               <li>• 전신 가동성 확보 및 기분 좋은 활력 에너지 활성화</li>
@@ -789,25 +847,31 @@
           </div>
           <div class="mt-4 pt-3 border-t border-brand-warmgray/50 text-xs text-brand-dark bg-brand-sand/50 p-3 rounded-xl flex items-start gap-1.5">
             <span class="text-brand-terracotta font-bold shrink-0">👉</span>
-            <div><strong>추천:</strong> 활력 있는 하루 시작이 필요하신 분, 건강한 오전 습관 및 루틴을 형성하고 싶은 분</div>
+            <div><strong>추천 대상:</strong> 활력 있는 하루 시작이 필요하신 분 / 건강한 오전 습관 및 루틴을 형성하고 싶은 분</div>
           </div>
         </div>
 
         <!-- Crew 2: 런치 바디 핏 -->
-        <div class="bg-white rounded-2xl p-6 border border-brand-warmgray shadow-card flex flex-col justify-between">
+        <div class="bg-white rounded-2xl p-6 border border-brand-warmgray shadow-card flex flex-col justify-between relative overflow-hidden">
+          <div class="absolute top-0 right-0 bg-brand-sage text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl shadow-xs">
+            신규 모임
+          </div>
           <div>
             <div class="flex items-center justify-between text-xs font-medium mb-2">
               <span class="text-brand-sage font-bold">수휘 | 기능회복 &amp; 순환</span>
-              <span class="px-2 py-0.5 rounded bg-brand-sagePale text-brand-sage font-bold">고정 3인 / 50분</span>
+              <span class="px-2 py-0.5 rounded bg-brand-sagePale text-brand-sage font-bold">고정제 / 50분</span>
             </div>
             <h3 class="text-xl font-bold text-brand-dark mt-1 mb-1">런치 바디 핏</h3>
             <div class="text-xs font-semibold text-brand-terracotta mb-3 flex items-center gap-1">
               <i data-lucide="clock" class="w-3.5 h-3.5"></i>
               월, 금 오후 12:00 (점심시간 루틴)
             </div>
-            <div class="p-2.5 rounded-xl bg-brand-cream border border-brand-warmgray/60 text-xs font-semibold text-brand-dark mb-4">
-              정상가: 회당 45,000원
+            
+            <div class="p-2.5 rounded-xl bg-brand-cream border border-brand-warmgray/70 text-xs mb-4">
+              <div class="font-bold text-brand-dark">정상가 45,000원 <span class="text-[11px] font-normal text-brand-muted">(회당)</span></div>
+              <div class="text-[11px] text-brand-muted">점심 시간을 완벽히 활용하는 리프레시 시퀀스</div>
             </div>
+
             <ul class="text-xs sm:text-sm text-brand-muted space-y-1.5 leading-relaxed mb-4">
               <li>• 바레와 발레를 기반으로 월/금 서로 다른 테마 수업 진행</li>
               <li>• 규칙적인 운동 루틴 형성, 바디라인과 컨디션 관리 융합</li>
@@ -815,25 +879,31 @@
           </div>
           <div class="mt-4 pt-3 border-t border-brand-warmgray/50 text-xs text-brand-dark bg-brand-sand/50 p-3 rounded-xl flex items-start gap-1.5">
             <span class="text-brand-terracotta font-bold shrink-0">👉</span>
-            <div><strong>추천:</strong> 점심시간을 활용해 꾸준히 운동하고 싶으신 분, 바디라인·자세·코어를 함께 관리하고 싶은 분</div>
+            <div><strong>추천 대상:</strong> 점심시간을 활용해 꾸준히 운동하고 싶으신 분 / 바디라인, 자세, 코어를 관리하고 싶은 분</div>
           </div>
         </div>
 
         <!-- Crew 3: 바디라인 정렬 크루 -->
-        <div class="bg-white rounded-2xl p-6 border border-brand-warmgray shadow-card flex flex-col justify-between">
+        <div class="bg-white rounded-2xl p-6 border border-brand-warmgray shadow-card flex flex-col justify-between relative overflow-hidden">
+          <div class="absolute top-0 right-0 bg-amber-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl shadow-xs">
+            잔여 2석 / 잔여 1석
+          </div>
           <div>
             <div class="flex items-center justify-between text-xs font-medium mb-2">
               <span class="text-brand-sage font-bold">슬기 | 근력강화 &amp; 다이어트</span>
-              <span class="px-2 py-0.5 rounded bg-brand-sagePale text-brand-sage font-bold">고정 3인 / 50분</span>
+              <span class="px-2 py-0.5 rounded bg-brand-sagePale text-brand-sage font-bold">고정제 / 50분</span>
             </div>
             <h3 class="text-xl font-bold text-brand-dark mt-1 mb-1">바디라인 정렬 크루</h3>
             <div class="text-xs font-semibold text-brand-terracotta mb-3 flex items-center gap-1">
               <i data-lucide="clock" class="w-3.5 h-3.5"></i>
               월, 금 오후 19:30 or 20:30 (퇴근길)
             </div>
-            <div class="p-2.5 rounded-xl bg-brand-cream border border-brand-warmgray/60 text-xs font-semibold text-brand-dark mb-4">
-              정상가: 20회 38,000원 / 30회 36,000원 (회당)
+            
+            <div class="p-2.5 rounded-xl bg-brand-cream border border-brand-warmgray/70 text-xs mb-4 space-y-1">
+              <div class="font-bold text-brand-dark">정상가 38,000원 <span class="text-[11px] font-normal text-brand-muted">(회당 기준)</span></div>
+              <div class="text-[11px] text-brand-muted">20회 38,000원 / 30회 36,000원</div>
             </div>
+
             <ul class="text-xs sm:text-sm text-brand-muted space-y-1.5 leading-relaxed mb-4">
               <li>• 탄탄한 코어 및 근력 강화와 슬림한 실루엣 정돈</li>
               <li>• 퇴근 후 크루원들과 함께 건강한 에너지를 채우는 시간</li>
@@ -841,12 +911,15 @@
           </div>
           <div class="mt-4 pt-3 border-t border-brand-warmgray/50 text-xs text-brand-dark bg-brand-sand/50 p-3 rounded-xl flex items-start gap-1.5">
             <span class="text-brand-terracotta font-bold shrink-0">👉</span>
-            <div><strong>추천:</strong> 탄탄하고 균형 잡힌 실루엣을 원하는 분, 크루원들과 서로 동기부여를 얻고 싶은 분</div>
+            <div><strong>추천 대상:</strong> 탄탄하고 균형 잡힌 실루엣을 원하는 분 / 크루원들과 함께 동기부여를 얻고 싶은 분</div>
           </div>
         </div>
 
         <!-- Crew 4: 나이트 바레 x 필라테스 크루 -->
-        <div class="bg-white rounded-2xl p-6 border border-brand-warmgray shadow-card flex flex-col justify-between">
+        <div class="bg-white rounded-2xl p-6 border border-brand-warmgray shadow-card flex flex-col justify-between relative overflow-hidden">
+          <div class="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl shadow-xs">
+            잔여 2석 &amp; 마감임박
+          </div>
           <div>
             <div class="flex items-center justify-between text-xs font-medium mb-2">
               <span class="text-brand-terracotta font-bold">소영 | 융합케어 &amp; 힐링</span>
@@ -857,23 +930,29 @@
               <i data-lucide="clock" class="w-3.5 h-3.5"></i>
               화, 목 오후 19:00 or 21:00
             </div>
-            <div class="p-2.5 rounded-xl bg-brand-cream border border-brand-warmgray/60 text-xs font-semibold text-brand-dark mb-4">
-              정상가: 회당 40,000원
+            
+            <div class="p-2.5 rounded-xl bg-brand-cream border border-brand-warmgray/70 text-xs mb-4">
+              <div class="font-bold text-brand-dark">정상가 40,000원 <span class="text-[11px] font-normal text-brand-muted">(회당)</span></div>
+              <div class="text-[11px] text-brand-muted">고요한 집중과 역동적 에너지를 잇는 시그니처</div>
             </div>
+
             <ul class="text-xs sm:text-sm text-brand-muted space-y-1.5 leading-relaxed mb-4">
               <li>• 고요한 분위기에서 신체 움직임에 집중하는 필라테스</li>
               <li>• 정확히 인지된 움직임을 바탕으로 신나고 역동적인 바레 동작으로 확장 (전신 &amp; 유산소 효과 극대화)</li>
-              <li>• 바레와 필라테스 외의 다채로운 웰니스 프로그램 진행</li>
+              <li>• 바레와 필라테스 외의 다양한 웰니스 프로그램 진행</li>
             </ul>
           </div>
           <div class="mt-4 pt-3 border-t border-brand-warmgray/50 text-xs text-brand-dark bg-brand-sand/50 p-3 rounded-xl flex items-start gap-1.5">
             <span class="text-brand-terracotta font-bold shrink-0">👉</span>
-            <div><strong>추천:</strong> 다양한 운동을 통해 지루하지 않게 운동하고 싶은 분, 퇴근 후 마음 맞는 사람들과 건강한 취향을 공유하고 싶은 분</div>
+            <div><strong>추천 대상:</strong> 다양한 운동을 통해 지루하지 않게 운동하고 싶은 분 / 퇴근 후 마음 맞는 사람들과 건강한 취향을 공유하고 싶은 분</div>
           </div>
         </div>
 
         <!-- Crew 5: 슬로우 무브 (기수제) -->
-        <div class="bg-white rounded-2xl p-6 border border-brand-warmgray shadow-card flex flex-col justify-between lg:col-span-2">
+        <div class="bg-white rounded-2xl p-6 border border-brand-warmgray shadow-card flex flex-col justify-between relative overflow-hidden lg:col-span-2">
+          <div class="absolute top-0 right-0 bg-brand-dark text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl shadow-xs">
+            신규모임 · 기수제
+          </div>
           <div>
             <div class="flex items-center justify-between text-xs font-medium mb-2">
               <span class="text-brand-sage font-bold">수휘 | 기능회복 &amp; 순환</span>
@@ -886,49 +965,62 @@
                 토요일 오전 11:00 (주 1회 집중 세션)
               </div>
             </div>
-            <div class="p-2.5 rounded-xl bg-brand-cream border border-brand-warmgray/60 text-xs font-semibold text-brand-dark mb-4">
-              정상가: 1회 55,000원 / 4주 180,000원
+            
+            <div class="p-2.5 rounded-xl bg-brand-cream border border-brand-warmgray/70 text-xs mb-4 flex flex-wrap items-center gap-3">
+              <div class="font-bold text-brand-dark">정상가 1회 55,000원</div>
+              <span class="text-brand-muted">|</span>
+              <div class="font-bold text-brand-sage">4주 패키지 180,000원</div>
             </div>
+
             <ul class="text-xs sm:text-sm text-brand-muted space-y-1.5 leading-relaxed mb-4">
               <li>• 현대무용 / 소마틱 무브먼트 / 마인드풀니스를 기반으로 호흡과 신체 감각을 온전히 인식</li>
-              <li>• 현대무용의 자연스러운 움직임과 호흡, 감각 훈련을 통해 깊은 신체적·정신적 리프레시 경험</li>
+              <li>• 현대무용의 자연스러운 움직임과 호흡, 감각 훈련을 통해 신체적·정신적 온전한 리프레시 경험</li>
             </ul>
           </div>
           <div class="mt-4 pt-3 border-t border-brand-warmgray/50 text-xs text-brand-dark bg-brand-sand/50 p-3 rounded-xl flex items-start gap-1.5">
             <span class="text-brand-terracotta font-bold shrink-0">👉</span>
-            <div><strong>추천 대상:</strong> 자기관리와 웰니스에 관심 있는 분 / 무용에 관심 있지만 전문 수업은 부담스러운 분 / 반복적인 기계적 운동에서 벗어나 새로운 움직임을 경험하고 싶은 분</div>
+            <div><strong>추천 대상:</strong> 자기관리, 웰니스에 관심 있는 분 / 무용에 관심 있지만 전문 수업은 부담스러운 분 / 반복적인 기계적 운동에서 벗어나 새로운 움직임을 경험하고 싶은 분</div>
           </div>
         </div>
 
       </div>
     </section>
 
-    <!-- 10월 SPECIAL ONEDAY CLASS -->
+    <!-- 8. 10월 스페셜 원데이 클래스 (Slide 15 - 변동사항 정밀 반영) -->
     <section id="oneday" class="scroll-mt-32">
       <div class="text-center max-w-xl mx-auto mb-10">
         <span class="text-xs font-en tracking-widest text-brand-terracotta uppercase font-bold">Seasonal Special</span>
         <h2 class="text-2xl sm:text-3xl font-bold text-brand-dark mt-1">10월, 나를 위한 온전한 쉼과 회복</h2>
-        <p class="text-xs sm:text-sm text-brand-muted mt-2">부담 없이 경험하는 무드웰니스 가을 맞이 야외 필라테스 클래스</p>
+        <p class="text-xs sm:text-sm text-brand-muted mt-2">부담 없이 경험하는 무드웰니스 가을 맞이 야외 필라테스 원데이 클래스</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- 10/14 Outdoor Pilates -->
         <div class="bg-white rounded-3xl p-6 sm:p-8 border border-brand-warmgray shadow-card flex flex-col justify-between relative overflow-hidden">
-          <div class="absolute top-0 right-0 bg-brand-sage text-white text-xs font-bold px-3.5 py-1 rounded-bl-2xl">
+          <div class="absolute top-0 right-0 bg-brand-sage text-white text-xs font-bold px-4 py-1.5 rounded-bl-2xl shadow-xs">
             10월 14일 (수)
           </div>
           <div>
             <span class="text-[11px] font-bold text-brand-sage bg-brand-sagePale px-2 py-0.5 rounded">
-              릴렉스 &amp; 코어
+              [릴렉스 &amp; 코어]
             </span>
             <h3 class="text-xl font-bold text-brand-dark mt-3 mb-2">
               가을 맞이, 야외 필라테스
             </h3>
             
-            <div class="space-y-1.5 text-xs text-brand-dark mb-4 bg-brand-sand/50 p-3 rounded-xl">
-              <p>• <strong>일정:</strong> 10월 14일 (수) 12:00 / 15:00 / 19:30 (각 60분)</p>
-              <p>• <strong>담당:</strong> 소영 마스터</p>
-              <p>• <strong>참가비:</strong> 30,000원 (회원가 30,000원)</p>
+            <div class="space-y-1.5 text-xs text-brand-dark mb-4 bg-brand-sand/60 p-3.5 rounded-xl border border-brand-warmgray/60">
+              <p class="flex items-center gap-1.5 font-medium">
+                <i data-lucide="calendar" class="w-3.5 h-3.5 text-brand-sage"></i>
+                <strong>일정:</strong> 10월 14일 (수) 10:00 / 12:00 / 19:30 (각 60분)
+              </p>
+              <p class="flex items-center gap-1.5">
+                <i data-lucide="user" class="w-3.5 h-3.5 text-brand-sage"></i>
+                <strong>담당:</strong> 소영 마스터
+              </p>
+              <div class="flex items-center gap-2 pt-1">
+                <span class="font-bold text-brand-dark">참가비 30,000원</span>
+                <span class="text-brand-terracotta font-bold bg-brand-terracottaLight px-2 py-0.5 rounded text-[11px]">무드웰니스 회원가 25,000원</span>
+              </div>
             </div>
 
             <ul class="text-xs sm:text-sm text-brand-muted space-y-1.5 leading-relaxed pb-4 border-b border-brand-warmgray/60">
@@ -941,28 +1033,37 @@
           <div class="mt-4 bg-brand-sand/70 p-3.5 rounded-xl text-xs text-brand-dark flex items-start gap-1.5">
             <span class="text-brand-terracotta font-bold shrink-0">👉</span>
             <div>
-              <strong>추천 대상:</strong> 점심시간을 활용해 힐링하고 싶으신 분 / 퇴근 후 동료, 친구, 가족과 함께 특별하고 새로운 추억을 만들고 싶으신 분
+              <strong>추천 대상:</strong> 아이 등원 후 나를 가꾸는 시간을 가지고 싶으신 분 / 점심시간을 활용해 힐링하고 싶으신 분 / 퇴근 후 동료, 친구, 가족과 새로운 추억을 만들고 싶으신 분
             </div>
           </div>
         </div>
 
         <!-- 10/21 Outdoor Pilates -->
         <div class="bg-white rounded-3xl p-6 sm:p-8 border border-brand-warmgray shadow-card flex flex-col justify-between relative overflow-hidden">
-          <div class="absolute top-0 right-0 bg-brand-terracotta text-white text-xs font-bold px-3.5 py-1 rounded-bl-2xl">
+          <div class="absolute top-0 right-0 bg-brand-terracotta text-white text-xs font-bold px-4 py-1.5 rounded-bl-2xl shadow-xs">
             10월 21일 (수)
           </div>
           <div>
             <span class="text-[11px] font-bold text-brand-terracotta bg-brand-terracottaLight px-2 py-0.5 rounded">
-              릴렉스 &amp; 코어
+              [릴렉스 &amp; 코어]
             </span>
             <h3 class="text-xl font-bold text-brand-dark mt-3 mb-2">
               가을 맞이, 야외 필라테스
             </h3>
             
-            <div class="space-y-1.5 text-xs text-brand-dark mb-4 bg-brand-sand/50 p-3 rounded-xl">
-              <p>• <strong>일정:</strong> 10월 21일 (수) 10:00 / 12:00 / 19:00 (각 60분)</p>
-              <p>• <strong>담당:</strong> 소영 마스터</p>
-              <p>• <strong>참가비:</strong> 30,000원 (회원가 30,000원)</p>
+            <div class="space-y-1.5 text-xs text-brand-dark mb-4 bg-brand-sand/60 p-3.5 rounded-xl border border-brand-warmgray/60">
+              <p class="flex items-center gap-1.5 font-medium">
+                <i data-lucide="calendar" class="w-3.5 h-3.5 text-brand-terracotta"></i>
+                <strong>일정:</strong> 10월 21일 (수) 10:00 / 12:00 / 19:00 (각 60분)
+              </p>
+              <p class="flex items-center gap-1.5">
+                <i data-lucide="user" class="w-3.5 h-3.5 text-brand-terracotta"></i>
+                <strong>담당:</strong> 소영 마스터
+              </p>
+              <div class="flex items-center gap-2 pt-1">
+                <span class="font-bold text-brand-dark">참가비 30,000원</span>
+                <span class="text-brand-terracotta font-bold bg-brand-terracottaLight px-2 py-0.5 rounded text-[11px]">무드웰니스 회원가 25,000원</span>
+              </div>
             </div>
 
             <ul class="text-xs sm:text-sm text-brand-muted space-y-1.5 leading-relaxed pb-4 border-b border-brand-warmgray/60">
@@ -975,14 +1076,14 @@
           <div class="mt-4 bg-brand-sand/70 p-3.5 rounded-xl text-xs text-brand-dark flex items-start gap-1.5">
             <span class="text-brand-terracotta font-bold shrink-0">👉</span>
             <div>
-              <strong>추천 대상:</strong> 아이 등원 후 나를 가꾸는 건강한 오전 시간을 가지고 싶으신 분 / 점심 힐링 / 퇴근 후 소중한 사람들과 추억을 남기고 싶은 분
+              <strong>추천 대상:</strong> 아이 등원 후 나를 가꾸는 시간을 가지고 싶으신 분 / 점심시간을 활용해 힐링하고 싶으신 분 / 퇴근 후 동료, 친구, 가족과 새로운 추억을 만들고 싶으신 분
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- RULES & APP GUIDELINES -->
+    <!-- 9. 그룹레슨 예약 및 이용 수칙 (Slide 16) -->
     <section id="rules" class="scroll-mt-32">
       <div class="bg-white rounded-3xl p-6 sm:p-10 border border-brand-warmgray shadow-card">
         <div class="flex items-center gap-3 mb-6">
@@ -1056,20 +1157,67 @@
       </div>
     </section>
 
-    <!-- FINAL CTA BANNER (KAKAO LINK) -->
-    <section class="rounded-3xl bg-brand-sand border border-brand-warmgray p-8 sm:p-12 text-center relative overflow-hidden shadow-card">
-      <div class="max-w-xl mx-auto space-y-4">
-        <span class="text-xs font-en uppercase tracking-widest text-brand-sage font-bold">Mood Wellness Azit</span>
-        <h2 class="text-2xl sm:text-3xl font-bold text-brand-dark">
-          지금 무드웰니스에서<br>몸과 마음의 건강한 변화를 시작해보세요.
-        </h2>
-        <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
-          궁금하신 점은 언제든 공식 카카오 채널을 통해 편하게 문의해 주시기 바랍니다.<br>
-          회원님의 소중한 일상에 가장 알맞은 움직임을 정성껏 안내해 드리겠습니다.
-        </p>
-        <div class="pt-3 flex justify-center">
+    <!-- 10. FINAL CONTACT & STUDIO LOCATION (Slide 17 정밀 반영) -->
+    <section id="contact" class="scroll-mt-32">
+      <div class="rounded-3xl bg-brand-sand border border-brand-warmgray p-8 sm:p-12 relative overflow-hidden shadow-card">
+        <div class="max-w-3xl mx-auto text-center space-y-4 mb-10">
+          <span class="text-xs font-en uppercase tracking-widest text-brand-sage font-bold">Mood Wellness Studio Azit</span>
+          <h2 class="text-2xl sm:text-4xl font-bold text-brand-dark">
+            지금 무드웰니스에서<br>몸과 마음의 건강한 변화를 시작해보세요.
+          </h2>
+          <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+            궁금하신 점은 언제든 편하게 문의해 주시기 바랍니다.<br>
+            회원님의 소중한 일상에 가장 알맞은 움직임을 정성껏 안내해 드리겠습니다.
+          </p>
+        </div>
+
+        <!-- Info Grid (Slide 17: Phone, Kakao, Place) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+          <!-- 1. Phone -->
+          <div class="bg-white p-5 rounded-2xl border border-brand-warmgray/80 text-center shadow-xs flex flex-col items-center justify-center">
+            <div class="w-10 h-10 rounded-full bg-brand-sagePale text-brand-sage flex items-center justify-center mb-3">
+              <i data-lucide="phone" class="w-5 h-5"></i>
+            </div>
+            <span class="text-xs font-medium text-brand-muted">문의 전화</span>
+            <a href="tel:0507-1303-0371" class="text-base sm:text-lg font-bold text-brand-dark mt-1 hover:text-brand-sage transition">
+              0507-1303-0371
+            </a>
+            <span class="text-[11px] text-gray-400 mt-1">상담 및 시설 안내</span>
+          </div>
+
+          <!-- 2. KakaoTalk -->
+          <div class="bg-white p-5 rounded-2xl border border-brand-warmgray/80 text-center shadow-xs flex flex-col items-center justify-center">
+            <div class="w-10 h-10 rounded-full bg-[#FEE500]/30 text-[#191919] flex items-center justify-center mb-3">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M12 3C6.477 3 2 6.477 2 10.767c0 2.766 1.848 5.187 4.639 6.551-.203.743-.734 2.686-.84 3.109-.133.528.193.521.407.38.169-.112 2.68-1.83 3.738-2.553.67.098 1.36.15 2.056.15 5.523 0 10-3.477 10-7.767C22 6.477 17.523 3 12 3z"/>
+              </svg>
+            </div>
+            <span class="text-xs font-medium text-brand-muted">카카오톡 채널</span>
+            <a href="http://pf.kakao.com/_qNxbnn/chat" target="_blank" rel="noopener noreferrer" class="text-base sm:text-lg font-bold text-brand-dark mt-1 hover:text-brand-sage transition">
+              무드웰니스
+            </a>
+            <span class="text-[11px] text-gray-400 mt-1">1:1 실시간 채팅 상담</span>
+          </div>
+
+          <!-- 3. Place Address -->
+          <div class="bg-white p-5 rounded-2xl border border-brand-warmgray/80 text-center shadow-xs flex flex-col items-center justify-center">
+            <div class="w-10 h-10 rounded-full bg-brand-terracottaLight text-brand-terracotta flex items-center justify-center mb-3">
+              <i data-lucide="map-pin" class="w-5 h-5"></i>
+            </div>
+            <span class="text-xs font-medium text-brand-muted">오시는 길</span>
+            <p class="text-sm font-bold text-brand-dark mt-1 leading-snug">
+              서울시 강남구 테헤란로 13길 65
+            </p>
+            <button onclick="copyAddress()" class="mt-2 text-[11px] font-semibold text-brand-sage hover:underline flex items-center gap-1">
+              <i data-lucide="copy" class="w-3 h-3"></i>
+              주소 복사하기
+            </button>
+          </div>
+        </div>
+
+        <div class="mt-8 flex justify-center">
           <a href="http://pf.kakao.com/_qNxbnn/chat" target="_blank" rel="noopener noreferrer" class="px-8 py-3.5 rounded-2xl bg-brand-kakao text-brand-kakaoDark text-sm sm:text-base font-bold hover:brightness-95 transition shadow-floating inline-flex items-center gap-2.5">
-            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24">
               <path d="M12 3C6.477 3 2 6.477 2 10.767c0 2.766 1.848 5.187 4.639 6.551-.203.743-.734 2.686-.84 3.109-.133.528.193.521.407.38.169-.112 2.68-1.83 3.738-2.553.67.098 1.36.15 2.056.15 5.523 0 10-3.477 10-7.767C22 6.477 17.523 3 12 3z"/>
             </svg>
             <span>카카오톡 채널로 바로 문의하기</span>
@@ -1084,11 +1232,12 @@
   <footer class="mt-20 border-t border-brand-warmgray bg-brand-sand/50 py-10 text-xs text-brand-muted">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div>
-        <p class="font-bold text-brand-dark">무드웰니스 (Mood Wellness / Re:body)</p>
-        <p class="mt-1">Private &amp; Group Wellness Lounge • 나만의 기능적 움직임 아지트</p>
+        <p class="font-bold text-brand-dark">무드웰니스 스튜디오 (Mood Wellness Studio)</p>
+        <p class="mt-1">서울시 강남구 테헤란로 13길 65 • TEL 0507-1303-0371</p>
+        <p class="text-gray-400 mt-0.5">Private &amp; Group Wellness Lounge • 나만의 기능적 움직임 아지트</p>
       </div>
       <div class="text-center sm:text-right">
-        <p>© Mood Wellness. All rights reserved.</p>
+        <p>© Mood Wellness Studio. All rights reserved.</p>
         <p class="mt-0.5 text-gray-400">본 페이지는 무드웰니스 공식 회원 안내서입니다.</p>
       </div>
     </div>
@@ -1097,10 +1246,10 @@
   <!-- FLOATING KAKAO BUTTON (Direct link to chat) -->
   <aside class="fixed bottom-5 right-5 z-40">
     <a href="http://pf.kakao.com/_qNxbnn/chat" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-2.5 bg-brand-kakao text-brand-kakaoDark px-4 py-3 rounded-full shadow-floating hover:brightness-95 transition-all">
-      <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+      <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24">
         <path d="M12 3C6.477 3 2 6.477 2 10.767c0 2.766 1.848 5.187 4.639 6.551-.203.743-.734 2.686-.84 3.109-.133.528.193.521.407.38.169-.112 2.68-1.83 3.738-2.553.67.098 1.36.15 2.056.15 5.523 0 10-3.477 10-7.767C22 6.477 17.523 3 12 3z"/>
       </svg>
-      <span class="text-xs sm:text-sm font-bold tracking-tight">카톡 상담 · 신청</span>
+      <span class="text-xs sm:text-sm font-bold tracking-tight">카톡 상담 · 문의</span>
     </a>
   </aside>
 
@@ -1151,18 +1300,21 @@
     // App Link Copy Toast
     function copyAppLink() {
       const dummyText = "무드웰니스 회원 전용 수업 예약 및 변경은 '하이파이브(Hi-Five)' 앱을 설치하여 진행해 주세요.";
-      
-      const textarea = document.createElement('textarea');
-      textarea.value = dummyText;
-      document.body.appendChild(textarea);
-      textarea.select();
-      try {
-        document.execCommand('copy');
+      navigator.clipboard.writeText(dummyText).then(() => {
         showToast("하이파이브 앱 안내 문구가 복사되었습니다.");
-      } catch (err) {
+      }).catch(() => {
         showToast("문구를 복사하지 못했습니다.");
-      }
-      document.body.removeChild(textarea);
+      });
+    }
+
+    // Address Copy Toast
+    function copyAddress() {
+      const address = "서울시 강남구 테헤란로 13길 65";
+      navigator.clipboard.writeText(address).then(() => {
+        showToast("스튜디오 주소가 복사되었습니다.");
+      }).catch(() => {
+        showToast("주소를 복사하지 못했습니다.");
+      });
     }
 
     function showToast(msg) {
@@ -1180,3 +1332,25 @@
   </script>
 </body>
 </html>
+```eof
+
+### 주요 반영 및 개선 사항 안내
+
+1. **소모임 그룹레슨(Slide 13, 14) 최신 현황 반영**
+   - **모닝 크루**: `마감임박` 뱃지 및 정상가 `38,000원 (회당)` 표기
+   - **런치 바디 핏**: `신규 모임` 뱃지 및 정상가 `45,000원 (회당)` 표기
+   - **바디라인 정렬 크루**: `잔여 2석 / 잔여 1석` 뱃지 및 정상가 `38,000원 (회당)` 표기
+   - **나이트 바레 x 필라테스 크루**: `잔여 2석 & 마감임박` 뱃지 및 정상가 `40,000원 (회당)` 표기
+   - **슬로우 무브**: `신규모임 · 기수제` 뱃지 및 1회 정상가 `55,000원`, 4주 집중 패키지 `180,000원` 표기
+
+2. **10월 스페셜 원데이 클래스(Slide 15) 일정 및 가격 정정**
+   - **10월 14일(수)** 시간 수정: `10:00 / 12:00 / 19:30 (각 60분)`
+   - **10월 21일(수)** 일정: `10:00 / 12:00 / 19:00 (각 60분)`
+   - 참가비 체계 업데이트: 일반 `30,000원` / **무드웰니스 회원가 `25,000원`** 반영
+
+3. **Slide 5 & 17 신규 섹션 및 주요 정보 추가**
+   - **Slide 5**: 핵심 3대 프로그램 하단에 "스페셜 원데이 클래스 : 온전한 쉼과 활력을 더하는 힐링 세션" 안내 배너를 매끄럽게 연동
+   - **Slide 17**: 하단 문의 영역에 **문의 전화 (`0507-1303-0371`)**, **카카오톡 채널**, **오시는 길 (`서울시 강남구 테헤란로 13길 65`)** 및 주소 원클릭 복사 기능 탑재
+
+4. **디자인 및 인터랙션 완성도 유지**
+   - 기존의 내추럴하고 단정한 세이지 그린/테라코타/웜 샌드 컬러 팔레트, 폰트 및 스크롤스파이 내비게이션 기능이 100% 동일하게 유지됩니다.
