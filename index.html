@@ -1,1333 +1,1821 @@
 <!DOCTYPE html>
-<html lang="ko" class="scroll-smooth">
+<html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>무드웰니스 스튜디오 | 회원용 브랜드 &amp; 프로그램 가이드</title>
-  
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Google Fonts: Cormorant Garamond, Montserrat, Noto Sans KR -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>무드웰니스 스튜디오 | Mood Wellness Azit</title>
+  <!-- Google Fonts: Space Grotesk & Pretendard -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Montserrat:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-
-  <!-- Tailwind Theme Configuration -->
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              cream: '#FAF8F5',
-              sand: '#F4EFEA',
-              warmgray: '#E6DFD6',
-              sage: '#45664F',
-              sageDark: '#283E30',
-              sageLight: '#73957C',
-              sagePale: '#EDF3EE',
-              terracotta: '#BC6F48',
-              terracottaLight: '#F7EDE7',
-              kakao: '#FEE500',
-              kakaoDark: '#191919',
-              dark: '#212422',
-              muted: '#616762'
-            }
-          },
-          fontFamily: {
-            sans: ['"Noto Sans KR"', 'sans-serif'],
-            serif: ['"Cormorant Garamond"', 'serif'],
-            en: ['"Montserrat"', 'sans-serif']
-          },
-          boxShadow: {
-            'soft': '0 12px 32px -8px rgba(69, 102, 79, 0.08)',
-            'card': '0 4px 20px -2px rgba(33, 36, 34, 0.05)',
-            'floating': '0 16px 36px -6px rgba(33, 36, 34, 0.16)'
-          }
-        }
-      }
-    }
-  </script>
-
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <style>
-    /* Custom Scrollbar Utility */
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
+    :root {
+      --forest-dark: #232C1F;
+      --forest-main: #3F5036;
+      --forest-light: #526746;
+      --forest-tint: #D6DEC8;
+      --linen-base: #F5F2EB;
+      --linen-card: #FAF8F4;
+      --linen-muted: #E6E1D5;
+      --text-dark: #1E251B;
+      --text-muted: #5C6756;
+      --pure-white: #FFFFFF;
+      --status-closed: #9E4535;
+      --status-open: #3F5036;
+      --border-line: rgba(35, 44, 31, 0.12);
+      
+      --radius-sm: 8px;
+      --radius-md: 20px;
+      --radius-lg: 32px;
+      --radius-pill: 999px;
+      --shadow-sm: 0 4px 18px rgba(35, 44, 31, 0.04);
+      --shadow-lg: 0 16px 40px rgba(35, 44, 31, 0.08);
     }
-    .no-scrollbar {
-      -ms-overflow-style: none;
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--linen-base);
+      color: var(--text-dark);
+      line-height: 1.6;
+      word-break: keep-all;
+      letter-spacing: -0.015em;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Top Sticky Header */
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(245, 242, 235, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-line);
+    }
+
+    .nav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+      color: var(--forest-dark);
+    }
+
+    .brand-logo .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--forest-main);
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
       scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      padding: 4px;
     }
-    /* Active Nav Tab Style */
-    .active-nav {
-      background-color: #45664F !important;
-      color: #FFFFFF !important;
-      font-weight: 600 !important;
+    .nav-tabs::-webkit-scrollbar { display: none; }
+
+    .tab-item {
+      background: transparent;
+      border: 1px solid transparent;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      padding: 7px 16px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .tab-item:hover {
+      color: var(--forest-dark);
+      background: rgba(63, 80, 54, 0.08);
+    }
+
+    .tab-item.active {
+      color: var(--pure-white);
+      background: var(--forest-dark);
+      font-weight: 600;
+    }
+
+    .btn-kakao-head {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #FEE500;
+      color: #191919;
+      font-size: 0.84rem;
+      font-weight: 700;
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-kakao-head:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(254, 229, 0, 0.4);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 36px 24px 120px;
+    }
+
+    section {
+      scroll-margin-top: 85px;
+      margin-bottom: 96px;
+    }
+
+    /* Capsule Pill Badge */
+    .capsule-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 14px;
+      border-radius: var(--radius-pill);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid var(--border-line);
+      margin-bottom: 16px;
+    }
+    .capsule-pill.light {
+      background: var(--pure-white);
+      color: var(--forest-dark);
+    }
+    .capsule-pill.dark {
+      background: rgba(255, 255, 255, 0.12);
+      color: var(--forest-tint);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Section Header Banner */
+    .section-banner {
+      border-radius: var(--radius-lg);
+      padding: 44px 40px;
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      position: relative;
+      overflow: hidden;
+    }
+    .section-banner.dark {
+      background: var(--forest-dark);
+      color: var(--pure-white);
+    }
+    .section-banner.light {
+      background: var(--linen-muted);
+      color: var(--forest-dark);
+      border: 1px solid var(--border-line);
+    }
+
+    .banner-text-left h2 {
+      font-family: 'Space Grotesk', 'Pretendard', sans-serif;
+      font-size: 2.3rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-top: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .banner-text-left h2 .arrow-icon {
+      font-size: 28px;
+      font-weight: 400;
+      opacity: 0.7;
+    }
+    .banner-text-left p {
+      margin-top: 8px;
+      font-size: 0.96rem;
+      opacity: 0.85;
+      max-width: 520px;
+    }
+
+    .banner-big-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 6.5rem;
+      font-weight: 700;
+      line-height: 0.8;
+      letter-spacing: -0.05em;
+      opacity: 0.25;
+      user-select: none;
+    }
+    .section-banner.dark .banner-big-number { color: #fff; }
+    .section-banner.light .banner-big-number { color: var(--forest-dark); }
+
+    /* 1. Hero Block */
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1.25fr 0.9fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+    .hero-main-card {
+      background: var(--pure-white);
+      border: 1px solid var(--border-line);
+      border-radius: var(--radius-lg);
+      padding: 48px 44px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .hero-title {
+      font-family: 'Space Grotesk', 'Pretendard', sans-serif;
+      font-size: 2.7rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.18;
+      color: var(--forest-dark);
+      margin-bottom: 20px;
+    }
+    .hero-title span {
+      color: var(--forest-light);
+      font-weight: 400;
+    }
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.68;
+      margin-bottom: 32px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border-line);
+      padding-top: 20px;
+    }
+    .hero-badge-tag {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--forest-main);
+    }
+    .btn-kakao-inline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #FEE500;
+      color: #191919;
+      font-size: 0.9rem;
+      font-weight: 700;
+      padding: 10px 22px;
+      border-radius: var(--radius-pill);
+      transition: transform 0.2s;
+    }
+    .btn-kakao-inline:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero-side-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .hero-side-accent-card {
+      background: var(--linen-muted);
+      border: 1px solid var(--border-line);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .hero-side-accent-card h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--forest-dark);
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+    .hero-side-accent-card p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .hero-side-dark-card {
+      background: var(--forest-dark);
+      color: var(--pure-white);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .hero-side-dark-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+    .hero-side-dark-card p {
+      font-size: 0.92rem;
+      opacity: 0.8;
+      line-height: 1.55;
+    }
+
+    /* 3 Core Points Row */
+    .hero-stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 24px;
+    }
+    .stat-card {
+      background: var(--linen-card);
+      border: 1px solid var(--border-line);
+      border-radius: var(--radius-md);
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .stat-card.dark {
+      background: var(--forest-main);
+      color: var(--pure-white);
+      border-color: transparent;
+    }
+    .stat-header {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      opacity: 0.7;
+      margin-bottom: 12px;
+    }
+    .stat-card h4 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .stat-card p {
+      font-size: 0.88rem;
+      line-height: 1.55;
+      opacity: 0.88;
+    }
+
+    /* 2. Core Programs (Color Block Bento) */
+    .bento-programs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .bento-card {
+      background: var(--pure-white);
+      border: 1px solid var(--border-line);
+      border-radius: var(--radius-lg);
+      padding: 36px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .bento-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+    .bento-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .bento-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--forest-tint);
+      line-height: 1;
+    }
+    .bento-tag {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--forest-light);
+      margin-bottom: 8px;
+      display: block;
+      letter-spacing: 0.04em;
+    }
+    .bento-card h3 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--forest-dark);
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .bento-card p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.62;
+    }
+
+    /* YJ Spa Editorial Full Banner */
+    .spa-editorial-banner {
+      margin-top: 24px;
+      background: var(--forest-dark);
+      color: var(--pure-white);
+      border-radius: var(--radius-lg);
+      padding: 38px 44px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .spa-editorial-banner .capsule-pill {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      border: none;
+    }
+    .spa-info h4 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .spa-info p {
+      font-size: 0.92rem;
+      opacity: 0.85;
+    }
+    .spa-badge-pill {
+      background: var(--pure-white);
+      color: var(--forest-dark);
+      padding: 16px 32px;
+      border-radius: var(--radius-pill);
+      text-align: center;
+    }
+    .spa-badge-pill span {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .spa-badge-pill strong {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--forest-dark);
+      letter-spacing: -0.02em;
+    }
+
+    /* 3. Matching Dual Panels */
+    .matching-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.35fr;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    .matching-box {
+      border-radius: var(--radius-lg);
+      padding: 38px 36px;
+    }
+    .matching-box.light {
+      background: #EAE6DE;
+      border: 1px solid var(--border-line);
+    }
+    .matching-box.dark {
+      background: var(--forest-main);
+      color: var(--pure-white);
+    }
+    .matching-box h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+    .matching-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      font-size: 0.92rem;
+    }
+    .matching-list li {
+      position: relative;
+      padding-left: 22px;
+      line-height: 1.5;
+    }
+    .matching-box.light .matching-list li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: #929D8D;
+      font-weight: bold;
+    }
+    .matching-box.dark .matching-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--forest-tint);
+      font-weight: bold;
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .p-step-card {
+      background: var(--linen-card);
+      border: 1px solid var(--border-line);
+      border-radius: var(--radius-md);
+      padding: 26px 22px;
+    }
+    .p-step-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--forest-main);
+      margin-bottom: 12px;
+    }
+    .p-step-card h4 {
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--forest-dark);
+      margin-bottom: 8px;
+    }
+    .p-step-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* 4. Teachers Grid */
+    .teachers-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .teacher-card {
+      background: var(--pure-white);
+      border: 1px solid var(--border-line);
+      border-radius: var(--radius-lg);
+      padding: 34px 30px;
+    }
+    .teacher-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid var(--border-line);
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+    }
+    .teacher-name {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--forest-dark);
+    }
+    .teacher-role {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      color: var(--forest-light);
+      font-weight: 600;
+    }
+    .teacher-headline {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--forest-main);
+      margin-bottom: 12px;
+    }
+    .teacher-desc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .teacher-desc-list li {
+      position: relative;
+      padding-left: 16px;
+      line-height: 1.5;
+    }
+    .teacher-desc-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--forest-main);
+    }
+    .teacher-recommend {
+      background: var(--linen-card);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      font-size: 0.86rem;
+      color: var(--forest-dark);
+      line-height: 1.5;
+      border: 1px solid var(--border-line);
+    }
+    .teacher-recommend strong {
+      color: var(--forest-main);
+    }
+
+    /* 5 & 6. Program Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 20px;
+    }
+    .prog-item-card {
+      background: var(--pure-white);
+      border: 1px solid var(--border-line);
+      border-radius: var(--radius-lg);
+      padding: 30px 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+    }
+    .prog-item-card:hover {
+      border-color: var(--forest-dark);
+      box-shadow: var(--shadow-lg);
+    }
+    .card-top-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .coach-pill {
+      font-size: 0.8rem;
+      font-weight: 700;
+      background: var(--forest-dark);
+      color: var(--pure-white);
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+    }
+    .status-pill {
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+    }
+    .status-closed {
+      background: rgba(158, 69, 53, 0.12);
+      color: var(--status-closed);
+    }
+    .status-open {
+      background: rgba(63, 80, 54, 0.12);
+      color: var(--status-open);
+    }
+
+    .prog-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--forest-dark);
+      margin-bottom: 4px;
+      letter-spacing: -0.02em;
+    }
+    .prog-time {
+      font-size: 0.88rem;
+      color: var(--forest-light);
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .prog-desc {
+      font-size: 0.91rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .prog-price-block {
+      background: var(--linen-card);
+      border: 1px solid var(--border-line);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      margin-bottom: 16px;
+    }
+    .price-entry {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4px;
+    }
+    .price-entry:last-child { margin-bottom: 0; }
+    .price-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .price-val {
+      font-family: 'Space Grotesk', 'Pretendard', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--forest-dark);
+    }
+
+    .prog-target-box {
+      font-size: 0.85rem;
+      color: var(--text-dark);
+      background: rgba(63, 80, 54, 0.05);
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      line-height: 1.45;
+    }
+
+    /* Modal Trigger Box */
+    .crew-modal-banner {
+      background: var(--linen-muted);
+      border: 1px solid var(--border-line);
+      border-radius: var(--radius-lg);
+      padding: 24px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .crew-modal-banner h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--forest-dark);
+      margin-bottom: 4px;
+    }
+    .crew-modal-banner p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+    .btn-modal-trigger {
+      background: var(--forest-dark);
+      color: var(--pure-white);
+      border: none;
+      padding: 12px 24px;
+      border-radius: var(--radius-pill);
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.2s;
+    }
+    .btn-modal-trigger:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(30, 37, 27, 0.7);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-box {
+      background: var(--linen-card);
+      border: 1px solid var(--border-line);
+      border-radius: var(--radius-lg);
+      max-width: 680px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 40px 36px;
+      position: relative;
+      box-shadow: var(--shadow-lg);
+      animation: modalFadeIn 0.25s ease;
+    }
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .modal-close-btn {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: transparent;
+      border: none;
+      font-size: 28px;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+    .modal-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--forest-dark);
+      margin-bottom: 10px;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+    }
+    .modal-desc {
+      font-size: 0.94rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+    .modal-points-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .modal-point-card {
+      background: var(--pure-white);
+      border: 1px solid var(--border-line);
+      padding: 18px 20px;
+      border-radius: var(--radius-md);
+    }
+    .modal-point-card h5 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--forest-dark);
+      margin-bottom: 4px;
+    }
+    .modal-point-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .modal-comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      background: var(--pure-white);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid var(--border-line);
+    }
+    .modal-comp-table th, .modal-comp-table td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-line);
+    }
+    .modal-comp-table th {
+      background: var(--forest-dark);
+      color: #fff;
+      font-weight: 600;
+    }
+    .modal-comp-table tr:last-child td { border-bottom: none; }
+
+    /* Rules Grid */
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .rule-item {
+      background: var(--pure-white);
+      border: 1px solid var(--border-line);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .rule-item.full { grid-column: 1 / -1; }
+    .rule-item .icon {
+      font-size: 26px;
+      color: var(--forest-main);
+      margin-top: 2px;
+    }
+    .rule-item h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--forest-dark);
+      margin-bottom: 4px;
+    }
+    .rule-item p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Final CTA Block */
+    .footer-cta {
+      background: var(--forest-dark);
+      color: var(--pure-white);
+      border-radius: var(--radius-lg);
+      padding: 60px 40px;
+      text-align: center;
+      margin-top: 60px;
+    }
+    .footer-cta h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .footer-cta p {
+      font-size: 1rem;
+      opacity: 0.85;
+      max-width: 600px;
+      margin: 0 auto 32px;
+      line-height: 1.65;
+    }
+    .btn-kakao-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #FEE500;
+      color: #191919;
+      font-size: 1.05rem;
+      font-weight: 700;
+      padding: 16px 38px;
+      border-radius: var(--radius-pill);
+      transition: all 0.25s ease;
+    }
+    .btn-kakao-action:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(254, 229, 0, 0.4);
+    }
+    .info-footer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+      padding-top: 36px;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      text-align: left;
+    }
+    .info-col h5 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      opacity: 0.65;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+    .info-col p {
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    /* Floating Action */
+    .floating-kakao-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 99;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #FEE500;
+      color: #191919;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 12px 20px;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s;
+    }
+    .floating-kakao-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-layout { grid-template-columns: 1fr; }
+      .hero-title { font-size: 2.15rem; }
+      .section-banner { flex-direction: column; align-items: flex-start; gap: 14px; padding: 32px 24px; }
+      .banner-big-number { font-size: 4rem; line-height: 1; }
+      .bento-programs, .hero-stats-row, .matching-grid, .process-steps, .teachers-grid, .rules-grid {
+        grid-template-columns: 1fr;
+      }
+      .info-footer-grid { grid-template-columns: 1fr; text-align: center; }
+      .btn-kakao-head { display: none; }
+      .container { padding: 20px 16px 80px; }
     }
   </style>
 </head>
+<body>
 
-<body class="bg-brand-cream text-brand-dark font-sans antialiased selection:bg-brand-sage selection:text-white pb-24 md:pb-16">
+  <!-- Top Sticky Navigation -->
+  <header class="sticky-header">
+    <div class="nav-inner">
+      <div class="brand-logo">
+        <div class="dot"></div>
+        <span>MOOD WELLNESS</span>
+      </div>
 
-  <!-- Top Navigation Header -->
-  <header class="sticky top-0 z-50 bg-brand-cream/95 backdrop-blur-md border-b border-brand-warmgray shadow-xs">
-    <!-- Brand Bar -->
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-      <a href="#intro" class="flex items-center gap-3 group">
-        <!-- Mood Wellness Leaf Icon Logo -->
-        <div class="w-10 h-10 rounded-full bg-brand-sage text-white flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform duration-200">
-          <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 21c-4.97 0-9-4.03-9-9 0-4.97 4.03-9 9-9 2.12 0 4.07.74 5.61 1.97.28.23.4.6.29.95l-1.07 3.39a1 1 0 01-.63.64l-3.39 1.07c-.35.11-.72-.01-.95-.29A6.002 6.002 0 0012 9c-1.66 0-3 1.34-3 3 0 1.66 1.34 3 3 3 1.3 0 2.4-.84 2.82-2" />
-          </svg>
-        </div>
-        <div>
-          <span class="text-[10px] font-en uppercase tracking-widest text-brand-sage font-bold block leading-none mb-1">Private &amp; Group Wellness Studio</span>
-          <h1 class="text-base sm:text-lg font-bold tracking-tight text-brand-dark leading-none">무드웰니스 스튜디오</h1>
-        </div>
+      <nav class="nav-tabs" id="navTabs">
+        <button class="tab-item active" onclick="scrollToSec('sec-intro')">공간소개</button>
+        <button class="tab-item" onclick="scrollToSec('sec-core')">핵심프로그램</button>
+        <button class="tab-item" onclick="scrollToSec('sec-matching')">전담매칭</button>
+        <button class="tab-item" onclick="scrollToSec('sec-teachers')">강사진</button>
+        <button class="tab-item" onclick="scrollToSec('sec-private')">1:1개인레슨</button>
+        <button class="tab-item" onclick="scrollToSec('sec-crew')">소모임크루</button>
+        <button class="tab-item" onclick="scrollToSec('sec-oneday')">원데이클래스</button>
+        <button class="tab-item" onclick="scrollToSec('sec-rules')">이용수칙</button>
+      </nav>
+
+      <a href="http://pf.kakao.com/_qNxbnn/chat" target="_blank" class="btn-kakao-head">
+        <span class="material-symbols-outlined" style="font-size: 18px;">chat_bubble</span>
+        상담·신청
       </a>
-
-      <!-- Quick Action Buttons -->
-      <div class="flex items-center gap-2">
-        <a href="tel:0507-1303-0371" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-full border border-brand-warmgray bg-white text-brand-dark hover:bg-brand-sand transition">
-          <i data-lucide="phone" class="w-3.5 h-3.5 text-brand-sage"></i>
-          <span>0507-1303-0371</span>
-        </a>
-        <a href="http://pf.kakao.com/_qNxbnn/chat" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-semibold px-4 py-2 rounded-full bg-brand-kakao text-brand-kakaoDark hover:brightness-95 transition-all shadow-sm flex items-center gap-2">
-          <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
-            <path d="M12 3C6.477 3 2 6.477 2 10.767c0 2.766 1.848 5.187 4.639 6.551-.203.743-.734 2.686-.84 3.109-.133.528.193.521.407.38.169-.112 2.68-1.83 3.738-2.553.67.098 1.36.15 2.056.15 5.523 0 10-3.477 10-7.767C22 6.477 17.523 3 12 3z"/>
-          </svg>
-          <span>상담 · 신청 문의</span>
-        </a>
-      </div>
     </div>
-
-    <!-- Chapter Quick Navigation (Horizontal Scrollable Tabs) -->
-    <nav class="border-t border-brand-warmgray/80 bg-brand-sand/70">
-      <div class="max-w-6xl mx-auto px-3 sm:px-6">
-        <div class="flex items-center gap-1.5 py-2 overflow-x-auto no-scrollbar scroll-smooth" id="nav-container">
-          <a href="#intro" class="nav-tab shrink-0 px-3 py-1.5 rounded-full text-xs font-medium text-brand-muted hover:text-brand-dark hover:bg-white/80 transition-all active-nav" data-target="intro">
-            브랜드 소개
-          </a>
-          <a href="#core-program" class="nav-tab shrink-0 px-3 py-1.5 rounded-full text-xs font-medium text-brand-muted hover:text-brand-dark hover:bg-white/80 transition-all" data-target="core-program">
-            핵심 프로그램
-          </a>
-          <a href="#benefits" class="nav-tab shrink-0 px-3 py-1.5 rounded-full text-xs font-medium text-brand-muted hover:text-brand-dark hover:bg-white/80 transition-all" data-target="benefits">
-            YJ스파 제휴
-          </a>
-          <a href="#matching-system" class="nav-tab shrink-0 px-3 py-1.5 rounded-full text-xs font-medium text-brand-muted hover:text-brand-dark hover:bg-white/80 transition-all" data-target="matching-system">
-            전담 매칭 &amp; 절차
-          </a>
-          <a href="#private-group" class="nav-tab shrink-0 px-3 py-1.5 rounded-full text-xs font-medium text-brand-muted hover:text-brand-dark hover:bg-white/80 transition-all" data-target="private-group">
-            프라이빗 소모임
-          </a>
-          <a href="#instructors" class="nav-tab shrink-0 px-3 py-1.5 rounded-full text-xs font-medium text-brand-muted hover:text-brand-dark hover:bg-white/80 transition-all" data-target="instructors">
-            강사진 &amp; 1:1 레슨
-          </a>
-          <a href="#group-crew" class="nav-tab shrink-0 px-3 py-1.5 rounded-full text-xs font-medium text-brand-muted hover:text-brand-dark hover:bg-white/80 transition-all" data-target="group-crew">
-            소모임 크루 (5종)
-          </a>
-          <a href="#oneday" class="nav-tab shrink-0 px-3 py-1.5 rounded-full text-xs font-medium text-brand-muted hover:text-brand-dark hover:bg-white/80 transition-all" data-target="oneday">
-            10월 야외 원데이
-          </a>
-          <a href="#rules" class="nav-tab shrink-0 px-3 py-1.5 rounded-full text-xs font-medium text-brand-muted hover:text-brand-dark hover:bg-white/80 transition-all" data-target="rules">
-            이용 수칙 &amp; 예약
-          </a>
-          <a href="#contact" class="nav-tab shrink-0 px-3 py-1.5 rounded-full text-xs font-medium text-brand-muted hover:text-brand-dark hover:bg-white/80 transition-all" data-target="contact">
-            오시는 길
-          </a>
-        </div>
-      </div>
-    </nav>
   </header>
 
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 space-y-16 sm:space-y-24 pt-6 sm:pt-10">
+  <main class="container">
 
-    <!-- 1. HERO & BRAND PHILOSOPHY (Slide 1, 2, 3) -->
-    <section id="intro" class="scroll-mt-32">
-      <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-sand via-brand-cream to-brand-sagePale/60 border border-brand-warmgray p-6 sm:p-12 shadow-soft">
-        <div class="max-w-3xl relative z-10">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-sage/10 text-brand-sage text-xs font-semibold tracking-wider uppercase mb-4">
-            <span class="w-1.5 h-1.5 rounded-full bg-brand-sage"></span>
-            Part 01 • Brand Identity &amp; Philosophy
+    <!-- 1. Hero Introduction -->
+    <section id="sec-intro">
+      <div class="hero-layout">
+        <div class="hero-main-card">
+          <div>
+            <div class="capsule-pill light">WELCOME TO MOOD WELLNESS</div>
+            <h1 class="hero-title">
+              나만의 기능적<br />
+              움직임 아지트, <span>무드웰니스</span>
+            </h1>
+            <p class="hero-desc">
+              특정 종목에 갇히지 않고 바레, 필라테스, 기능성 트레이닝, 리커버리가 결합된 맞춤형 운동과 정서적 힐링을 선사하는 웰니스 복합 공간입니다.
+            </p>
           </div>
-          <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-brand-dark tracking-tight leading-snug sm:leading-tight">
-            나만의 기능적 움직임 아지트,<br>
-            <span class="text-brand-sage font-serif italic">Mood Wellness Studio</span>
-          </h2>
-          <p class="mt-5 text-sm sm:text-base md:text-lg text-brand-muted leading-relaxed font-light">
-            특정 종목에 갇히지 않고 <strong class="text-brand-dark font-medium">바레, 필라테스, 기능성 트레이닝, 리커버리</strong>가 결합된 맞춤형 운동과 정서적 힐링을 선사하는 웰니스 복합 공간입니다. 몸과 마음의 온전한 회복을 돕는 무드웰니스만의 특별한 가치와 운동 철학을 소개합니다.
-          </p>
-          <div class="mt-8 flex flex-wrap items-center gap-3">
-            <a href="http://pf.kakao.com/_qNxbnn/chat" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brand-sage text-white text-sm font-semibold hover:bg-brand-sageDark transition duration-200 shadow-sm">
-              <i data-lucide="message-circle" class="w-4 h-4"></i>
-              <span>카카오톡 1:1 상담 예약</span>
-            </a>
-            <a href="#group-crew" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white border border-brand-warmgray text-brand-dark text-sm font-medium hover:bg-brand-sand transition duration-200">
-              <i data-lucide="users" class="w-4 h-4 text-brand-sage"></i>
-              <span>소모임 크루 살펴보기</span>
+
+          <div class="hero-cta-row">
+            <span class="hero-badge-tag">PRIVATE & GROUP WELLNESS LOUNGE</span>
+            <a href="http://pf.kakao.com/_qNxbnn/chat" target="_blank" class="btn-kakao-inline">
+              카카오 채널 상담 <span class="material-symbols-outlined" style="font-size: 18px;">arrow_outward</span>
             </a>
           </div>
         </div>
 
-        <!-- 3 Brand Pillars (Slide 3) -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10 pt-8 border-t border-brand-warmgray">
-          <div class="bg-white/90 backdrop-blur-sm p-5 rounded-2xl border border-brand-warmgray/80 flex flex-col justify-between shadow-xs">
-            <div>
-              <div class="w-9 h-9 rounded-xl bg-brand-sagePale text-brand-sage flex items-center justify-center mb-3">
-                <i data-lucide="layers" class="w-5 h-5"></i>
-              </div>
-              <h3 class="font-bold text-base text-brand-dark mb-1.5 flex items-center gap-1.5">
-                <i data-lucide="check" class="w-4 h-4 text-brand-sage"></i>
-                복합 웰니스 시스템
-              </h3>
-              <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
-                바레와 필라테스를 기반으로 웨이트, 소도구, 리커버리 스트레칭을 융합하여 가장 효율적인 기능적 움직임을 제공합니다.
-              </p>
-            </div>
+        <div class="hero-side-grid">
+          <div class="hero-side-accent-card">
+            <div class="capsule-pill light" style="margin-bottom: 10px;">BALANCE & RESTORE</div>
+            <h4>몸과 마음의 온전한 회복</h4>
+            <p>일상에서 쌓인 긴장을 내려놓고 건강하고 지속 가능한 나만의 운동 루틴을 완성합니다.</p>
           </div>
-
-          <div class="bg-white/90 backdrop-blur-sm p-5 rounded-2xl border border-brand-warmgray/80 flex flex-col justify-between shadow-xs">
-            <div>
-              <div class="w-9 h-9 rounded-xl bg-brand-sagePale text-brand-sage flex items-center justify-center mb-3">
-                <i data-lucide="heart-handshake" class="w-5 h-5"></i>
-              </div>
-              <h3 class="font-bold text-base text-brand-dark mb-1.5 flex items-center gap-1.5">
-                <i data-lucide="check" class="w-4 h-4 text-brand-sage"></i>
-                정서적 힐링과 소통
-              </h3>
-              <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
-                혼자 고립되어 기계처럼 운동하는 곳이 아닌, 따뜻한 사회적 교류와 몸과 마음의 온전한 안식을 나누는 공간입니다.
-              </p>
-            </div>
-          </div>
-
-          <div class="bg-white/90 backdrop-blur-sm p-5 rounded-2xl border border-brand-warmgray/80 flex flex-col justify-between shadow-xs">
-            <div>
-              <div class="w-9 h-9 rounded-xl bg-brand-sagePale text-brand-sage flex items-center justify-center mb-3">
-                <i data-lucide="shield-check" class="w-5 h-5"></i>
-              </div>
-              <h3 class="font-bold text-base text-brand-dark mb-1.5 flex items-center gap-1.5">
-                <i data-lucide="check" class="w-4 h-4 text-brand-sage"></i>
-                100% 프라이빗 사전 예약제
-              </h3>
-              <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
-                전문 강사진이 회원 한 분 한 분의 체형과 컨디션을 정밀하게 분석하여 맞춤형 여정을 정성스레 준비합니다.
-              </p>
-            </div>
+          <div class="hero-side-dark-card">
+            <div class="capsule-pill dark">PROMISE</div>
+            <h3>오늘의 컨디션에 꼭 맞춘 최적의 움직임</h3>
+            <p>혼자 고립되어 운동하는 곳이 아닌, 몸과 마음의 온전한 회복을 나누는 따뜻한 아지트입니다.</p>
           </div>
         </div>
+      </div>
 
-        <!-- Promise Quote (Slide 3) -->
-        <div class="mt-5 p-4 rounded-2xl bg-brand-sage text-white text-center text-xs sm:text-sm font-light shadow-xs">
-          <span class="font-semibold text-brand-sand mr-2">🍃 Mood Wellness Promise:</span>
-          "당신의 오늘 컨디션에 꼭 맞춘 가장 안전하고 활력 넘치는 최적의 움직임을 선물합니다."
+      <!-- 3 Stats Points -->
+      <div class="hero-stats-row">
+        <div class="stat-card">
+          <div class="stat-header">POINT 01</div>
+          <h4>복합 웰니스 시스템</h4>
+          <p>바레·필라테스 기반에 웨이트, 소도구, 리커버리를 결합한 가장 효율적인 움직임</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-header">POINT 02</div>
+          <h4>정서적 힐링과 소통</h4>
+          <p>기계처럼 반복하는 운동을 넘어 따뜻한 교류와 몸과 마음의 안식을 나누는 공간</p>
+        </div>
+        <div class="stat-card dark">
+          <div class="stat-header" style="color: var(--forest-tint);">POINT 03</div>
+          <h4>100% 프라이빗 사전 예약제</h4>
+          <p>회원 한 분 한 분의 체형과 컨디션을 정밀하게 사전 분석하여 맞춤 여정을 준비</p>
         </div>
       </div>
     </section>
 
-    <!-- 2. 핵심 프로그램 & 스페셜 원데이 (Slide 4, 5) -->
-    <section id="core-program" class="scroll-mt-32">
-      <div class="text-center max-w-xl mx-auto mb-10">
-        <span class="text-xs font-en tracking-widest text-brand-terracotta uppercase font-bold">Core Competency</span>
-        <h2 class="text-2xl sm:text-3xl font-bold text-brand-dark mt-1">무드웰니스 3대 핵심 프로그램</h2>
-        <p class="text-xs sm:text-sm text-brand-muted mt-2">속근육의 안정성부터 실질적 관절 가동성과 피로 회복까지 유기적으로 연결됩니다.</p>
+    <!-- 2. Core Programs & Spa -->
+    <section id="sec-core">
+      <div class="section-banner dark">
+        <div class="banner-text-left">
+          <div class="capsule-pill dark">SECTION 01</div>
+          <h2>3대 핵심 프로그램 <span class="arrow-icon">↘</span></h2>
+          <p>몸과 마음의 온전한 회복을 돕는 무드웰니스만의 특별한 가치와 운동 철학입니다.</p>
+        </div>
+        <div class="banner-big-number">01</div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Core 1. Barre & Pilates -->
-        <div class="bg-white rounded-2xl p-6 sm:p-7 border border-brand-warmgray shadow-card hover:shadow-floating transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="text-xs font-en font-bold text-brand-sage bg-brand-sagePale px-2.5 py-1 rounded-md">CORE 01</span>
-              <i data-lucide="sparkles" class="w-5 h-5 text-brand-sage"></i>
-            </div>
-            <h3 class="text-xl font-bold text-brand-dark mb-3">바레 &amp; 필라테스</h3>
-            <p class="text-sm text-brand-muted leading-relaxed">
-              속근육 강화와 자세 정렬을 통해 탄탄하고 유연한 바디 라인을 형성하고 신체 밸런스를 바로잡습니다.
-            </p>
+      <div class="bento-programs">
+        <!-- 바레 & 필라테스 -->
+        <div class="bento-card">
+          <div class="bento-card-top">
+            <span class="bento-tag">ALIGNMENT & LINE</span>
+            <span class="bento-num">01</span>
           </div>
-          <div class="mt-6 pt-4 border-t border-brand-warmgray/60 flex flex-wrap gap-1.5 text-xs text-brand-muted">
-            <span class="px-2 py-0.5 rounded bg-brand-sand">#속근육강화</span>
-            <span class="px-2 py-0.5 rounded bg-brand-sand">#자세정렬</span>
-            <span class="px-2 py-0.5 rounded bg-brand-sand">#바디라인</span>
+          <div>
+            <h3>바레 & 필라테스</h3>
+            <p>속근육 강화와 자세 정렬을 통해 탄탄하고 유연한 바디 라인을 형성하고 신체 밸런스를 바로잡습니다.</p>
           </div>
         </div>
 
-        <!-- Core 2. Functional & Props -->
-        <div class="bg-white rounded-2xl p-6 sm:p-7 border border-brand-warmgray shadow-card hover:shadow-floating transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="text-xs font-en font-bold text-brand-terracotta bg-brand-terracottaLight px-2.5 py-1 rounded-md">CORE 02</span>
-              <i data-lucide="dumbbell" class="w-5 h-5 text-brand-terracotta"></i>
-            </div>
-            <h3 class="text-xl font-bold text-brand-dark mb-3">펑셔널 &amp; 소도구</h3>
-            <p class="text-sm text-brand-muted leading-relaxed">
-              일상에서 필요한 실질적 근력과 코어 안정성을 높여 통증을 예방하고 움직임의 가동 범위를 확장합니다.
-            </p>
+        <!-- 펑셔널 & 소도구 -->
+        <div class="bento-card">
+          <div class="bento-card-top">
+            <span class="bento-tag">CORE & MOBILITY</span>
+            <span class="bento-num">02</span>
           </div>
-          <div class="mt-6 pt-4 border-t border-brand-warmgray/60 flex flex-wrap gap-1.5 text-xs text-brand-muted">
-            <span class="px-2 py-0.5 rounded bg-brand-sand">#실전근력</span>
-            <span class="px-2 py-0.5 rounded bg-brand-sand">#코어안정성</span>
-            <span class="px-2 py-0.5 rounded bg-brand-sand">#통증예방</span>
+          <div>
+            <h3>펑셔널 & 소도구</h3>
+            <p>일상에서 필요한 실질적 근력과 코어 안정성을 높여 통증을 예방하고 움직임의 가동 범위를 확장합니다.</p>
           </div>
         </div>
 
-        <!-- Core 3. Recovery & Stretching -->
-        <div class="bg-white rounded-2xl p-6 sm:p-7 border border-brand-warmgray shadow-card hover:shadow-floating transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="text-xs font-en font-bold text-brand-sageLight bg-brand-sagePale px-2.5 py-1 rounded-md">CORE 03</span>
-              <i data-lucide="wind" class="w-5 h-5 text-brand-sageLight"></i>
-            </div>
-            <h3 class="text-xl font-bold text-brand-dark mb-3">리커버리 &amp; 스트레칭</h3>
-            <p class="text-sm text-brand-muted leading-relaxed">
-              긴장된 근막 이완과 깊은 호흡을 통해 누적된 피로를 해소하고 지친 일상에 온전한 정서적 치유를 제공합니다.
-            </p>
+        <!-- 리커버리 & 스트레칭 -->
+        <div class="bento-card">
+          <div class="bento-card-top">
+            <span class="bento-tag">RELEASE & RESTORE</span>
+            <span class="bento-num">03</span>
           </div>
-          <div class="mt-6 pt-4 border-t border-brand-warmgray/60 flex flex-wrap gap-1.5 text-xs text-brand-muted">
-            <span class="px-2 py-0.5 rounded bg-brand-sand">#근막이완</span>
-            <span class="px-2 py-0.5 rounded bg-brand-sand">#피로해소</span>
-            <span class="px-2 py-0.5 rounded bg-brand-sand">#정서적치유</span>
+          <div>
+            <h3>리커버리 & 스트레칭</h3>
+            <p>긴장된 근막 이완과 깊은 호흡을 통해 누적된 피로를 해소하고 지친 일상에 정서적 치유를 선사합니다.</p>
           </div>
         </div>
       </div>
 
-      <!-- Slide 5: 스페셜 원데이 클래스 소개 배너 -->
-      <div class="mt-6 p-6 rounded-2xl bg-white border border-brand-warmgray/90 shadow-card flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div class="flex items-start sm:items-center gap-3.5">
-          <div class="w-10 h-10 rounded-xl bg-brand-terracottaLight text-brand-terracotta flex items-center justify-center shrink-0">
-            <i data-lucide="sun" class="w-5 h-5"></i>
-          </div>
-          <div>
-            <div class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-terracotta mb-0.5">
-              <span>SPECIAL HEALING SESSION</span>
-              <span class="text-[10px] bg-brand-terracotta/10 px-1.5 py-0.5 rounded">시즌 한정</span>
-            </div>
-            <h4 class="text-base sm:text-lg font-bold text-brand-dark">스페셜 원데이 클래스 : 온전한 쉼과 활력을 더하는 힐링 세션</h4>
-            <p class="text-xs sm:text-sm text-brand-muted mt-0.5">
-              정규 루틴을 넘어 새로운 사람들과 소통하며, 다채로운 테마로 지친 몸과 마음을 리프레시합니다.
-            </p>
-          </div>
+      <!-- YJ Spa Banner -->
+      <div class="spa-editorial-banner">
+        <div class="spa-info">
+          <div class="capsule-pill">EXCLUSIVE PARTNERSHIP</div>
+          <h4>무드웰니스 회원 특별 혜택 : YJ 스파 제휴</h4>
+          <p>운동 후 누적된 피로를 풀고 몸과 마음의 완벽한 리프레시를 완성하는 프리미엄 힐링 연계 프로그램</p>
         </div>
-        <a href="#oneday" class="shrink-0 px-4 py-2 rounded-xl bg-brand-sand text-brand-dark text-xs font-semibold hover:bg-brand-warmgray transition flex items-center gap-1.5">
-          <span>10월 일정 보기</span>
-          <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-brand-sage"></i>
-        </a>
-      </div>
-    </section>
-
-    <!-- 3. 멤버십 혜택 & YJ 스파 제휴 (Slide 6) -->
-    <section id="benefits" class="scroll-mt-32">
-      <div class="rounded-3xl bg-gradient-to-r from-brand-dark via-[#2d3a31] to-brand-sageDark text-white p-7 sm:p-10 shadow-soft overflow-hidden relative">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
-          <div class="space-y-3 max-w-xl">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-terracotta text-white text-xs font-semibold">
-              <i data-lucide="award" class="w-3.5 h-3.5"></i>
-              EXCLUSIVE PARTNERSHIP
-            </div>
-            <h3 class="text-2xl sm:text-3xl font-bold tracking-tight">무드웰니스 멤버십 특별 혜택</h3>
-            <p class="text-sm sm:text-base text-gray-300 leading-relaxed font-light">
-              <strong class="text-white font-medium">RECOVERY &amp; HEALING — 깊은 회복과 치유</strong><br>
-              무드웰니스는 단순한 운동을 넘어, 누적된 피로를 풀고 몸과 마음의 완벽한 리프레시를 완성하는 프리미엄 케어를 지향합니다.
-            </p>
-            <p class="text-xs text-brand-sand/90">
-              * 무드웰니스 회원님만을 위한 프리미엄 힐링 연계 프로그램
-            </p>
-          </div>
-
-          <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-6 text-center md:min-w-[260px] flex flex-col items-center justify-center">
-            <span class="text-xs uppercase tracking-wider text-brand-sand font-medium">YJ 스파 제휴 혜택</span>
-            <div class="text-4xl sm:text-5xl font-extrabold text-brand-sand my-1 font-en">10% <span class="text-2xl sm:text-3xl">OFF</span></div>
-            <span class="text-xs text-brand-warmgray">전 프로그램 회원 전용 할인</span>
-          </div>
+        <div class="spa-badge-pill">
+          <span>YJ 스파 전 프로그램</span>
+          <strong>10% OFF</strong>
         </div>
       </div>
     </section>
 
-    <!-- 4. 전담 매칭 & 첫 방문 절차 (Slide 7, 8) -->
-    <section id="matching-system" class="scroll-mt-32 space-y-12">
-      <!-- Why Matching Section -->
-      <div class="bg-white rounded-3xl p-6 sm:p-10 border border-brand-warmgray shadow-card">
-        <div class="max-w-3xl mb-8">
-          <span class="text-xs font-en tracking-wider text-brand-sage uppercase font-bold">Matching Philosophy</span>
-          <h2 class="text-2xl sm:text-3xl font-bold text-brand-dark mt-1 leading-snug">
-            왜 무드웰니스는 선생님을 직접 매칭해 드릴까요?
-          </h2>
-          <p class="text-sm sm:text-base text-brand-muted mt-2">
-            사람마다 체형과 통증이 다르듯, 선생님마다 지닌 특화 전문성과 솔루션도 다릅니다.
-          </p>
+    <!-- 3. Matching System -->
+    <section id="sec-matching">
+      <div class="section-banner light">
+        <div class="banner-text-left">
+          <div class="capsule-pill light">SECTION 02</div>
+          <h2>전담 매칭 시스템 <span class="arrow-icon">↘</span></h2>
+          <p>사람마다 체형과 통증이 다르듯, 선생님마다 지닌 특화 전문성과 솔루션도 다릅니다.</p>
+        </div>
+        <div class="banner-big-number">02</div>
+      </div>
+
+      <div class="matching-grid">
+        <div class="matching-box light">
+          <div class="capsule-pill light" style="margin-bottom: 12px;">일반 센터의 한계</div>
+          <h3>"단순 시간 맞추기식 랜덤 배정"</h3>
+          <ul class="matching-list">
+            <li>내 체형이나 통증 히스토리를 모른 채 비어 있는 시간에 아무 강사나 배정</li>
+            <li>강사마다 스타일이 달라 매번 처음부터 다시 설명해야 하는 피로감</li>
+            <li>운동 목적과 강사의 주특기가 일치하지 않아 더딘 체형 개선</li>
+          </ul>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-          <!-- General Center comparison -->
-          <div class="lg:col-span-4 bg-red-50/70 rounded-2xl p-6 border border-red-100 flex flex-col justify-between">
-            <div>
-              <div class="flex items-center gap-2 text-red-700 font-semibold text-sm mb-3">
-                <i data-lucide="x-circle" class="w-4 h-4"></i>
-                일반 센터의 한계
-              </div>
-              <h4 class="text-base font-bold text-gray-800 mb-3">"단순 시간 맞추기식 랜덤 배정"</h4>
-              <ul class="space-y-2.5 text-xs sm:text-sm text-gray-600">
-                <li class="flex items-start gap-2">
-                  <span class="text-red-400 mt-0.5">•</span>
-                  <span>내 체형이나 통증 히스토리를 모른 채 비어 있는 시간에 아무 강사나 배정</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-red-400 mt-0.5">•</span>
-                  <span>강사마다 티칭 스타일이 달라 매번 처음부터 다시 설명해야 하는 피로감</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-red-400 mt-0.5">•</span>
-                  <span>운동 목적과 강사의 주특기가 일치하지 않아 더딘 체형 개선</span>
-                </li>
-              </ul>
-            </div>
-            <div class="mt-4 pt-3 border-t border-red-100 text-xs text-red-600 font-medium">
-              비효율적인 시간과 비용 소모 방지
-            </div>
-          </div>
-
-          <!-- Mood Wellness 3 Steps Matching -->
-          <div class="lg:col-span-8 bg-brand-sagePale/70 rounded-2xl p-6 border border-brand-sage/20 flex flex-col justify-between">
-            <div>
-              <div class="flex items-center gap-2 text-brand-sage font-semibold text-sm mb-3">
-                <i data-lucide="check-circle-2" class="w-4 h-4"></i>
-                무드웰니스의 차별점 : 고객 목적 기반 정밀 매칭
-              </div>
-              
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mt-4">
-                <div class="bg-white p-4 rounded-xl border border-brand-warmgray/80 shadow-xs">
-                  <span class="text-xs font-bold text-brand-sage uppercase">STEP 01</span>
-                  <h5 class="text-sm font-bold text-brand-dark mt-1 mb-2 leading-tight">케어목적 &amp;<br>라이프스타일 상담</h5>
-                  <p class="text-xs text-brand-muted leading-relaxed">
-                    원하는 케어 스타일, 통증 부위, 케어 가능 시간대 등 면밀한 사전 상담 진행
-                  </p>
-                </div>
-
-                <div class="bg-white p-4 rounded-xl border border-brand-warmgray/80 shadow-xs">
-                  <span class="text-xs font-bold text-brand-sage uppercase">STEP 02</span>
-                  <h5 class="text-sm font-bold text-brand-dark mt-1 mb-2 leading-tight">강사별 특화 영역<br>교차 검증</h5>
-                  <ul class="text-[11px] text-brand-muted space-y-1">
-                    <li>• <strong>순환/모빌리티:</strong> 전신순환·부종·이완</li>
-                    <li>• <strong>체형 교정:</strong> 만성통증·정렬</li>
-                    <li>• <strong>체력 강화:</strong> 근력강화·피로감소</li>
-                    <li>• <strong>다이어트:</strong> 체지방감소·라인정리</li>
-                    <li>• <strong>힐링:</strong> 정적힐링·정서소통</li>
-                  </ul>
-                </div>
-
-                <div class="bg-white p-4 rounded-xl border border-brand-warmgray/80 shadow-xs">
-                  <span class="text-xs font-bold text-brand-sage uppercase">STEP 03</span>
-                  <h5 class="text-sm font-bold text-brand-dark mt-1 mb-2 leading-tight">100% 전담 책임제<br>밀착 케어</h5>
-                  <p class="text-xs text-brand-muted leading-relaxed">
-                    내 몸의 시작부터 마지막 변화 과정까지 나를 제일 잘 아는 강사가 끝까지 책임 케어
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Quote banner -->
-            <div class="mt-4 pt-3 border-t border-brand-sage/20 text-xs sm:text-sm text-brand-dark">
-              💡 <strong class="text-brand-sage">"고객님의 귀한 시간과 비용이 낭비되지 않도록"</strong> — 단순히 '수업을 채우는 것'이 아닌, 회원님의 현재 몸 상태에 가장 빠르고 안전한 변화를 만들어낼 단 한 명의 전담 파트너를 찾아드립니다.
-            </div>
-          </div>
+        <div class="matching-box dark">
+          <div class="capsule-pill dark" style="margin-bottom: 12px;">무드웰니스의 차별점</div>
+          <h3>고객 목적 기반 정밀한 매칭</h3>
+          <ul class="matching-list">
+            <li><strong>STEP 01 라이프스타일 상담 :</strong> 케어 스타일, 통증 부위, 가능 시간대 사전 면밀 분석</li>
+            <li><strong>STEP 02 강사별 5대 특화 영역 검증 :</strong> 순환·모빌리티, 체형 교정, 체력 강화, 다이어트, 힐링</li>
+            <li><strong>STEP 03 100% 전담 책임제 :</strong> 내 몸의 시작부터 변화까지 나를 제일 잘 아는 단 한 명의 전담 강사 케어</li>
+          </ul>
         </div>
       </div>
 
-      <!-- 3-Step Visit Process -->
-      <div>
-        <div class="text-center max-w-xl mx-auto mb-8">
-          <span class="text-xs font-en tracking-widest text-brand-sage uppercase font-bold">Process</span>
-          <h3 class="text-xl sm:text-2xl font-bold text-brand-dark mt-1">체험 레슨 신청 및 첫 방문 절차</h3>
-          <p class="text-xs sm:text-sm text-brand-muted mt-1">처음 방문하시는 회원님도 편안하게 체계적인 안내를 받으실 수 있습니다.</p>
+      <div class="process-steps">
+        <div class="p-step-card">
+          <div class="p-step-num">STEP 01</div>
+          <h4>체험 양식 작성 및 제출</h4>
+          <p>성함, 연락처, 희망 레슨 정보(개인/그룹/원데이/테라피), 관심 운동 및 통증/목적 공유</p>
+        </div>
+        <div class="p-step-card">
+          <div class="p-step-num">STEP 02</div>
+          <h4>전문 강사 매칭 & 확정</h4>
+          <p>운동 목적 및 스케줄 분석을 통해 가장 적합한 전담 코치 배정 및 맞춤 조율 일정 확정</p>
+        </div>
+        <div class="p-step-card">
+          <div class="p-step-num">STEP 03</div>
+          <h4>체형 분석 & 레슨 체험</h4>
+          <p>정밀 체형 및 가동성 평가 진행, 개인별 맞춤 피드백 및 클래스 경험</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Teachers -->
+    <section id="sec-teachers">
+      <div class="section-banner dark">
+        <div class="banner-text-left">
+          <div class="capsule-pill dark">SECTION 03</div>
+          <h2>전담 강사 큐레이션 <span class="arrow-icon">↘</span></h2>
+          <p>회원님의 현재 몸 상태와 목적에 가장 부합하는 전담 마스터를 추천해 드립니다.</p>
+        </div>
+        <div class="banner-big-number">03</div>
+      </div>
+
+      <div class="teachers-grid">
+        <!-- 이수휘 원장 -->
+        <div class="teacher-card">
+          <div class="teacher-top">
+            <span class="teacher-name">이수휘 원장</span>
+            <span class="teacher-role">움직임 케어 & 근육 릴리즈</span>
+          </div>
+          <div class="teacher-headline">1:1 움직임 케어 & 기능성 회복 운동 & 근육 이완 테라피</div>
+          <ul class="teacher-desc-list">
+            <li>개인 움직임 특성과 가동 제한 회복을 위한 스트레칭 / 모빌리티 / 기능성 트레이닝</li>
+            <li>슬링 천과 핸즈온 수기 테크닉을 통한 심부 근육 이완 릴리즈</li>
+          </ul>
+          <div class="teacher-recommend">
+            <strong>추천 :</strong> 몸이 뻣뻣하고 근육 긴장도가 높은 분 / 운동 중 특정 동작이 어렵거나 관절이 불편한 분
+          </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-          <!-- Step 1 -->
-          <div class="bg-white rounded-2xl p-6 border border-brand-warmgray shadow-card flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="w-8 h-8 rounded-full bg-brand-sand text-brand-dark font-bold text-sm flex items-center justify-center">1</span>
-                <i data-lucide="clipboard-list" class="w-5 h-5 text-brand-muted"></i>
-              </div>
-              <h4 class="text-base font-bold text-brand-dark mb-2">체험 양식 작성 및 제출</h4>
-              <ul class="space-y-1.5 text-xs sm:text-sm text-brand-muted">
-                <li>• 성함, 연락처, 희망 레슨 정보 전달</li>
-                <li>• 개인 / 그룹 / 원데이 / 테라피 선택</li>
-                <li>• 필라테스 / 바레 등 관심 운동 지정</li>
-                <li>• 희망 시간대 및 통증 / 개선 목적 공유</li>
-              </ul>
-            </div>
+        <!-- 정소영 원장 -->
+        <div class="teacher-card">
+          <div class="teacher-top">
+            <span class="teacher-name">정소영 원장</span>
+            <span class="teacher-role">바레 & 필라테스 통합 힐링</span>
           </div>
-
-          <!-- Step 2 -->
-          <div class="bg-white rounded-2xl p-6 border border-brand-warmgray shadow-card flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="w-8 h-8 rounded-full bg-brand-sand text-brand-dark font-bold text-sm flex items-center justify-center">2</span>
-                <i data-lucide="user-check" class="w-5 h-5 text-brand-sage"></i>
-              </div>
-              <h4 class="text-base font-bold text-brand-dark mb-2">전문 강사 매칭 &amp; 확정</h4>
-              <ul class="space-y-1.5 text-xs sm:text-sm text-brand-muted">
-                <li>• 운동 목적 및 스케줄 분석</li>
-                <li>• 가장 적합한 전담 코치 및 프로그램 배정</li>
-                <li>• 맞춤 조율을 통한 세부 일정 확정</li>
-              </ul>
-            </div>
+          <div class="teacher-headline">바레+필라테스 통합 & 트렌디 다채로운 웰니스 시퀀스</div>
+          <ul class="teacher-desc-list">
+            <li>체형 교정과 안면 비대칭 개선을 위한 운동 + 스파 융합 프로그램</li>
+            <li>필라테스와 바레를 균형 있게 결합하여 전신 축과 심부 근력을 강화시키는 트레이닝</li>
+          </ul>
+          <div class="teacher-recommend">
+            <strong>추천 :</strong> 다양한 운동을 지루함 없이 경험하고 싶은 분 / 라인 개선과 체력 강화를 함께 원하는 분
           </div>
+        </div>
 
-          <!-- Step 3 -->
-          <div class="bg-white rounded-2xl p-6 border border-brand-warmgray shadow-card flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="w-8 h-8 rounded-full bg-brand-sand text-brand-dark font-bold text-sm flex items-center justify-center">3</span>
-                <i data-lucide="activity" class="w-5 h-5 text-brand-terracotta"></i>
-              </div>
-              <h4 class="text-base font-bold text-brand-dark mb-2">체형 분석 &amp; 레슨 체험</h4>
-              <ul class="space-y-1.5 text-xs sm:text-sm text-brand-muted">
-                <li>• 정밀 체형 및 관절 가동성(Mobility) 평가 진행</li>
-                <li>• 맞춤형 운동 피드백 제공</li>
-                <li>• 무드웰니스만의 다채로운 클래스 경험</li>
-              </ul>
-            </div>
+        <!-- 오슬기 원장 -->
+        <div class="teacher-card">
+          <div class="teacher-top">
+            <span class="teacher-name">오슬기 원장</span>
+            <span class="teacher-role">근력 강화 & 다이어트</span>
+          </div>
+          <div class="teacher-headline">탄탄한 실루엣을 완성하는 바디라인 정렬 & 파워 트레이닝</div>
+          <ul class="teacher-desc-list">
+            <li>필라테스의 정렬과 컨트롤 & 웨이트의 근력 강도를 결합한 체계적 시퀀스</li>
+            <li>퇴근 후 굳어진 몸을 깨우고 대사량을 높이는 파워 루틴</li>
+          </ul>
+          <div class="teacher-recommend">
+            <strong>추천 :</strong> 퇴근 후 기초체력 강화가 필요하고 자기 전 굳은 몸을 시원하게 풀고 싶은 분
+          </div>
+        </div>
+
+        <!-- 김도희 실장 -->
+        <div class="teacher-card">
+          <div class="teacher-top">
+            <span class="teacher-name">김도희 실장</span>
+            <span class="teacher-role">체형 교정 & 코어 강화</span>
+          </div>
+          <div class="teacher-headline">척추 안정성과 바른 움직임 패턴을 세우는 코어 집중 케어</div>
+          <ul class="teacher-desc-list">
+            <li>약해진 속근육을 집중 단련하여 만성적인 불균형과 자세 무너짐 방지</li>
+            <li>일상생활 통증 예방 및 올바른 움직임 정렬 지도</li>
+          </ul>
+          <div class="teacher-recommend">
+            <strong>추천 :</strong> 코어 힘이 부족하고 잘못된 생활 습관으로 인해 자세 불균형을 겪는 분
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 5. 프라이빗 소모임 시스템 (Slide 9) -->
-    <section id="private-group" class="scroll-mt-32">
-      <div class="bg-brand-sand/60 rounded-3xl p-6 sm:p-10 border border-brand-warmgray">
-        <div class="max-w-3xl mb-8">
-          <span class="text-xs font-en tracking-wider text-brand-terracotta uppercase font-bold">Exclusive Small Group</span>
-          <h2 class="text-2xl sm:text-3xl font-bold text-brand-dark mt-1">
-            프라이빗 소모임 시스템
-          </h2>
-          <p class="text-sm sm:text-base text-brand-muted mt-2">
-            매주 정해진 시간, 나와 결이 맞는 사람들과 함께하는 프라이빗 소모임.<br>
-            예약 스트레스 없는 고정 요일·시간 시스템, 우리들만의 전용 공간에서 누리는 온전한 몰입을 선사합니다.
-          </p>
+    <!-- 5. 1:1 Private Lessons -->
+    <section id="sec-private">
+      <div class="section-banner light">
+        <div class="banner-text-left">
+          <div class="capsule-pill light">SECTION 04</div>
+          <h2>1:1 개인레슨 세부 프로그램 <span class="arrow-icon">↘</span></h2>
+          <p>선생님의 전문 분야에 따른 100% 초밀착 맞춤형 솔루션입니다.</p>
         </div>
+        <div class="banner-big-number">04</div>
+      </div>
 
-        <!-- 3 Main Points -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
-          <div class="bg-white p-6 rounded-2xl border border-brand-warmgray/80 shadow-sm flex flex-col justify-between">
-            <div>
-              <div class="w-8 h-8 rounded-lg bg-brand-sage/10 text-brand-sage flex items-center justify-center font-bold text-sm mb-3">Point 1</div>
-              <h3 class="text-base font-bold text-brand-dark mb-1">지정 좌석제 루틴</h3>
-              <p class="text-xs text-brand-terracotta font-medium mb-2">매주 예약 전쟁 없이 지키는 나만의 시간</p>
-              <ul class="text-xs text-brand-muted space-y-1.5 leading-relaxed">
-                <li>• 잔여석 눈치 보며 수강신청하듯 예약하는 번거로움과 피로도를 완전히 없앴습니다.</li>
-                <li>• 약속된 요일, 확정된 시간에 내 자리가 늘 준비되어 흐트러짐 없는 완벽한 운동 습관 완성</li>
-                <li>• 강사와 크루원이 서로를 기다려주어 포기하지 않고 끝까지 지속할 수 있는 힘</li>
-              </ul>
+      <div class="cards-grid">
+        <!-- 바디튜닝 -->
+        <div class="prog-item-card">
+          <div>
+            <div class="card-top-header">
+              <span class="coach-pill">이수휘 원장</span>
+              <span class="capsule-pill light">1:1 개인 / 70분</span>
             </div>
+            <h3 class="prog-title">바디튜닝 (Body Tuning)</h3>
+            <div class="prog-time">기능회복 & 순환 컨디셔닝 케어</div>
+            <p class="prog-desc">
+              스트레칭, 모빌리티, 기능성 회복운동을 통해 불편한 움직임을 개선하고 바른 신체 축을 재학습합니다.
+            </p>
           </div>
-
-          <div class="bg-white p-6 rounded-2xl border border-brand-warmgray/80 shadow-sm flex flex-col justify-between">
-            <div>
-              <div class="w-8 h-8 rounded-lg bg-brand-sage/10 text-brand-sage flex items-center justify-center font-bold text-sm mb-3">Point 2</div>
-              <h3 class="text-base font-bold text-brand-dark mb-1">우리들만의 프라이빗 크루</h3>
-              <p class="text-xs text-brand-terracotta font-medium mb-2">친구, 연인, 동료 혹은 결이 맞는 이웃과 함께</p>
-              <ul class="text-xs text-brand-muted space-y-1.5 leading-relaxed">
-                <li>• 낯선 사람들이 매번 바뀌며 들어오는 어색하고 산만한 환경이 아닙니다.</li>
-                <li>• 마음 맞는 지인 팀 또는 사전 매칭으로 운동 목적과 성향이 닮은 멤버들과 한 팀 구성</li>
-                <li>• 문을 닫는 순간 시작되는 우리만의 아지트에서 하루 피로를 털고 편안한 소통</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="bg-white p-6 rounded-2xl border border-brand-warmgray/80 shadow-sm flex flex-col justify-between">
-            <div>
-              <div class="w-8 h-8 rounded-lg bg-brand-sage/10 text-brand-sage flex items-center justify-center font-bold text-sm mb-3">Point 3</div>
-              <h3 class="text-base font-bold text-brand-dark mb-1">전담 강사의 맞춤 케어</h3>
-              <p class="text-xs text-brand-terracotta font-medium mb-2">기수별 · 팀별 맞춤 빌드업 커리큘럼</p>
-              <ul class="text-xs text-brand-muted space-y-1.5 leading-relaxed">
-                <li>• 첫 주부터 마지막 주까지 팀의 발전 속도에 맞춘 단계적 연계 수업 진행</li>
-                <li>• 전담 강사가 구성원들의 체형 특성을 완벽히 파악하여 세심한 코칭</li>
-                <li>• 1:1 개인레슨을 단체로 받는 듯한 밀착 피드백 제공</li>
-              </ul>
-            </div>
+          <div class="prog-target-box">
+            <strong>추천 :</strong> 몸이 뻣뻣하거나 자세, 정렬 및 기능적 움직임을 정밀 관리하고 싶은 분
           </div>
         </div>
 
-        <!-- Comparison Table -->
-        <div class="bg-white rounded-2xl border border-brand-warmgray overflow-hidden shadow-card">
-          <div class="px-6 py-4 bg-brand-sand border-b border-brand-warmgray font-semibold text-sm text-brand-dark flex items-center justify-between">
-            <span>일반 센터 vs 무드웰니스 프라이빗 소모임 비교</span>
-            <span class="text-xs text-brand-muted">Why Mood Wellness?</span>
+        <!-- 딥 럴링 슬링 -->
+        <div class="prog-item-card">
+          <div>
+            <div class="card-top-header">
+              <span class="coach-pill">이수휘 원장</span>
+              <span class="capsule-pill light">스페셜 융합 / 70분</span>
+            </div>
+            <h3 class="prog-title">딥 럴링 슬링 (DEEP LULLING SLING)</h3>
+            <div class="prog-time">슬링 테라피 & 심부 이완 케어</div>
+            <p class="prog-desc">
+              슬링 천과 핸즈온 테크닉을 결합하여 무중력 상태처럼 몸의 텐션을 풀고 깊게 이완시킵니다.
+            </p>
           </div>
-          <div class="divide-y divide-brand-warmgray/60 text-xs sm:text-sm">
-            <div class="grid grid-cols-12 p-4 items-center">
-              <div class="col-span-3 sm:col-span-2 font-bold text-brand-dark">시간 / 좌석</div>
-              <div class="col-span-4 sm:col-span-5 text-gray-500 pr-2">매주 예약 경쟁, 시간대 불규칙</div>
-              <div class="col-span-5 sm:col-span-5 font-semibold text-brand-sage pl-2 flex items-center gap-1.5">
-                <i data-lucide="check" class="w-4 h-4 shrink-0"></i>
-                <span>나만을 위해 확보된 고정 요일 &amp; 지정석</span>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-12 p-4 items-center bg-brand-cream/50">
-              <div class="col-span-3 sm:col-span-2 font-bold text-brand-dark">멤버십 환경</div>
-              <div class="col-span-4 sm:col-span-5 text-gray-500 pr-2">매번 바뀌는 멤버, 어색하고 단절된 분위기</div>
-              <div class="col-span-5 sm:col-span-5 font-semibold text-brand-sage pl-2 flex items-center gap-1.5">
-                <i data-lucide="check" class="w-4 h-4 shrink-0"></i>
-                <span>우리끼리 끈끈하게 응원하는 프라이빗 커뮤니티</span>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-12 p-4 items-center">
-              <div class="col-span-3 sm:col-span-2 font-bold text-brand-dark">수업 흐름</div>
-              <div class="col-span-4 sm:col-span-5 text-gray-500 pr-2">일회성 동작 반복에 그치는 시퀀스</div>
-              <div class="col-span-5 sm:col-span-5 font-semibold text-brand-sage pl-2 flex items-center gap-1.5">
-                <i data-lucide="check" class="w-4 h-4 shrink-0"></i>
-                <span>매주 단계적으로 성장하는 팀 맞춤 커리큘럼</span>
-              </div>
-            </div>
+          <div class="prog-target-box">
+            <strong>추천 :</strong> 근육 긴장도가 매우 높아 혼자 스트레칭이 어려운 분
           </div>
         </div>
 
-        <p class="text-center text-xs sm:text-sm text-brand-muted mt-5 italic">
-          💬 "운동하러 가는 길이 숙제가 아닌, 기다려지는 약속이 됩니다. 바쁜 일상 속 정해진 그 시간만큼은 나를 온전히 회복하고 우리만의 건강한 에너지를 채워가세요."
-        </p>
+        <!-- 윤곽밸런스케어 -->
+        <div class="prog-item-card">
+          <div>
+            <div class="card-top-header">
+              <span class="coach-pill">정소영 원장</span>
+              <span class="capsule-pill light">스페셜 융합 / 120분</span>
+            </div>
+            <h3 class="prog-title">윤곽밸런스케어</h3>
+            <div class="prog-time">운동 교정 + 에스테틱 수기 케어 원스톱</div>
+            <p class="prog-desc">
+              척추·골반 축 정렬 교정과 안면 윤곽 수기 케어를 통해 전신 비대칭 및 림프 순환을 동시에 케어합니다.
+            </p>
+          </div>
+          <div class="prog-target-box">
+            <strong>추천 :</strong> 예비신랑·신부, 프로필/웨딩 촬영 준비, 얼굴 및 전신 비대칭 케어
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- 6. 전담 강사 큐레이션 & 1:1 개인레슨 (Slide 10, 11, 12) -->
-    <section id="instructors" class="scroll-mt-32 space-y-12">
-      <!-- Instructors Header -->
-      <div class="text-center max-w-xl mx-auto">
-        <span class="text-xs font-en tracking-widest text-brand-sage uppercase font-bold">PART 02 • Master Curation</span>
-        <h2 class="text-2xl sm:text-3xl font-bold text-brand-dark mt-1">전담 강사 큐레이션 &amp; 맞춤 케어</h2>
-        <p class="text-xs sm:text-sm text-brand-muted mt-2">어떤 고민이 있으신가요? 회원님의 몸 상태와 목적에 가장 부합하는 전담 마스터를 추천해 드립니다.</p>
+    <!-- 6. Small Group Crews -->
+    <section id="sec-crew">
+      <div class="section-banner dark">
+        <div class="banner-text-left">
+          <div class="capsule-pill dark">SECTION 05</div>
+          <h2>소모임 그룹레슨 (고정 크루) <span class="arrow-icon">↘</span></h2>
+          <p>예약 전쟁 없는 고정 지정 좌석제, 우리들만의 아지트에서 누리는 온전한 몰입</p>
+        </div>
+        <div class="banner-big-number">05</div>
       </div>
 
-      <!-- Instructor Profile Cards (Slide 11) -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- 1. 이수휘 원장 -->
-        <div class="bg-white rounded-3xl p-6 sm:p-8 border border-brand-warmgray shadow-card hover:border-brand-sage transition-all flex flex-col justify-between">
-          <div>
-            <div class="flex items-start justify-between gap-4 mb-3">
-              <div>
-                <span class="text-[11px] font-semibold px-2.5 py-1 rounded bg-brand-sagePale text-brand-sage">
-                  1:1 움직임 케어 &amp; 기능성 회복 운동 &amp; 근육 이완·릴리즈
-                </span>
-                <h3 class="text-2xl font-bold text-brand-dark mt-2">이수휘 원장</h3>
-              </div>
-              <div class="w-12 h-12 rounded-2xl bg-brand-sand flex items-center justify-center text-brand-sage font-serif text-lg font-bold shrink-0">
-                SH
-              </div>
-            </div>
-            <ul class="space-y-2 text-xs sm:text-sm text-brand-muted mt-4">
-              <li class="flex items-start gap-2">
-                <span class="text-brand-sage font-bold">•</span>
-                <span>개인 움직임 특성과 제한 회복을 위한 스트레칭 / 모빌리티 / 기능성 트레이닝</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-brand-sage font-bold">•</span>
-                <span>슬링과 핸즈온 수기 테크닉을 통해 근육 이완 테라피 프로그램</span>
-              </li>
-            </ul>
-          </div>
-          <div class="mt-6 bg-brand-sand/70 p-3.5 rounded-xl text-xs text-brand-dark flex items-start gap-2">
-            <span class="text-brand-terracotta font-bold text-sm leading-none shrink-0">👉</span>
-            <div>
-              <strong>추천 대상:</strong> 몸이 뻣뻣하고, 근육 긴장도가 높은 분 / 운동 중 특정 동작이 어렵거나 불편한 분
-            </div>
-          </div>
-        </div>
-
-        <!-- 2. 정소영 원장 -->
-        <div class="bg-white rounded-3xl p-6 sm:p-8 border border-brand-warmgray shadow-card hover:border-brand-sage transition-all flex flex-col justify-between">
-          <div>
-            <div class="flex items-start justify-between gap-4 mb-3">
-              <div>
-                <span class="text-[11px] font-semibold px-2.5 py-1 rounded bg-brand-terracottaLight text-brand-terracotta">
-                  바레+필라테스 통합 &amp; 트렌디하고 다채로운 힐링 프로그램
-                </span>
-                <h3 class="text-2xl font-bold text-brand-dark mt-2">정소영 원장</h3>
-              </div>
-              <div class="w-12 h-12 rounded-2xl bg-brand-sand flex items-center justify-center text-brand-terracotta font-serif text-lg font-bold shrink-0">
-                SY
-              </div>
-            </div>
-            <ul class="space-y-2 text-xs sm:text-sm text-brand-muted mt-4">
-              <li class="flex items-start gap-2">
-                <span class="text-brand-terracotta font-bold">•</span>
-                <span>체형교정과 안면 비대칭 개선을 위한 운동 + 스파 융합 프로그램</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-brand-terracotta font-bold">•</span>
-                <span>필라테스와 바레를 균형 있게 결합하여 전신 축과 근력을 강화시키는 트레이닝</span>
-              </li>
-            </ul>
-          </div>
-          <div class="mt-6 bg-brand-sand/70 p-3.5 rounded-xl text-xs text-brand-dark flex items-start gap-2">
-            <span class="text-brand-terracotta font-bold text-sm leading-none shrink-0">👉</span>
-            <div>
-              <strong>추천 대상:</strong> 다양한 운동을 경험하고 싶으신 분 / 라인 개선과 체력 강화를 원하시는 분
-            </div>
-          </div>
-        </div>
-
-        <!-- 3. 오슬기 원장 -->
-        <div class="bg-white rounded-3xl p-6 sm:p-8 border border-brand-warmgray shadow-card flex flex-col justify-between">
-          <div>
-            <div class="flex items-start justify-between gap-4 mb-3">
-              <div>
-                <span class="text-[11px] font-semibold px-2.5 py-1 rounded bg-brand-sand text-brand-dark">
-                  근력강화 &amp; 다이어트
-                </span>
-                <h3 class="text-2xl font-bold text-brand-dark mt-2">오슬기 원장</h3>
-              </div>
-              <div class="w-12 h-12 rounded-2xl bg-brand-sand flex items-center justify-center text-brand-dark font-serif text-lg font-bold shrink-0">
-                SG
-              </div>
-            </div>
-            <p class="text-xs sm:text-sm text-brand-muted mt-4">
-              개인별 근력 향상과 체지방 감량을 위한 타겟팅 시퀀스를 설계합니다. 탄탄하고 슬림한 바디라인 정렬을 돕습니다.
-            </p>
-          </div>
-          <div class="mt-6 bg-brand-sand/70 p-3.5 rounded-xl text-xs text-brand-dark flex items-start gap-2">
-            <span class="text-brand-terracotta font-bold text-sm leading-none shrink-0">👉</span>
-            <div><strong>추천 대상:</strong> 코어 및 체력 증진, 체계적인 라인 정리를 목표로 하시는 분 (사전 상담 매칭)</div>
-          </div>
-        </div>
-
-        <!-- 4. 김도희 실장 -->
-        <div class="bg-white rounded-3xl p-6 sm:p-8 border border-brand-warmgray shadow-card flex flex-col justify-between">
-          <div>
-            <div class="flex items-start justify-between gap-4 mb-3">
-              <div>
-                <span class="text-[11px] font-semibold px-2.5 py-1 rounded bg-brand-sand text-brand-dark">
-                  체형교정 &amp; 코어강화
-                </span>
-                <h3 class="text-2xl font-bold text-brand-dark mt-2">김도희 실장</h3>
-              </div>
-              <div class="w-12 h-12 rounded-2xl bg-brand-sand flex items-center justify-center text-brand-dark font-serif text-lg font-bold shrink-0">
-                DH
-              </div>
-            </div>
-            <p class="text-xs sm:text-sm text-brand-muted mt-4">
-              불균형한 척추와 골반 정렬을 바르게 세우고, 속부터 단단하게 잡아주는 필라테스 코어 트레이닝을 안내합니다.
-            </p>
-          </div>
-          <div class="mt-6 bg-brand-sand/70 p-3.5 rounded-xl text-xs text-brand-dark flex items-start gap-2">
-            <span class="text-brand-terracotta font-bold text-sm leading-none shrink-0">👉</span>
-            <div><strong>추천 대상:</strong> 자세 정렬 및 척추·골반 안정화가 필요하신 분 (사전 상담 매칭)</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 1:1 Private Lesson Sub-section (Slide 12) -->
-      <div id="private-lesson" class="pt-6">
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-6 gap-3">
-          <div>
-            <span class="text-xs font-en tracking-wider text-brand-sage uppercase font-bold">Tailored 1:1 Care</span>
-            <h3 class="text-xl sm:text-2xl font-bold text-brand-dark mt-1">1:1 개인레슨 세부 프로그램 &amp; 추천 가이드</h3>
-            <p class="text-xs sm:text-sm text-brand-muted mt-1">선생님의 전문 분야에 따른 목적별 최적화 프로그램을 제안합니다.</p>
-          </div>
-        </div>
-
-        <!-- Program Guide Badge -->
-        <div class="mb-6 p-3.5 rounded-2xl bg-brand-sand/70 border border-brand-warmgray text-xs sm:text-sm text-brand-dark flex flex-wrap items-center gap-2">
-          <span class="font-bold text-brand-sage">💡 프로그램 선택 가이드 :</span>
-          <span class="px-2.5 py-0.5 rounded bg-white font-medium border border-brand-warmgray">[1:1 개인] 100% 초밀착 맞춤 솔루션</span>
-          <span class="text-brand-muted">|</span>
-          <span class="px-2.5 py-0.5 rounded bg-white font-medium border border-brand-warmgray">[스페셜 융합 (70분/120분)] 운동 교정 + 에스테틱/수기 케어 원스톱</span>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <!-- 바디튜닝 -->
-          <div class="bg-white rounded-2xl p-6 border border-brand-warmgray shadow-card flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between text-xs font-medium text-brand-sage mb-2">
-                <span class="font-bold">수휘 | 기능회복 &amp; 순환</span>
-                <span class="px-2 py-0.5 rounded bg-brand-sand text-brand-dark font-bold">1:1 개인 / 70분</span>
-              </div>
-              <h4 class="text-xl font-bold text-brand-dark mb-2">바디튜닝 (Body Tuning)</h4>
-              <p class="text-xs sm:text-sm text-brand-muted leading-relaxed mb-4">
-                스트레칭 / 모빌리티 / 기능성 회복운동을 통해 신체의 불편한 움직임을 근본적으로 개선합니다.
-              </p>
-            </div>
-            <div class="mt-4 pt-3 border-t border-brand-warmgray/50 text-xs text-brand-dark bg-brand-sand/50 p-3 rounded-xl flex items-start gap-1.5">
-              <span class="text-brand-terracotta font-bold shrink-0">👉</span>
-              <div><strong>추천:</strong> 몸이 뻣뻣하거나 자세, 정렬 및 기능적 움직임을 집중적으로 관리하고 싶으신 분</div>
-            </div>
-          </div>
-
-          <!-- 딥 럴링 슬링 -->
-          <div class="bg-white rounded-2xl p-6 border border-brand-warmgray shadow-card flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between text-xs font-medium text-brand-sage mb-2">
-                <span class="font-bold">수휘 | 기능회복 &amp; 순환</span>
-                <span class="px-2 py-0.5 rounded bg-brand-sagePale text-brand-sage font-bold">스페셜 융합 / 70분</span>
-              </div>
-              <h4 class="text-xl font-bold text-brand-dark mb-2">딥 럴링 슬링<br><span class="text-xs font-en font-normal text-brand-muted">(DEEP LULLING SLING)</span></h4>
-              <p class="text-xs sm:text-sm text-brand-muted leading-relaxed mb-4">
-                슬링 천과 핸즈온 테크닉을 이용해 긴장된 몸을 깊게 이완시키고 굳은 관절의 가동성을 회복합니다.
-              </p>
-            </div>
-            <div class="mt-4 pt-3 border-t border-brand-warmgray/50 text-xs text-brand-dark bg-brand-sand/50 p-3 rounded-xl flex items-start gap-1.5">
-              <span class="text-brand-terracotta font-bold shrink-0">👉</span>
-              <div><strong>추천:</strong> 근육 긴장도가 매우 높아 혼자 스트레칭하기 어렵거나 심한 피로를 느끼는 분</div>
-            </div>
-          </div>
-
-          <!-- 윤곽밸런스케어 -->
-          <div class="bg-white rounded-2xl p-6 border border-brand-warmgray shadow-card flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between text-xs font-medium text-brand-terracotta mb-2">
-                <span class="font-bold">소영 | 융합 케어 &amp; 힐링</span>
-                <span class="px-2 py-0.5 rounded bg-brand-terracottaLight text-brand-terracotta font-bold">스페셜 융합 / 120분</span>
-              </div>
-              <h4 class="text-xl font-bold text-brand-dark mb-2">윤곽밸런스케어</h4>
-              <p class="text-xs sm:text-sm text-brand-muted leading-relaxed mb-4">
-                척추·골반 축 정렬 교정과 안면 윤곽 수기 케어를 통해 전신 및 페이스 라인의 비대칭을 균형 있게 교정합니다.
-              </p>
-            </div>
-            <div class="mt-4 pt-3 border-t border-brand-warmgray/50 text-xs text-brand-dark bg-brand-sand/50 p-3 rounded-xl flex items-start gap-1.5">
-              <span class="text-brand-terracotta font-bold shrink-0">👉</span>
-              <div><strong>추천:</strong> 예비신랑·신부, 프로필/웨딩 촬영 준비, 얼굴 및 전신 비대칭 케어를 원하는 분</div>
-            </div>
-          </div>
-        </div>
-
-        <p class="mt-4 text-center text-xs text-brand-muted">
-          * 슬기 원장(근력강화 &amp; 다이어트) 및 도희 실장(체형교정 &amp; 코어강화) 개인 프로그램은 사전 상담을 통해 회원님 목적에 맞춰 1:1 개별 배정됩니다.
-        </p>
-      </div>
-    </section>
-
-    <!-- 7. 소모임 그룹레슨 5종 (Slide 13, 14) -->
-    <section id="group-crew" class="scroll-mt-32">
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+      <!-- Pop-up Modal Trigger Banner -->
+      <div class="crew-modal-banner">
         <div>
-          <span class="text-xs font-en tracking-wider text-brand-terracotta uppercase font-bold">Fixed Crew Program</span>
-          <h2 class="text-2xl sm:text-3xl font-bold text-brand-dark mt-1">소모임 그룹레슨 세부 프로그램 &amp; 추천 가이드</h2>
-          <p class="text-xs sm:text-sm text-brand-muted mt-1">소수정예 고정 클래스로 진행되는 목적별 맞춤 소모임 레슨 안내입니다.</p>
+          <h4>왜 일반 그룹수업이 아닌 '프라이빗 소모임' 형태일까요?</h4>
+          <p>매주 반복되는 예약 스트레스 없이 나와 결이 맞는 멤버들과 지속 가능한 운동 습관을 만드는 이유</p>
         </div>
-        <div class="text-xs text-brand-muted bg-white px-3.5 py-1.5 rounded-lg border border-brand-warmgray inline-flex items-center gap-1.5 self-start sm:self-auto shadow-xs">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span>예약 경쟁 없는 지정 고정제 운영</span>
-        </div>
+        <button class="btn-modal-trigger" onclick="openCrewModal()">
+          <span class="material-symbols-outlined" style="font-size: 18px;">help_outline</span>
+          소모임 시스템 자세히 보기
+        </button>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-        <!-- Crew 1: 모닝 크루 -->
-        <div class="bg-white rounded-2xl p-6 border border-brand-warmgray shadow-card flex flex-col justify-between relative overflow-hidden">
-          <div class="absolute top-0 right-0 bg-red-500 text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl shadow-xs">
-            마감임박
+      <div class="cards-grid">
+        <!-- 모닝 크루 -->
+        <div class="prog-item-card">
+          <div>
+            <div class="card-top-header">
+              <span class="coach-pill">이수휘 원장</span>
+              <span class="status-pill status-closed">마감 임박</span>
+            </div>
+            <h3 class="prog-title">모닝 크루</h3>
+            <div class="prog-time">고정 3인 / 월,화,목,금 오전 10:00 (주 2회, 50분)</div>
+            <p class="prog-desc">
+              아침을 깨우는 순환 스트레칭과 모닝 얼라인먼트를 통해 전신 가동성을 확보하고 활력 에너지를 채웁니다.
+            </p>
           </div>
           <div>
-            <div class="flex items-center justify-between text-xs font-medium mb-2">
-              <span class="text-brand-sage font-bold">수휘 | 기능회복 &amp; 순환</span>
-              <span class="px-2 py-0.5 rounded bg-brand-sagePale text-brand-sage font-bold">고정제 / 50분</span>
-            </div>
-            <h3 class="text-xl font-bold text-brand-dark mt-1 mb-1">모닝 크루</h3>
-            <div class="text-xs font-semibold text-brand-terracotta mb-3 flex items-center gap-1">
-              <i data-lucide="clock" class="w-3.5 h-3.5"></i>
-              월, 화, 목, 금 오전 10:00 (주 2회)
-            </div>
-            
-            <div class="p-2.5 rounded-xl bg-brand-cream border border-brand-warmgray/70 text-xs mb-4 space-y-1">
-              <div class="font-bold text-brand-dark">정상가 38,000원 <span class="text-[11px] font-normal text-brand-muted">(회당 기준)</span></div>
-              <div class="text-[11px] text-brand-muted">20회 38,000원 / 30회 36,000원</div>
-            </div>
-
-            <ul class="text-xs sm:text-sm text-brand-muted space-y-1.5 leading-relaxed mb-4">
-              <li>• 아침을 깨우는 순환 스트레칭 &amp; 모닝 얼라인먼트</li>
-              <li>• 전신 가동성 확보 및 기분 좋은 활력 에너지 활성화</li>
-            </ul>
-          </div>
-          <div class="mt-4 pt-3 border-t border-brand-warmgray/50 text-xs text-brand-dark bg-brand-sand/50 p-3 rounded-xl flex items-start gap-1.5">
-            <span class="text-brand-terracotta font-bold shrink-0">👉</span>
-            <div><strong>추천 대상:</strong> 활력 있는 하루 시작이 필요하신 분 / 건강한 오전 습관 및 루틴을 형성하고 싶은 분</div>
-          </div>
-        </div>
-
-        <!-- Crew 2: 런치 바디 핏 -->
-        <div class="bg-white rounded-2xl p-6 border border-brand-warmgray shadow-card flex flex-col justify-between relative overflow-hidden">
-          <div class="absolute top-0 right-0 bg-brand-sage text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl shadow-xs">
-            신규 모임
-          </div>
-          <div>
-            <div class="flex items-center justify-between text-xs font-medium mb-2">
-              <span class="text-brand-sage font-bold">수휘 | 기능회복 &amp; 순환</span>
-              <span class="px-2 py-0.5 rounded bg-brand-sagePale text-brand-sage font-bold">고정제 / 50분</span>
-            </div>
-            <h3 class="text-xl font-bold text-brand-dark mt-1 mb-1">런치 바디 핏</h3>
-            <div class="text-xs font-semibold text-brand-terracotta mb-3 flex items-center gap-1">
-              <i data-lucide="clock" class="w-3.5 h-3.5"></i>
-              월, 금 오후 12:00 (점심시간 루틴)
-            </div>
-            
-            <div class="p-2.5 rounded-xl bg-brand-cream border border-brand-warmgray/70 text-xs mb-4">
-              <div class="font-bold text-brand-dark">정상가 45,000원 <span class="text-[11px] font-normal text-brand-muted">(회당)</span></div>
-              <div class="text-[11px] text-brand-muted">점심 시간을 완벽히 활용하는 리프레시 시퀀스</div>
-            </div>
-
-            <ul class="text-xs sm:text-sm text-brand-muted space-y-1.5 leading-relaxed mb-4">
-              <li>• 바레와 발레를 기반으로 월/금 서로 다른 테마 수업 진행</li>
-              <li>• 규칙적인 운동 루틴 형성, 바디라인과 컨디션 관리 융합</li>
-            </ul>
-          </div>
-          <div class="mt-4 pt-3 border-t border-brand-warmgray/50 text-xs text-brand-dark bg-brand-sand/50 p-3 rounded-xl flex items-start gap-1.5">
-            <span class="text-brand-terracotta font-bold shrink-0">👉</span>
-            <div><strong>추천 대상:</strong> 점심시간을 활용해 꾸준히 운동하고 싶으신 분 / 바디라인, 자세, 코어를 관리하고 싶은 분</div>
-          </div>
-        </div>
-
-        <!-- Crew 3: 바디라인 정렬 크루 -->
-        <div class="bg-white rounded-2xl p-6 border border-brand-warmgray shadow-card flex flex-col justify-between relative overflow-hidden">
-          <div class="absolute top-0 right-0 bg-amber-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl shadow-xs">
-            잔여 2석 / 잔여 1석
-          </div>
-          <div>
-            <div class="flex items-center justify-between text-xs font-medium mb-2">
-              <span class="text-brand-sage font-bold">슬기 | 근력강화 &amp; 다이어트</span>
-              <span class="px-2 py-0.5 rounded bg-brand-sagePale text-brand-sage font-bold">고정제 / 50분</span>
-            </div>
-            <h3 class="text-xl font-bold text-brand-dark mt-1 mb-1">바디라인 정렬 크루</h3>
-            <div class="text-xs font-semibold text-brand-terracotta mb-3 flex items-center gap-1">
-              <i data-lucide="clock" class="w-3.5 h-3.5"></i>
-              월, 금 오후 19:30 or 20:30 (퇴근길)
-            </div>
-            
-            <div class="p-2.5 rounded-xl bg-brand-cream border border-brand-warmgray/70 text-xs mb-4 space-y-1">
-              <div class="font-bold text-brand-dark">정상가 38,000원 <span class="text-[11px] font-normal text-brand-muted">(회당 기준)</span></div>
-              <div class="text-[11px] text-brand-muted">20회 38,000원 / 30회 36,000원</div>
-            </div>
-
-            <ul class="text-xs sm:text-sm text-brand-muted space-y-1.5 leading-relaxed mb-4">
-              <li>• 탄탄한 코어 및 근력 강화와 슬림한 실루엣 정돈</li>
-              <li>• 퇴근 후 크루원들과 함께 건강한 에너지를 채우는 시간</li>
-            </ul>
-          </div>
-          <div class="mt-4 pt-3 border-t border-brand-warmgray/50 text-xs text-brand-dark bg-brand-sand/50 p-3 rounded-xl flex items-start gap-1.5">
-            <span class="text-brand-terracotta font-bold shrink-0">👉</span>
-            <div><strong>추천 대상:</strong> 탄탄하고 균형 잡힌 실루엣을 원하는 분 / 크루원들과 함께 동기부여를 얻고 싶은 분</div>
-          </div>
-        </div>
-
-        <!-- Crew 4: 나이트 바레 x 필라테스 크루 -->
-        <div class="bg-white rounded-2xl p-6 border border-brand-warmgray shadow-card flex flex-col justify-between relative overflow-hidden">
-          <div class="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl shadow-xs">
-            잔여 2석 &amp; 마감임박
-          </div>
-          <div>
-            <div class="flex items-center justify-between text-xs font-medium mb-2">
-              <span class="text-brand-terracotta font-bold">소영 | 융합케어 &amp; 힐링</span>
-              <span class="px-2 py-0.5 rounded bg-brand-terracottaLight text-brand-terracotta font-bold">고정 3~4인 / 50분</span>
-            </div>
-            <h3 class="text-xl font-bold text-brand-dark mt-1 mb-1">나이트 바레 x 필라테스 크루</h3>
-            <div class="text-xs font-semibold text-brand-terracotta mb-3 flex items-center gap-1">
-              <i data-lucide="clock" class="w-3.5 h-3.5"></i>
-              화, 목 오후 19:00 or 21:00
-            </div>
-            
-            <div class="p-2.5 rounded-xl bg-brand-cream border border-brand-warmgray/70 text-xs mb-4">
-              <div class="font-bold text-brand-dark">정상가 40,000원 <span class="text-[11px] font-normal text-brand-muted">(회당)</span></div>
-              <div class="text-[11px] text-brand-muted">고요한 집중과 역동적 에너지를 잇는 시그니처</div>
-            </div>
-
-            <ul class="text-xs sm:text-sm text-brand-muted space-y-1.5 leading-relaxed mb-4">
-              <li>• 고요한 분위기에서 신체 움직임에 집중하는 필라테스</li>
-              <li>• 정확히 인지된 움직임을 바탕으로 신나고 역동적인 바레 동작으로 확장 (전신 &amp; 유산소 효과 극대화)</li>
-              <li>• 바레와 필라테스 외의 다양한 웰니스 프로그램 진행</li>
-            </ul>
-          </div>
-          <div class="mt-4 pt-3 border-t border-brand-warmgray/50 text-xs text-brand-dark bg-brand-sand/50 p-3 rounded-xl flex items-start gap-1.5">
-            <span class="text-brand-terracotta font-bold shrink-0">👉</span>
-            <div><strong>추천 대상:</strong> 다양한 운동을 통해 지루하지 않게 운동하고 싶은 분 / 퇴근 후 마음 맞는 사람들과 건강한 취향을 공유하고 싶은 분</div>
-          </div>
-        </div>
-
-        <!-- Crew 5: 슬로우 무브 (기수제) -->
-        <div class="bg-white rounded-2xl p-6 border border-brand-warmgray shadow-card flex flex-col justify-between relative overflow-hidden lg:col-span-2">
-          <div class="absolute top-0 right-0 bg-brand-dark text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl shadow-xs">
-            신규모임 · 기수제
-          </div>
-          <div>
-            <div class="flex items-center justify-between text-xs font-medium mb-2">
-              <span class="text-brand-sage font-bold">수휘 | 기능회복 &amp; 순환</span>
-              <span class="px-2.5 py-0.5 rounded bg-brand-dark text-white font-bold">고정 2~3인 / 70분 / 기수제 (체험불가)</span>
-            </div>
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mt-1 mb-1">
-              <h3 class="text-xl font-bold text-brand-dark">슬로우 무브 (Slow Move)</h3>
-              <div class="text-xs font-semibold text-brand-terracotta flex items-center gap-1">
-                <i data-lucide="clock" class="w-3.5 h-3.5"></i>
-                토요일 오전 11:00 (주 1회 집중 세션)
+            <div class="prog-price-block">
+              <div class="price-entry">
+                <span class="price-label">정상가 (20회)</span>
+                <span class="price-val">회당 38,000원</span>
+              </div>
+              <div class="price-entry">
+                <span class="price-label">정상가 (30회)</span>
+                <span class="price-val">회당 36,000원</span>
               </div>
             </div>
-            
-            <div class="p-2.5 rounded-xl bg-brand-cream border border-brand-warmgray/70 text-xs mb-4 flex flex-wrap items-center gap-3">
-              <div class="font-bold text-brand-dark">정상가 1회 55,000원</div>
-              <span class="text-brand-muted">|</span>
-              <div class="font-bold text-brand-sage">4주 패키지 180,000원</div>
+            <div class="prog-target-box">
+              <strong>추천 :</strong> 활력 있는 하루 시작과 건강한 오전 습관 형성을 원하는 분
             </div>
-
-            <ul class="text-xs sm:text-sm text-brand-muted space-y-1.5 leading-relaxed mb-4">
-              <li>• 현대무용 / 소마틱 무브먼트 / 마인드풀니스를 기반으로 호흡과 신체 감각을 온전히 인식</li>
-              <li>• 현대무용의 자연스러운 움직임과 호흡, 감각 훈련을 통해 신체적·정신적 온전한 리프레시 경험</li>
-            </ul>
-          </div>
-          <div class="mt-4 pt-3 border-t border-brand-warmgray/50 text-xs text-brand-dark bg-brand-sand/50 p-3 rounded-xl flex items-start gap-1.5">
-            <span class="text-brand-terracotta font-bold shrink-0">👉</span>
-            <div><strong>추천 대상:</strong> 자기관리, 웰니스에 관심 있는 분 / 무용에 관심 있지만 전문 수업은 부담스러운 분 / 반복적인 기계적 운동에서 벗어나 새로운 움직임을 경험하고 싶은 분</div>
           </div>
         </div>
 
-      </div>
-    </section>
-
-    <!-- 8. 10월 스페셜 원데이 클래스 (Slide 15 - 변동사항 정밀 반영) -->
-    <section id="oneday" class="scroll-mt-32">
-      <div class="text-center max-w-xl mx-auto mb-10">
-        <span class="text-xs font-en tracking-widest text-brand-terracotta uppercase font-bold">Seasonal Special</span>
-        <h2 class="text-2xl sm:text-3xl font-bold text-brand-dark mt-1">10월, 나를 위한 온전한 쉼과 회복</h2>
-        <p class="text-xs sm:text-sm text-brand-muted mt-2">부담 없이 경험하는 무드웰니스 가을 맞이 야외 필라테스 원데이 클래스</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- 10/14 Outdoor Pilates -->
-        <div class="bg-white rounded-3xl p-6 sm:p-8 border border-brand-warmgray shadow-card flex flex-col justify-between relative overflow-hidden">
-          <div class="absolute top-0 right-0 bg-brand-sage text-white text-xs font-bold px-4 py-1.5 rounded-bl-2xl shadow-xs">
-            10월 14일 (수)
+        <!-- 런치 바디 핏 -->
+        <div class="prog-item-card">
+          <div>
+            <div class="card-top-header">
+              <span class="coach-pill">이수휘 원장</span>
+              <span class="status-pill status-open">신규 모집중</span>
+            </div>
+            <h3 class="prog-title">런치 바디 핏</h3>
+            <div class="prog-time">고정 3인 / 월, 금 오후 12:00 (50분)</div>
+            <p class="prog-desc">
+              바레와 발레를 기반으로 요일별 서로 다른 테마의 수업을 진행하며 바디라인과 컨디션 관리를 융합합니다.
+            </p>
           </div>
           <div>
-            <span class="text-[11px] font-bold text-brand-sage bg-brand-sagePale px-2 py-0.5 rounded">
-              [릴렉스 &amp; 코어]
-            </span>
-            <h3 class="text-xl font-bold text-brand-dark mt-3 mb-2">
-              가을 맞이, 야외 필라테스
-            </h3>
-            
-            <div class="space-y-1.5 text-xs text-brand-dark mb-4 bg-brand-sand/60 p-3.5 rounded-xl border border-brand-warmgray/60">
-              <p class="flex items-center gap-1.5 font-medium">
-                <i data-lucide="calendar" class="w-3.5 h-3.5 text-brand-sage"></i>
-                <strong>일정:</strong> 10월 14일 (수) 10:00 / 12:00 / 19:30 (각 60분)
-              </p>
-              <p class="flex items-center gap-1.5">
-                <i data-lucide="user" class="w-3.5 h-3.5 text-brand-sage"></i>
-                <strong>담당:</strong> 소영 마스터
-              </p>
-              <div class="flex items-center gap-2 pt-1">
-                <span class="font-bold text-brand-dark">참가비 30,000원</span>
-                <span class="text-brand-terracotta font-bold bg-brand-terracottaLight px-2 py-0.5 rounded text-[11px]">무드웰니스 회원가 25,000원</span>
+            <div class="prog-price-block">
+              <div class="price-entry">
+                <span class="price-label">수강 정상가</span>
+                <span class="price-val">회당 45,000원</span>
               </div>
             </div>
-
-            <ul class="text-xs sm:text-sm text-brand-muted space-y-1.5 leading-relaxed pb-4 border-b border-brand-warmgray/60">
-              <li>• 야외 정원에서 자연 바람과 함께 진행하는 필라테스</li>
-              <li>• 굳은 목·어깨 긴장 완화 및 림프 순환 스트레칭</li>
-              <li>• 천연 아로마 케어를 통한 깊은 이완과 힐링</li>
-            </ul>
-          </div>
-
-          <div class="mt-4 bg-brand-sand/70 p-3.5 rounded-xl text-xs text-brand-dark flex items-start gap-1.5">
-            <span class="text-brand-terracotta font-bold shrink-0">👉</span>
-            <div>
-              <strong>추천 대상:</strong> 아이 등원 후 나를 가꾸는 시간을 가지고 싶으신 분 / 점심시간을 활용해 힐링하고 싶으신 분 / 퇴근 후 동료, 친구, 가족과 새로운 추억을 만들고 싶으신 분
+            <div class="prog-target-box">
+              <strong>추천 :</strong> 점심시간을 활용해 꾸준히 바디라인, 자세, 코어를 관리하고 싶은 분
             </div>
           </div>
         </div>
 
-        <!-- 10/21 Outdoor Pilates -->
-        <div class="bg-white rounded-3xl p-6 sm:p-8 border border-brand-warmgray shadow-card flex flex-col justify-between relative overflow-hidden">
-          <div class="absolute top-0 right-0 bg-brand-terracotta text-white text-xs font-bold px-4 py-1.5 rounded-bl-2xl shadow-xs">
-            10월 21일 (수)
+        <!-- 나이트 필라핏 크루 -->
+        <div class="prog-item-card">
+          <div>
+            <div class="card-top-header">
+              <span class="coach-pill">오슬기 원장</span>
+              <span class="status-pill status-closed">잔여 1~2석 (마감 임박)</span>
+            </div>
+            <h3 class="prog-title">나이트 필라핏 크루</h3>
+            <div class="prog-time">고정 3인 / 월, 금 저녁 19:30 or 20:30 (50분)</div>
+            <p class="prog-desc">
+              필라테스의 정렬과 컨트롤, 웨이트의 근력 강도를 결합해 퇴근 후 굳어진 어깨와 골반, 척추를 깨웁니다.
+            </p>
           </div>
           <div>
-            <span class="text-[11px] font-bold text-brand-terracotta bg-brand-terracottaLight px-2 py-0.5 rounded">
-              [릴렉스 &amp; 코어]
-            </span>
-            <h3 class="text-xl font-bold text-brand-dark mt-3 mb-2">
-              가을 맞이, 야외 필라테스
-            </h3>
-            
-            <div class="space-y-1.5 text-xs text-brand-dark mb-4 bg-brand-sand/60 p-3.5 rounded-xl border border-brand-warmgray/60">
-              <p class="flex items-center gap-1.5 font-medium">
-                <i data-lucide="calendar" class="w-3.5 h-3.5 text-brand-terracotta"></i>
-                <strong>일정:</strong> 10월 21일 (수) 10:00 / 12:00 / 19:00 (각 60분)
-              </p>
-              <p class="flex items-center gap-1.5">
-                <i data-lucide="user" class="w-3.5 h-3.5 text-brand-terracotta"></i>
-                <strong>담당:</strong> 소영 마스터
-              </p>
-              <div class="flex items-center gap-2 pt-1">
-                <span class="font-bold text-brand-dark">참가비 30,000원</span>
-                <span class="text-brand-terracotta font-bold bg-brand-terracottaLight px-2 py-0.5 rounded text-[11px]">무드웰니스 회원가 25,000원</span>
+            <div class="prog-price-block">
+              <div class="price-entry">
+                <span class="price-label">1회 정상가</span>
+                <span class="price-val">40,000원</span>
               </div>
             </div>
-
-            <ul class="text-xs sm:text-sm text-brand-muted space-y-1.5 leading-relaxed pb-4 border-b border-brand-warmgray/60">
-              <li>• 야외 정원에서 자연 바람과 함께 진행하는 필라테스</li>
-              <li>• 굳은 목·어깨 긴장 완화 및 림프 순환 스트레칭</li>
-              <li>• 천연 아로마 케어를 통한 깊은 이완과 힐링</li>
-            </ul>
-          </div>
-
-          <div class="mt-4 bg-brand-sand/70 p-3.5 rounded-xl text-xs text-brand-dark flex items-start gap-1.5">
-            <span class="text-brand-terracotta font-bold shrink-0">👉</span>
-            <div>
-              <strong>추천 대상:</strong> 아이 등원 후 나를 가꾸는 시간을 가지고 싶으신 분 / 점심시간을 활용해 힐링하고 싶으신 분 / 퇴근 후 동료, 친구, 가족과 새로운 추억을 만들고 싶으신 분
+            <div class="prog-target-box">
+              <strong>추천 :</strong> 퇴근 후 기초체력 강화가 필요하고 자기 전 굳은 몸을 시원하게 풀고 싶은 분
             </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- 9. 그룹레슨 예약 및 이용 수칙 (Slide 16) -->
-    <section id="rules" class="scroll-mt-32">
-      <div class="bg-white rounded-3xl p-6 sm:p-10 border border-brand-warmgray shadow-card">
-        <div class="flex items-center gap-3 mb-6">
-          <div class="w-10 h-10 rounded-2xl bg-brand-sand flex items-center justify-center text-brand-sage">
-            <i data-lucide="shield-alert" class="w-5 h-5"></i>
+        <!-- 나이트 바레 x 필라테스 크루 -->
+        <div class="prog-item-card">
+          <div>
+            <div class="card-top-header">
+              <span class="coach-pill">정소영 원장</span>
+              <span class="status-pill status-closed">9시 마감 / 7시 잔여 2석</span>
+            </div>
+            <h3 class="prog-title">나이트 바레 x 필라테스 크루</h3>
+            <div class="prog-time">고정 3~4인 / 화, 목 저녁 19:00 (잔여 2석) · 21:00 (마감)</div>
+            <p class="prog-desc">
+              고요한 호흡의 필라테스로 몸을 인지하고, 신나는 바레 동작으로 확장하여 전신 유산소 효과를 극대화합니다.
+            </p>
           </div>
           <div>
-            <span class="text-xs font-en uppercase tracking-wider text-brand-muted">Policy &amp; Rules</span>
-            <h2 class="text-xl sm:text-2xl font-bold text-brand-dark">그룹레슨 예약 및 이용 수칙</h2>
+            <div class="prog-price-block">
+              <div class="price-entry">
+                <span class="price-label">수강 정상가</span>
+                <span class="price-val">회당 40,000원</span>
+              </div>
+            </div>
+            <div class="prog-target-box">
+              <strong>추천 :</strong> 다양한 운동으로 지루함 없이 운동하고 퇴근 후 건강한 취향을 나누고 싶은 분
+            </div>
           </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <!-- Rule 1 -->
-          <div class="p-4 rounded-xl bg-brand-cream border border-brand-warmgray/70">
-            <div class="flex items-center gap-2 font-bold text-brand-dark text-sm mb-1.5">
-              <span class="w-2 h-2 rounded-full bg-brand-sage"></span>
-              수업 취소 기준
+        <!-- 슬로우 무브 -->
+        <div class="prog-item-card">
+          <div>
+            <div class="card-top-header">
+              <span class="coach-pill">이수휘 원장</span>
+              <span class="status-pill status-open">신규 기수제 모집</span>
             </div>
-            <p class="text-xs sm:text-sm text-brand-muted pl-4">
-              수업 시작 <strong>12시간 전까지</strong> 차감 및 수수료 없이 자유롭게 취소 및 변경 가능합니다.
+            <h3 class="prog-title">슬로우 무브</h3>
+            <div class="prog-time">고정 2~3인 / 토요일 오전 11:00 (70분, 체험불가)</div>
+            <p class="prog-desc">
+              현대무용, 소마틱 무브먼트, 마인드풀니스를 기반으로 호흡과 신체 감각 훈련을 통해 온전한 리프레시를 경험합니다.
             </p>
           </div>
-
-          <!-- Rule 2 -->
-          <div class="p-4 rounded-xl bg-brand-cream border border-brand-warmgray/70">
-            <div class="flex items-center gap-2 font-bold text-brand-dark text-sm mb-1.5">
-              <span class="w-2 h-2 rounded-full bg-brand-sage"></span>
-              폐강 및 마감 기준
+          <div>
+            <div class="prog-price-block">
+              <div class="price-entry">
+                <span class="price-label">1회 수강가</span>
+                <span class="price-val">55,000원</span>
+              </div>
+              <div class="price-entry">
+                <span class="price-label">4주 정규 코스</span>
+                <span class="price-val">180,000원</span>
+              </div>
             </div>
-            <p class="text-xs sm:text-sm text-brand-muted pl-4">
-              예약 인원이 0명일 경우 수업 시작 <strong>10시간 전</strong> 자동 폐강 확정됩니다.
-            </p>
-          </div>
-
-          <!-- Rule 3 -->
-          <div class="p-4 rounded-xl bg-brand-cream border border-brand-warmgray/70">
-            <div class="flex items-center gap-2 font-bold text-brand-dark text-sm mb-1.5">
-              <span class="w-2 h-2 rounded-full bg-brand-sage"></span>
-              직전 예약 시스템
-            </div>
-            <p class="text-xs sm:text-sm text-brand-muted pl-4">
-              1명 이상 예약 확정 시 수업 시작 <strong>10분 전까지</strong> 추가 예약이 가능합니다.
-            </p>
-          </div>
-
-          <!-- Rule 4 -->
-          <div class="p-4 rounded-xl bg-brand-cream border border-brand-warmgray/70">
-            <div class="flex items-center gap-2 font-bold text-brand-dark text-sm mb-1.5">
-              <span class="w-2 h-2 rounded-full bg-brand-sage"></span>
-              원데이 클래스 예약
-            </div>
-            <p class="text-xs sm:text-sm text-brand-muted pl-4">
-              원데이 클래스는 공간 세팅 및 재료 준비를 위해 <strong>당일 자정(00:00)까지</strong> 예약 접수됩니다.
-            </p>
-          </div>
-        </div>
-
-        <!-- Hi-Five App info -->
-        <div class="mt-6 p-4 rounded-2xl bg-brand-sagePale/80 border border-brand-sage/20 flex items-center justify-between flex-wrap gap-4">
-          <div class="flex items-center gap-3">
-            <i data-lucide="smartphone" class="w-5 h-5 text-brand-sage shrink-0"></i>
-            <div class="text-xs sm:text-sm text-brand-dark">
-              <strong>예약 앱 활용:</strong> 모든 고정제 수업 예약 취소 및 변경은 <span class="underline font-bold text-brand-sage">'하이파이브' 앱</span>에서 간편하게 처리됩니다.
+            <div class="prog-target-box">
+              <strong>추천 :</strong> 자기관리와 무용에 관심이 있고, 반복 운동에서 벗어나 예술적 움직임을 원하는 분
             </div>
           </div>
-          <button onclick="copyAppLink()" class="text-xs font-semibold px-3.5 py-2 bg-white rounded-xl border border-brand-sage/30 text-brand-sage hover:bg-brand-sage hover:text-white transition">
-            앱 안내 문구 복사
-          </button>
         </div>
       </div>
     </section>
 
-    <!-- 10. FINAL CONTACT & STUDIO LOCATION (Slide 17 정밀 반영) -->
-    <section id="contact" class="scroll-mt-32">
-      <div class="rounded-3xl bg-brand-sand border border-brand-warmgray p-8 sm:p-12 relative overflow-hidden shadow-card">
-        <div class="max-w-3xl mx-auto text-center space-y-4 mb-10">
-          <span class="text-xs font-en uppercase tracking-widest text-brand-sage font-bold">Mood Wellness Studio Azit</span>
-          <h2 class="text-2xl sm:text-4xl font-bold text-brand-dark">
-            지금 무드웰니스에서<br>몸과 마음의 건강한 변화를 시작해보세요.
-          </h2>
-          <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
-            궁금하신 점은 언제든 편하게 문의해 주시기 바랍니다.<br>
-            회원님의 소중한 일상에 가장 알맞은 움직임을 정성껏 안내해 드리겠습니다.
-          </p>
+    <!-- 7. Special One-Day -->
+    <section id="sec-oneday">
+      <div class="section-banner light">
+        <div class="banner-text-left">
+          <div class="capsule-pill light">SECTION 06</div>
+          <h2>10월 스페셜 야외 필라테스 <span class="arrow-icon">↘</span></h2>
+          <p>가을 맞이, 도심 속 야외 정원에서 만나는 온전한 쉼과 회복 세션입니다.</p>
         </div>
+        <div class="banner-big-number">06</div>
+      </div>
 
-        <!-- Info Grid (Slide 17: Phone, Kakao, Place) -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
-          <!-- 1. Phone -->
-          <div class="bg-white p-5 rounded-2xl border border-brand-warmgray/80 text-center shadow-xs flex flex-col items-center justify-center">
-            <div class="w-10 h-10 rounded-full bg-brand-sagePale text-brand-sage flex items-center justify-center mb-3">
-              <i data-lucide="phone" class="w-5 h-5"></i>
+      <div class="cards-grid">
+        <!-- 10월 14일 -->
+        <div class="prog-item-card">
+          <div>
+            <div class="card-top-header">
+              <span class="coach-pill">소영 마스터</span>
+              <span class="capsule-pill light">릴렉스 & 코어 테마</span>
             </div>
-            <span class="text-xs font-medium text-brand-muted">문의 전화</span>
-            <a href="tel:0507-1303-0371" class="text-base sm:text-lg font-bold text-brand-dark mt-1 hover:text-brand-sage transition">
-              0507-1303-0371
-            </a>
-            <span class="text-[11px] text-gray-400 mt-1">상담 및 시설 안내</span>
-          </div>
-
-          <!-- 2. KakaoTalk -->
-          <div class="bg-white p-5 rounded-2xl border border-brand-warmgray/80 text-center shadow-xs flex flex-col items-center justify-center">
-            <div class="w-10 h-10 rounded-full bg-[#FEE500]/30 text-[#191919] flex items-center justify-center mb-3">
-              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                <path d="M12 3C6.477 3 2 6.477 2 10.767c0 2.766 1.848 5.187 4.639 6.551-.203.743-.734 2.686-.84 3.109-.133.528.193.521.407.38.169-.112 2.68-1.83 3.738-2.553.67.098 1.36.15 2.056.15 5.523 0 10-3.477 10-7.767C22 6.477 17.523 3 12 3z"/>
-              </svg>
-            </div>
-            <span class="text-xs font-medium text-brand-muted">카카오톡 채널</span>
-            <a href="http://pf.kakao.com/_qNxbnn/chat" target="_blank" rel="noopener noreferrer" class="text-base sm:text-lg font-bold text-brand-dark mt-1 hover:text-brand-sage transition">
-              무드웰니스
-            </a>
-            <span class="text-[11px] text-gray-400 mt-1">1:1 실시간 채팅 상담</span>
-          </div>
-
-          <!-- 3. Place Address -->
-          <div class="bg-white p-5 rounded-2xl border border-brand-warmgray/80 text-center shadow-xs flex flex-col items-center justify-center">
-            <div class="w-10 h-10 rounded-full bg-brand-terracottaLight text-brand-terracotta flex items-center justify-center mb-3">
-              <i data-lucide="map-pin" class="w-5 h-5"></i>
-            </div>
-            <span class="text-xs font-medium text-brand-muted">오시는 길</span>
-            <p class="text-sm font-bold text-brand-dark mt-1 leading-snug">
-              서울시 강남구 테헤란로 13길 65
+            <h3 class="prog-title">가을 맞이, 야외 필라테스 (1차)</h3>
+            <div class="prog-time">10월 14일 (수) 10:00 / 12:00 / 19:30 (60분)</div>
+            <p class="prog-desc">
+              • 야외 정원에서 가을 바람을 느끼며 진행하는 힐링 필라테스<br />
+              • 굳은 목과 어깨 긴장 완화 및 상체 림프 순환 케어<br />
+              • 천연 아로마 오일 케어를 통한 깊은 이완과 감각 리셋
             </p>
-            <button onclick="copyAddress()" class="mt-2 text-[11px] font-semibold text-brand-sage hover:underline flex items-center gap-1">
-              <i data-lucide="copy" class="w-3 h-3"></i>
-              주소 복사하기
-            </button>
+          </div>
+          <div>
+            <div class="prog-price-block">
+              <div class="price-entry">
+                <span class="price-label">일반 참가비</span>
+                <span class="price-val">30,000원</span>
+              </div>
+              <div class="price-entry">
+                <span class="price-label">회원 우대가</span>
+                <span class="price-val">25,000원</span>
+              </div>
+            </div>
+            <div class="prog-target-box">
+              <strong>추천 :</strong> 아이 등원 후 나만을 가꾸고 싶은 분, 점심시간 및 퇴근 후 깊은 힐링을 원하는 분
+            </div>
           </div>
         </div>
 
-        <div class="mt-8 flex justify-center">
-          <a href="http://pf.kakao.com/_qNxbnn/chat" target="_blank" rel="noopener noreferrer" class="px-8 py-3.5 rounded-2xl bg-brand-kakao text-brand-kakaoDark text-sm sm:text-base font-bold hover:brightness-95 transition shadow-floating inline-flex items-center gap-2.5">
-            <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24">
-              <path d="M12 3C6.477 3 2 6.477 2 10.767c0 2.766 1.848 5.187 4.639 6.551-.203.743-.734 2.686-.84 3.109-.133.528.193.521.407.38.169-.112 2.68-1.83 3.738-2.553.67.098 1.36.15 2.056.15 5.523 0 10-3.477 10-7.767C22 6.477 17.523 3 12 3z"/>
-            </svg>
-            <span>카카오톡 채널로 바로 문의하기</span>
-          </a>
+        <!-- 10월 21일 -->
+        <div class="prog-item-card">
+          <div>
+            <div class="card-top-header">
+              <span class="coach-pill">소영 마스터</span>
+              <span class="capsule-pill light">릴렉스 & 코어 테마</span>
+            </div>
+            <h3 class="prog-title">가을 맞이, 야외 필라테스 (2차)</h3>
+            <div class="prog-time">10월 21일 (수) 10:00 / 12:00 / 19:00 (60분)</div>
+            <p class="prog-desc">
+              • 야외 정원에서 가을 바람을 느끼며 진행하는 힐링 필라테스<br />
+              • 굳은 목과 어깨 긴장 완화 및 상체 림프 순환 케어<br />
+              • 천연 아로마 오일 케어를 통한 깊은 이완과 감각 리셋
+            </p>
+          </div>
+          <div>
+            <div class="prog-price-block">
+              <div class="price-entry">
+                <span class="price-label">일반 참가비</span>
+                <span class="price-val">30,000원</span>
+              </div>
+              <div class="price-entry">
+                <span class="price-label">회원 우대가</span>
+                <span class="price-val">25,000원</span>
+              </div>
+            </div>
+            <div class="prog-target-box">
+              <strong>추천 :</strong> 동료, 친구, 가족과 함께 야외에서 프라이빗한 가을 무드를 만끽하고 싶은 분
+            </div>
+          </div>
         </div>
       </div>
     </section>
+
+    <!-- 8. Rules -->
+    <section id="sec-rules">
+      <div class="section-banner dark">
+        <div class="banner-text-left">
+          <div class="capsule-pill dark">SECTION 07</div>
+          <h2>그룹레슨 예약 및 이용 수칙 <span class="arrow-icon">↘</span></h2>
+          <p>모두의 배려와 약속으로 완성되는 프라이빗 아지트 이용 안내입니다.</p>
+        </div>
+        <div class="banner-big-number">07</div>
+      </div>
+
+      <div class="rules-grid">
+        <div class="rule-item">
+          <span class="material-symbols-outlined icon">update</span>
+          <div>
+            <h4>수업 취소 기준</h4>
+            <p>수업 시작 <strong>12시간 전까지</strong> 차감 및 수수료 없이 언제든 취소 가능합니다.</p>
+          </div>
+        </div>
+
+        <div class="rule-item">
+          <span class="material-symbols-outlined icon">event_busy</span>
+          <div>
+            <h4>폐강 및 마감 기준</h4>
+            <p>예약 인원이 0명일 경우, 수업 시작 <strong>10시간 전</strong> 자동 폐강 확정됩니다.</p>
+          </div>
+        </div>
+
+        <div class="rule-item">
+          <span class="material-symbols-outlined icon">alarm_on</span>
+          <div>
+            <h4>직전 예약 안내</h4>
+            <p>1명 이상 예약 확정 시, 수업 시작 <strong>10분 전까지</strong> 추가 예약이 가능합니다.</p>
+          </div>
+        </div>
+
+        <div class="rule-item">
+          <span class="material-symbols-outlined icon">nightlight</span>
+          <div>
+            <h4>원데이클래스 접수</h4>
+            <p>스페셜 원데이클래스는 당일 원활한 준비를 위해 <strong>진행 당일 자정(00:00)까지</strong> 접수됩니다.</p>
+          </div>
+        </div>
+
+        <div class="rule-item full">
+          <span class="material-symbols-outlined icon">install_mobile</span>
+          <div>
+            <h4>예약 앱(하이파이브) 활용</h4>
+            <p>모든 고정제 수업 예약 취소 및 일정 변경은 <strong>'하이파이브' 전용 앱</strong>에서 간편하게 처리됩니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA Footer Block -->
+    <div class="footer-cta">
+      <h2>Mood Wellness Azit</h2>
+      <p>
+        지금 무드웰니스에서 몸과 마음의 건강하고 온전한 회복을 시작해보세요.<br />
+        상담 및 체험 신청은 아래 카카오톡 채널을 통해 언제든 편하게 문의해 주시기 바랍니다.
+      </p>
+
+      <a href="http://pf.kakao.com/_qNxbnn/chat" target="_blank" class="btn-kakao-action">
+        <span class="material-symbols-outlined" style="font-size: 22px;">chat</span>
+        카카오톡 채널로 바로 문의하기
+      </a>
+
+      <div class="info-footer-grid">
+        <div class="info-col">
+          <h5>Inquiry Phone</h5>
+          <p>0507-1303-0371</p>
+        </div>
+        <div class="info-col">
+          <h5>Kakao Channel</h5>
+          <p>무드웰니스</p>
+        </div>
+        <div class="info-col">
+          <h5>Location</h5>
+          <p>서울시 강남구 테헤란로 13길 65</p>
+        </div>
+      </div>
+    </div>
 
   </main>
 
-  <!-- FOOTER -->
-  <footer class="mt-20 border-t border-brand-warmgray bg-brand-sand/50 py-10 text-xs text-brand-muted">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div>
-        <p class="font-bold text-brand-dark">무드웰니스 스튜디오 (Mood Wellness Studio)</p>
-        <p class="mt-1">서울시 강남구 테헤란로 13길 65 • TEL 0507-1303-0371</p>
-        <p class="text-gray-400 mt-0.5">Private &amp; Group Wellness Lounge • 나만의 기능적 움직임 아지트</p>
+  <!-- Modal: Why Small Group Crew? -->
+  <div class="modal-overlay" id="crewModal" onclick="closeCrewModalOnBg(event)">
+    <div class="modal-box">
+      <button class="modal-close-btn" onclick="closeCrewModal()">&times;</button>
+      <div class="capsule-pill light" style="margin-bottom: 10px;">PRIVATE CREW PHILOSOPHY</div>
+      <h3 class="modal-title">매주 정해진 시간, 나와 결이 맞는 사람들과 함께하는 프라이빗 소모임</h3>
+      <p class="modal-desc">
+        예약 스트레스 없는 고정 요일·시간 시스템, 우리들만의 전용 공간에서 누리는 온전한 몰입의 가치를 전달합니다.
+      </p>
+
+      <div class="modal-points-grid">
+        <div class="modal-point-card">
+          <h5>Point 1. 지정 좌석제 루틴</h5>
+          <p>
+            매번 잔여석 눈치 보며 수강신청하듯 예약하는 번거로움과 피로도를 완전히 없앴습니다. 약속된 요일, 확정된 시간에 내 자리가 늘 준비되어 있어 흐트러짐 없는 완벽한 운동 습관이 완성됩니다.
+          </p>
+        </div>
+
+        <div class="modal-point-card">
+          <h5>Point 2. 우리들만의 프라이빗 크루</h5>
+          <p>
+            낯선 사람들이 매번 바뀌며 들어오는 어색하고 산만한 환경이 아닙니다. 마음 맞는 지인들끼리 팀을 꾸리거나 성향이 닮은 멤버들과 한 팀이 되어, 문을 닫는 순간 시작되는 우리만의 아지트에서 온전히 소통합니다.
+          </p>
+        </div>
+
+        <div class="modal-point-card">
+          <h5>Point 3. 전담 강사의 맞춤 케어</h5>
+          <p>
+            첫 주부터 마지막 주까지 팀의 발전 속도에 맞춘 연계 수업이 가능합니다. 전담 강사가 구성원들의 체형 특성을 완벽히 파악하여 1:1 개인레슨을 단체로 받는 듯한 밀착 피드백을 제공합니다.
+          </p>
+        </div>
       </div>
-      <div class="text-center sm:text-right">
-        <p>© Mood Wellness Studio. All rights reserved.</p>
-        <p class="mt-0.5 text-gray-400">본 페이지는 무드웰니스 공식 회원 안내서입니다.</p>
-      </div>
+
+      <table class="modal-comp-table">
+        <thead>
+          <tr>
+            <th>구분</th>
+            <th>일반 센터</th>
+            <th>무드웰니스 프라이빗 소모임</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>시간 / 좌석</strong></td>
+            <td>매주 예약 경쟁, 시간대 불규칙</td>
+            <td><strong>나만을 위해 확보된 고정 요일 & 지정석</strong></td>
+          </tr>
+          <tr>
+            <td><strong>멤버십</strong></td>
+            <td>매번 바뀌는 멤버, 어색한 분위기</td>
+            <td><strong>우리끼리 끈끈하게 응원하는 커뮤니티</strong></td>
+          </tr>
+          <tr>
+            <td><strong>수업 흐름</strong></td>
+            <td>일회성 동작 반복에 그치는 시퀀스</td>
+            <td><strong>매주 단계적으로 성장하는 팀 맞춤 커리큘럼</strong></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-  </footer>
-
-  <!-- FLOATING KAKAO BUTTON (Direct link to chat) -->
-  <aside class="fixed bottom-5 right-5 z-40">
-    <a href="http://pf.kakao.com/_qNxbnn/chat" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-2.5 bg-brand-kakao text-brand-kakaoDark px-4 py-3 rounded-full shadow-floating hover:brightness-95 transition-all">
-      <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24">
-        <path d="M12 3C6.477 3 2 6.477 2 10.767c0 2.766 1.848 5.187 4.639 6.551-.203.743-.734 2.686-.84 3.109-.133.528.193.521.407.38.169-.112 2.68-1.83 3.738-2.553.67.098 1.36.15 2.056.15 5.523 0 10-3.477 10-7.767C22 6.477 17.523 3 12 3z"/>
-      </svg>
-      <span class="text-xs sm:text-sm font-bold tracking-tight">카톡 상담 · 문의</span>
-    </a>
-  </aside>
-
-  <!-- Toast Notification Box -->
-  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-brand-dark text-white px-5 py-2.5 rounded-full text-xs font-medium shadow-floating flex items-center gap-2 opacity-0 pointer-events-none transition-opacity duration-300">
-    <i data-lucide="check" class="w-4 h-4 text-emerald-400"></i>
-    <span id="toast-message">알림</span>
   </div>
 
-  <script>
-    // Initialize Lucide Icons
-    lucide.createIcons();
+  <!-- Floating Kakao Action -->
+  <a href="http://pf.kakao.com/_qNxbnn/chat" target="_blank" class="floating-kakao-btn">
+    <span class="material-symbols-outlined" style="font-size: 19px;">chat</span>
+    카톡 상담·신청
+  </a>
 
-    // ScrollSpy & Nav Active State handler
-    const sections = document.querySelectorAll('section[id]');
-    const navTabs = document.querySelectorAll('.nav-tab');
-    const navContainer = document.getElementById('nav-container');
+  <script>
+    function scrollToSec(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    // ScrollSpy
+    const allSections = document.querySelectorAll('section');
+    const allTabs = document.querySelectorAll('.tab-item');
 
     window.addEventListener('scroll', () => {
-      let currentSectionId = '';
-      const scrollPos = window.scrollY + 180;
+      let activeId = '';
+      const pos = window.scrollY + 130;
 
-      sections.forEach(sec => {
+      allSections.forEach(sec => {
         const top = sec.offsetTop;
-        const height = sec.offsetHeight;
-        if (scrollPos >= top && scrollPos < top + height) {
-          currentSectionId = sec.getAttribute('id');
+        const h = sec.offsetHeight;
+        if (pos >= top && pos < top + h) {
+          activeId = sec.getAttribute('id');
         }
       });
 
-      if (currentSectionId) {
-        navTabs.forEach(tab => {
-          if (tab.getAttribute('data-target') === currentSectionId) {
-            tab.classList.add('active-nav');
-            // Auto scroll nav container horizontally to keep active tab visible
-            const containerRect = navContainer.getBoundingClientRect();
-            const tabRect = tab.getBoundingClientRect();
-            if (tabRect.left < containerRect.left || tabRect.right > containerRect.right) {
-              tab.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-            }
-          } else {
-            tab.classList.remove('active-nav');
-          }
-        });
-      }
+      allTabs.forEach(btn => {
+        btn.classList.remove('active');
+        const attr = btn.getAttribute('onclick');
+        if (attr && attr.includes(activeId)) {
+          btn.classList.add('active');
+          btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+      });
     });
 
-    // App Link Copy Toast
-    function copyAppLink() {
-      const dummyText = "무드웰니스 회원 전용 수업 예약 및 변경은 '하이파이브(Hi-Five)' 앱을 설치하여 진행해 주세요.";
-      navigator.clipboard.writeText(dummyText).then(() => {
-        showToast("하이파이브 앱 안내 문구가 복사되었습니다.");
-      }).catch(() => {
-        showToast("문구를 복사하지 못했습니다.");
-      });
+    // Modal Control
+    function openCrewModal() {
+      document.getElementById('crewModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
     }
 
-    // Address Copy Toast
-    function copyAddress() {
-      const address = "서울시 강남구 테헤란로 13길 65";
-      navigator.clipboard.writeText(address).then(() => {
-        showToast("스튜디오 주소가 복사되었습니다.");
-      }).catch(() => {
-        showToast("주소를 복사하지 못했습니다.");
-      });
+    function closeCrewModal() {
+      document.getElementById('crewModal').classList.remove('active');
+      document.body.style.overflow = '';
     }
 
-    function showToast(msg) {
-      const toast = document.getElementById('toast');
-      const toastMsg = document.getElementById('toast-message');
-      toastMsg.textContent = msg;
-      toast.classList.remove('opacity-0', 'pointer-events-none');
-      toast.classList.add('opacity-100');
-
-      setTimeout(() => {
-        toast.classList.remove('opacity-100');
-        toast.classList.add('opacity-0', 'pointer-events-none');
-      }, 2500);
+    function closeCrewModalOnBg(e) {
+      if (e.target.id === 'crewModal') {
+        closeCrewModal();
+      }
     }
   </script>
 </body>
+</html>
