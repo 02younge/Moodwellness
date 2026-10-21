@@ -391,7 +391,7 @@
       opacity: 0.88;
     }
 
-    /* 2. Core Programs (Color Block Bento) */
+    /* 2. Core Programs */
     .bento-programs {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -715,6 +715,30 @@
       color: var(--text-muted);
       line-height: 1.6;
       margin-bottom: 20px;
+    }
+
+    /* Wedding Bullet Sublist */
+    .wedding-details {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--border-line);
+      font-size: 0.86rem;
+      color: var(--forest-dark);
+    }
+    .wedding-details li {
+      position: relative;
+      padding-left: 14px;
+      line-height: 1.45;
+    }
+    .wedding-details li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--forest-main);
     }
 
     .prog-price-block {
@@ -1247,9 +1271,10 @@
           <ul class="teacher-desc-list">
             <li>개인 움직임 특성과 가동 제한 회복을 위한 스트레칭 / 모빌리티 / 기능성 트레이닝</li>
             <li>슬링 천과 핸즈온 수기 테크닉을 통한 심부 근육 이완 릴리즈</li>
+            <li>신부 맞춤 드레스 라인 세팅 & 웨딩 바레 1:1 디렉팅</li>
           </ul>
           <div class="teacher-recommend">
-            <strong>추천 :</strong> 몸이 뻣뻣하고 근육 긴장도가 높은 분 / 운동 중 특정 동작이 어렵거나 관절이 불편한 분
+            <strong>추천 :</strong> 몸이 뻣뻣하고 근육 긴장도가 높은 분 / 본식 전 직각 어깨와 매끄러운 드레스 라인을 완성하고 싶은 예비신부
           </div>
         </div>
 
@@ -1315,7 +1340,7 @@
       </div>
 
       <div class="cards-grid">
-        <!-- 바디튜닝 -->
+        <!-- 1. 바디튜닝 -->
         <div class="prog-item-card">
           <div>
             <div class="card-top-header">
@@ -1323,7 +1348,7 @@
               <span class="capsule-pill light">1:1 개인 / 70분</span>
             </div>
             <h3 class="prog-title">바디튜닝 (Body Tuning)</h3>
-            <div class="prog-time">기능회복 & 순환 컨디셔닝 케어</div>
+            <div class="card-time">기능회복 & 순환 컨디셔닝 케어</div>
             <p class="prog-desc">
               스트레칭, 모빌리티, 기능성 회복운동을 통해 불편한 움직임을 개선하고 바른 신체 축을 재학습합니다.
             </p>
@@ -1333,7 +1358,7 @@
           </div>
         </div>
 
-        <!-- 딥 럴링 슬링 -->
+        <!-- 2. 딥 럴링 슬링 -->
         <div class="prog-item-card">
           <div>
             <div class="card-top-header">
@@ -1341,7 +1366,7 @@
               <span class="capsule-pill light">스페셜 융합 / 70분</span>
             </div>
             <h3 class="prog-title">딥 럴링 슬링 (DEEP LULLING SLING)</h3>
-            <div class="prog-time">슬링 테라피 & 심부 이완 케어</div>
+            <div class="card-time">슬링 테라피 & 심부 이완 케어</div>
             <p class="prog-desc">
               슬링 천과 핸즈온 테크닉을 결합하여 무중력 상태처럼 몸의 텐션을 풀고 깊게 이완시킵니다.
             </p>
@@ -1351,7 +1376,31 @@
           </div>
         </div>
 
-        <!-- 윤곽밸런스케어 -->
+        <!-- 3. 웨딩 바레 프로그램 (신규 추가 요약) -->
+        <div class="prog-item-card">
+          <div>
+            <div class="card-top-header">
+              <span class="coach-pill">이수휘 원장</span>
+              <span class="capsule-pill light">1:1 맞춤 / Bride Special</span>
+            </div>
+            <h3 class="prog-title">웨딩 바레 (Bride Special)</h3>
+            <div class="card-time">1:1 전신 드레스 라인 & 뷰티 케어</div>
+            <p class="prog-desc">
+              가장 눈부신 본식 날을 위해 체형 교정, 속근육 강화, 림프 순환을 결합한 신부 단독 집중 프로그램입니다.
+            </p>
+            <ul class="wedding-details">
+              <li><strong>체형 & 라인 :</strong> 라운드숄더 교정, 솟은 승모근 다운, 직각 어깨 & 쇄골·팔뚝 슬리밍</li>
+              <li><strong>스케줄별 코스 :</strong> 12주 전신 체형 완벽 코스 / 8주 스페셜 드레스핏 / 4주 긴급 직각어깨 코스</li>
+              <li><strong>토탈 디렉팅 :</strong> 유산소 바레 부종 배출, 본식 우아한 워킹 자세 세팅, 1:1 맞춤 식단 및 Daily 홈트 피드백</li>
+              <li><strong>에스테틱 옵션 :</strong> 고주파 승모근·데콜테 심열 케어 및 수분 풀 페이셜 케어 연계</li>
+            </ul>
+          </div>
+          <div class="prog-target-box" style="margin-top: 16px;">
+            <strong>추천 :</strong> 본식을 앞두고 드레스 핏(목선·쇄골·등 라인)과 자세, 부종을 단기간에 완벽히 정돈하고 싶은 예비신부
+          </div>
+        </div>
+
+        <!-- 4. 윤곽밸런스케어 -->
         <div class="prog-item-card">
           <div>
             <div class="card-top-header">
@@ -1359,7 +1408,7 @@
               <span class="capsule-pill light">스페셜 융합 / 120분</span>
             </div>
             <h3 class="prog-title">윤곽밸런스케어</h3>
-            <div class="prog-time">운동 교정 + 에스테틱 수기 케어 원스톱</div>
+            <div class="card-time">운동 교정 + 에스테틱 수기 케어 원스톱</div>
             <p class="prog-desc">
               척추·골반 축 정렬 교정과 안면 윤곽 수기 케어를 통해 전신 비대칭 및 림프 순환을 동시에 케어합니다.
             </p>
@@ -1555,7 +1604,7 @@
               <span class="capsule-pill light">릴렉스 & 코어 테마</span>
             </div>
             <h3 class="prog-title">가을 맞이, 야외 필라테스 (1차)</h3>
-            <div class="prog-time">10월 14일 (수) 10:00 / 12:00 / 19:30 (60분)</div>
+            <div class="card-time">10월 14일 (수) 10:00 / 12:00 / 19:30 (60분)</div>
             <p class="prog-desc">
               • 야외 정원에서 가을 바람을 느끼며 진행하는 힐링 필라테스<br />
               • 굳은 목과 어깨 긴장 완화 및 상체 림프 순환 케어<br />
@@ -1587,7 +1636,7 @@
               <span class="capsule-pill light">릴렉스 & 코어 테마</span>
             </div>
             <h3 class="prog-title">가을 맞이, 야외 필라테스 (2차)</h3>
-            <div class="prog-time">10월 21일 (수) 10:00 / 12:00 / 19:00 (60분)</div>
+            <div class="card-time">10월 21일 (수) 10:00 / 12:00 / 19:00 (60분)</div>
             <p class="prog-desc">
               • 야외 정원에서 가을 바람을 느끼며 진행하는 힐링 필라테스<br />
               • 굳은 목과 어깨 긴장 완화 및 상체 림프 순환 케어<br />
