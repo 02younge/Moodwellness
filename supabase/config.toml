@@ -1,0 +1,5 @@
+[functions.submit-crew-request]
+verify_jwt = false
+
+[functions.send-admin-notifications]
+verify_jwt = false
