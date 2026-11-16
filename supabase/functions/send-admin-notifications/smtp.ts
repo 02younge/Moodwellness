@@ -1,7 +1,7 @@
 import nodemailer from 'npm:nodemailer@10.6.0';
 export const SMTP_HOST='smtp.kakao.com';
 export const SMTP_USER='moodwellness@kakao.com';
-export function smtpOptions(password:string){return {host:SMTP_HOST,name:'02younge.github.io',port:465,secure:true,auth:{user:SMTP_USER,pass:password},tls:{servername:SMTP_HOST,minVersion:'TLSv1.2',rejectUnauthorized:true},connectionTimeout:8000,greetingTimeout:8000,socketTimeout:12000,disableFileAccess:true,disableUrlAccess:true,logger:false,debug:false};}
+export function smtpOptions(password:string){return {host:SMTP_HOST,name:'02younge.github.io',port:465,secure:true,auth:{user:'moodwellness',pass:password},tls:{servername:SMTP_HOST,minVersion:'TLSv1.2',rejectUnauthorized:true},connectionTimeout:8000,greetingTimeout:8000,socketTimeout:12000,disableFileAccess:true,disableUrlAccess:true,logger:false,debug:false};}
 export function smtpFailure(error:unknown){const e=error as {code?:string;command?:string;responseCode?:number};if(e?.code==='EAUTH')return 'smtp_auth_failed';if(e?.responseCode&&e.responseCode>=400)return 'smtp_rejected_'+e.responseCode;if(e?.command&&/^(CONN|EHLO|HELO|STARTTLS|AUTH|MAIL FROM|RCPT TO)/.test(e.command))return 'smtp_connection_failed';return 'smtp_delivery_unknown';}
 export async function sendSMTP(email:{subject:string;text:string},eventId:string,createdAt:string,password:string){
  const transport=nodemailer.createTransport(smtpOptions(password));
