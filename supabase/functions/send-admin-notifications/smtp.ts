@@ -1,0 +1,10 @@
+import nodemailer from 'npm:nodemailer@10.6.0';
+export const SMTP_HOST='smtp.kakao.com';
+export const SMTP_USER='moodwellness@kakao.com';
+export function smtpOptions(password:string){return {host:SMTP_HOST,name:'02younge.github.io',port:465,secure:true,auth:{user:SMTP_USER,pass:password},tls:{servername:SMTP_HOST,minVersion:'TLSv1.2',rejectUnauthorized:true},connectionTimeout:8000,greetingTimeout:8000,socketTimeout:12000,disableFileAccess:true,disableUrlAccess:true,logger:false,debug:false};}
+export function smtpFailure(error:unknown){const e=error as {code?:string;command?:string;responseCode?:number};if(e?.code==='EAUTH')return 'smtp_auth_failed';if(e?.responseCode&&e.responseCode>=400)return 'smtp_rejected_'+e.responseCode;if(e?.command&&/^(CONN|EHLO|HELO|STARTTLS|AUTH|MAIL FROM|RCPT TO)/.test(e.command))return 'smtp_connection_failed';return 'smtp_delivery_unknown';}
+export async function sendSMTP(email:{subject:string;text:string},eventId:string,createdAt:string,password:string){
+ const transport=nodemailer.createTransport(smtpOptions(password));
+ try{const result=await transport.sendMail({from:{name:'무드웰니스',address:SMTP_USER},to:[SMTP_USER],subject:email.subject,text:email.text,date:new Date(createdAt),messageId:'<mw-admin.'+eventId+'@kakao.com>',headers:{'Auto-Submitted':'auto-generated'},disableFileAccess:true,disableUrlAccess:true});const accepted=(result.accepted||[]).some((v:unknown)=>typeof v==='string'&&v.toLowerCase()===SMTP_USER);return{delivered:accepted,providerId:accepted?result.messageId:null,failure:accepted?null:'smtp_recipient_rejected'};}finally{transport.close();}
+}
+export async function probeSMTP(){let expired=false;let timer:ReturnType<typeof setTimeout>|undefined;const connect=Deno.connectTls({hostname:SMTP_HOST,port:465}).then(c=>{if(expired)c.close();return c;});try{const conn=await Promise.race([connect,new Promise<never>((_,reject)=>{timer=setTimeout(()=>{expired=true;reject(new Error('timeout'));},8000);})]);conn.close();return true;}catch{return false;}finally{if(timer)clearTimeout(timer);}}

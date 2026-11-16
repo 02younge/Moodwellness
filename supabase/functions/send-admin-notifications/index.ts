@@ -1,5 +1,6 @@
 import { createClient } from 'npm:@supabase/supabase-js@2.95.3';
 import { buildEmail } from './mail.ts';
+import { sendSMTP,smtpFailure,probeSMTP,SMTP_USER } from './smtp.ts';
 const json=(status:number,data:unknown)=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json'}});
 Deno.serve(async(req:Request)=>{
  if(req.method!=='POST')return json(405,{error:'method_not_allowed'});
@@ -10,17 +11,23 @@ Deno.serve(async(req:Request)=>{
  if(!url||!serverKey)return json(503,{error:'server_configuration_missing'});
  const db=createClient(url,serverKey,{auth:{persistSession:false,autoRefreshToken:false}});
  const mailKey=Deno.env.get('RESEND_API_KEY'),from=Deno.env.get('MAIL_FROM');
- const {data:rows,error}=await db.rpc('mw_claim_notifications',{dispatch_key:dispatchKey,configured:!!(mailKey&&from)});
+ const smtpPassword=Deno.env.get('SMTP_APP_PASSWORD');
+ const transport=Deno.env.get('MW_MAIL_TRANSPORT')||(smtpPassword?'smtp':'resend');
+ let probe=false;try{probe=(await req.json()).mode==='smtp_probe';}catch{}
+ const configured=transport==='smtp'?!!smtpPassword:transport==='resend'&&!!(mailKey&&from);
+ const {data:rows,error}=await db.rpc('mw_claim_notifications',{dispatch_key:dispatchKey,configured:configured&&!probe,mail_transport:transport});
  if(error)return json(error.message.includes('unauthorized')?401:503,{error:'dispatch_unavailable'});
- if(!mailKey||!from)return json(503,{error:'mail_configuration_missing'});
+ if(probe)return json(200,{smtpReachable:await probeSMTP()});
+ if(!configured)return json(503,{error:'mail_configuration_missing'});
  let sent=0,failed=0;
  for(const event of rows||[]){
   let delivered=false,providerId=null,failure='network_error';
   try{
-   const email=buildEmail(event,from);
+   const email=buildEmail(event,transport==='smtp'?SMTP_USER:from!);
+   if(transport==='smtp'){const result=await sendSMTP(email,event.id,event.created_at,smtpPassword!);delivered=result.delivered;providerId=result.providerId;failure=result.failure||'';}else{
    const res=await fetch('https://api.resend.com/emails',{method:'POST',signal:AbortSignal.timeout(8000),headers:{Authorization:'Bearer '+mailKey,'Content-Type':'application/json','Idempotency-Key':'mw-admin/'+event.id},body:JSON.stringify(email)});
-   const result=await res.json().catch(()=>({}));delivered=res.ok&&typeof result.id==='string';providerId=delivered?result.id:null;failure='provider_http_'+res.status;
-  }catch{}
+   const result=await res.json().catch(()=>({}));delivered=res.ok&&typeof result.id==='string';providerId=delivered?result.id:null;failure='provider_http_'+res.status;}
+  }catch(err){if(transport==='smtp')failure=smtpFailure(err);}
   const finish=await db.rpc('mw_finish_notification',{notification_id:event.id,claim_id:event.lease_id,delivered,mail_id:providerId,failure:delivered?null:failure});
   if(delivered&&!finish.error)sent++;else failed++;
  }
