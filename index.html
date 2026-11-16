@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>무드웰니스 | 11월 프로그램</title>
+<title>무드웰니스 | 나에게 맞는 클래스 찾기</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -606,6 +606,9 @@ details p {
   }
 }
 </style>
+<link rel="stylesheet" href="./features.css">
+<script defer src="./vendor/supabase.js"></script>
+<script defer src="./app.js"></script>
 </head>
 
 <body>
@@ -615,7 +618,8 @@ details p {
     <a class="logo" href="#home">MOOD<br>WELLNESS</a>
 
     <nav aria-label="주요 메뉴">
-      <a href="#intro">공간소개</a>
+      <a href="#mw-finder">맞춤 추천</a>
+<a href="#intro">공간소개</a>
       <a href="#core">핵심 프로그램</a>
       <a href="#matching">전담 매칭</a>
       <a href="#teachers">강사진</a>
@@ -623,7 +627,7 @@ details p {
       <a href="#crew">정규 소모임</a>
       <a href="#oneday">원데이클래스</a>
       <a href="#rules">이용 안내</a>
-    </nav>
+    </nav><div class="mw-topline"><button type="button" class="mw-link-button" data-mw-admin>강사 전용 관리</button></div>
   </header>
 
   <main>
@@ -760,7 +764,7 @@ details p {
         </article>
       </div>
 
-      <aside class="spa">
+      <aside class="spa" id="mw-spa">
         <div>
           <span class="eyebrow">EXCLUSIVE PARTNERSHIP</span>
           <h3>무드웰니스 회원 특별 혜택 · YJ 스파 제휴</h3>
@@ -774,7 +778,7 @@ details p {
           <small>YJ 스파 전 프로그램</small>
           <strong>10% OFF</strong>
         </div>
-      </aside>
+      <div class="mw-actions"><a class="mw-btn" href="https://map.naver.com/p/entry/place/37278584" target="_blank" rel="noopener noreferrer">YJ SPA 정보·예약 보기</a></div></aside>
     </section>
 
     <section class="section" id="matching">
@@ -843,11 +847,12 @@ details p {
       </div>
     </section>
 
-    <section class="section" id="private">
+    <section class="section" id="mw-finder"><header class="section-heading"><span class="eyebrow">FIND YOUR MOOD</span><h2>지금, 나에게 맞는 움직임</h2><p>오늘 필요한 케어와 원하는 분위기를 알려주세요.<br>몇 가지 질문으로 나에게 맞는 클래스를 찾아보세요.</p></header><div class="mw-actions"><button type="button" class="mw-btn primary" data-mw-quiz>나에게 맞는 클래스 찾기</button><a class="mw-btn" href="#crew">전체 시간표 보기</a></div><p class="mw-message" id="mw-load-state" role="status">수업 정보를 불러오고 있습니다.</p></section>
+<section class="section" id="private">
       <header class="section-heading">
         <span class="eyebrow">PRIVATE SESSION</span>
-        <h2>1:1 개인레슨</h2>
-        <p>프로그램과 일정, 비용은 개별 상담으로 안내합니다.</p>
+        <h2>프라이빗 레슨</h2>
+        <p>1:1·듀엣·3인 프라이빗 케어. 수업 구성과 비용은 담당 강사에게 문의해 주세요.</p>
       </header>
 
       <div class="program-grid" id="private-programs"></div>
@@ -856,8 +861,8 @@ details p {
     <section class="section" id="crew">
       <header class="section-heading">
         <span class="eyebrow">NOVEMBER REGULAR CREW</span>
-        <h2>11월 정규 소모임</h2>
-        <p>최대 3인 소수정예. 아래 금액은 회당 정상가입니다.</p>
+        <h2>정규 크루 · 전체 시간표</h2>
+        <p>최대 3인 소수정예. 시간표의 수업을 누르면 상세 안내와 담당 강사 문의로 연결됩니다.</p>
       </header>
 
       <details>
@@ -870,21 +875,10 @@ details p {
         </p>
       </details>
 
-      <div class="program-grid" id="crew-programs"></div>
+      <div class="mw-week-wrap" id="mw-timetable" aria-label="정규 크루 주간 시간표"></div><div class="program-grid" id="crew-programs"></div><div class="coming-soon" style="margin-top:36px"><h3>원하는 수업이나 시간이 없으신가요?</h3><p>희망 수업과 시간을 남겨주시면 개설을 검토하고 안내합니다.</p><div class="mw-actions"><button type="button" class="mw-btn primary" data-mw-request>크루 개설 신청하기</button></div></div>
     </section>
 
-    <section class="section" id="oneday">
-      <header class="section-heading">
-        <span class="eyebrow">SPECIAL ONE-DAY</span>
-        <h2>11월 원데이클래스</h2>
-      </header>
-
-      <div class="coming-soon">
-        <span class="eyebrow">COMING SOON</span>
-        <h3>11월 일정 미정</h3>
-        <p>일정과 프로그램, 참가비는 확정 후 안내해 드립니다.</p>
-      </div>
-    </section>
+    <section class="section" id="oneday"><header class="section-heading"><span class="eyebrow">SPECIAL ONE-DAY</span><h2>원데이클래스</h2><p>함께 경험하는 새로운 웰니스 프로그램</p></header><div class="program-grid" id="mw-oneday-programs"></div></section>
 
     <section class="section" id="rules">
       <header class="section-heading">
@@ -1105,8 +1099,12 @@ function renderPrograms(containerId, programs) {
   });
 }
 
-renderPrograms("private-programs", privatePrograms);
-renderPrograms("crew-programs", crewPrograms);
+
+
 </script>
+<dialog id="mw-detail" class="mw-dialog" aria-labelledby="mw-detail-title"><div class="mw-dialog-head"><h2 id="mw-detail-title" data-dialog-title>클래스 상세 안내</h2><button type="button" class="mw-close" aria-label="닫기">×</button></div><div class="mw-dialog-body"></div></dialog>
+<dialog id="mw-quiz" class="mw-dialog" aria-labelledby="mw-quiz-title"><div class="mw-dialog-head"><h2 id="mw-quiz-title" data-dialog-title>맞춤 클래스 찾기</h2><button type="button" class="mw-close" aria-label="닫기">×</button></div><div class="mw-dialog-body"></div></dialog>
+<dialog id="mw-request" class="mw-dialog" aria-labelledby="mw-request-title"><div class="mw-dialog-head"><h2 id="mw-request-title" data-dialog-title>크루 개설 신청</h2><button type="button" class="mw-close" aria-label="닫기">×</button></div><div class="mw-dialog-body"></div></dialog>
+<dialog id="mw-admin" class="mw-dialog" aria-labelledby="mw-admin-title"><div class="mw-dialog-head"><h2 id="mw-admin-title" data-dialog-title>강사 전용 관리</h2><button type="button" class="mw-close" aria-label="닫기">×</button></div><div class="mw-dialog-body"></div></dialog>
 </body>
 </html>
