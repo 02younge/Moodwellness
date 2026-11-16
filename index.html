@@ -609,30 +609,23 @@ details p {
 <link rel="stylesheet" href="./features.css">
 <script defer src="./vendor/supabase.js"></script>
 <script defer src="./app.js"></script>
+<script defer src="./navigation.js"></script>
 </head>
 
 <body>
 <div class="page">
 
   <header class="header">
-    <a class="logo" href="#home">MOOD<br>WELLNESS</a>
+    <a class="logo" href="#home">MOOD WELLNESS</a>
 
     <nav aria-label="주요 메뉴">
-      <a href="#mw-finder">맞춤 추천</a>
-<a href="#intro">공간소개</a>
-      <a href="#core">핵심 프로그램</a>
-      <a href="#matching">전담 매칭</a>
-      <a href="#teachers">강사진</a>
-      <a href="#private">1:1 레슨</a>
-      <a href="#crew">정규 소모임</a>
-      <a href="#oneday">원데이클래스</a>
-      <a href="#rules">이용 안내</a>
+      <a href="#home">홈</a><a href="#intro">스튜디오</a><a href="#core">프로그램</a><a href="#teachers">강사진</a><a href="#mw-finder">맞춤 추천</a><a href="#rules">이용 안내</a><a href="#contact">문의·오시는 길</a>
     </nav><div class="mw-topline"><button type="button" class="mw-link-button" data-mw-admin>강사 전용 관리</button></div>
   </header>
 
-  <main>
+  <main id="mw-main" tabindex="-1">
 
-    <section id="home">
+    <section id="home" data-page="home" class="is-active">
       <div class="panorama">
         <div>
           <img src="./1.jpg" alt="무드웰니스 배너 왼쪽">
@@ -647,21 +640,24 @@ details p {
 
       <div class="hero-copy">
         <span class="eyebrow">PRIVATE & GROUP WELLNESS</span>
-        <h1>나만의 기능적 움직임 아지트, 무드웰니스</h1>
+        <h1>나에게 맞는 움직임,<br>일상을 회복하는 시간.</h1>
         <p>
-          바레, 필라테스, 기능성 트레이닝, 리커버리를 결합해
-          나에게 맞는 운동과 몸과 마음의 회복을 경험하는 공간입니다.
+          바레·필라테스부터 리커버리까지.<br>
+          나의 목적과 오늘의 컨디션에 맞춰 함께하는 무드웰니스.
         </p>
-        <a
-          class="button"
-          href="http://pf.kakao.com/_qNxbnn/chat"
-          target="_blank"
-          rel="noopener noreferrer"
-        >상담 · 신청</a>
+        <div class="mw-actions"><a class="mw-btn primary" href="#mw-finder">나에게 맞는 수업 찾기</a><a class="mw-btn" href="#core">프로그램 둘러보기</a></div>
       </div>
     </section>
 
-    <section class="intro" id="intro">
+    <section class="mw-home-essence" data-page="home" aria-labelledby="mw-home-value-title">
+      <span class="eyebrow">YOUR OWN WELLNESS AZIT</span>
+      <h2 id="mw-home-value-title">운동의 정교함에,<br>회복의 깊이를 더합니다.</h2>
+      <p>더 많이 하기보다, 나에게 필요한 움직임을 발견하는 곳.<br>섬세한 케어와 건강한 교류로 지속 가능한 일상의 균형을 만듭니다.</p>
+      <div class="mw-home-values"><div><span>01</span><h3>나를 이해하는 케어</h3><p>목적과 컨디션에 맞춘<br>프라이빗 움직임</p><a href="#private">개인·프라이빗 레슨 →</a></div><div><span>02</span><h3>함께 이어가는 루틴</h3><p>취향과 목표를 나누는<br>소수정예 테마형 크루</p><a href="#crew">정규 크루·시간표 →</a></div><div><span>03</span><h3>몸과 마음의 회복</h3><p>리커버리에서 스파까지<br>일상의 긴장을 내려놓는 시간</p><a href="#mw-spa">회복·스파 알아보기 →</a></div></div>
+      <a class="mw-home-about" href="#intro">무드웰니스의 이야기 →</a>
+    </section>
+
+    <section class="intro" id="intro" data-page="intro">
       <h2 class="serif-title">Breathe. Move. Align.</h2>
 
       <h3>몸과 마음의 온전한 회복</h3>
@@ -689,7 +685,7 @@ details p {
       </div>
     </section>
 
-    <div class="values">
+    <div class="values" data-page="intro">
       <article class="value">
         <span class="eyebrow">POINT 01</span>
         <h3>복합 웰니스 시스템</h3>
@@ -712,7 +708,8 @@ details p {
       </article>
     </div>
 
-    <section class="section core" id="core">
+    <section class="section core" id="core" data-page="core">
+<nav class="mw-program-nav" aria-label="프로그램 메뉴"><a href="#core">프로그램 소개</a><a href="#private">개인·프라이빗</a><a href="#crew">정규 크루·시간표</a><a href="#oneday">원데이클래스</a></nav>
       <header class="section-heading">
         <span class="eyebrow">OUR PHILOSOPHY</span>
         <div class="serif-title">Our Practice</div>
@@ -781,7 +778,7 @@ details p {
       <div class="mw-actions"><a class="mw-btn" href="https://map.naver.com/p/entry/place/37278584" target="_blank" rel="noopener noreferrer">YJ SPA 정보·예약 보기</a></div></aside>
     </section>
 
-    <section class="section" id="matching">
+    <section class="section" id="matching" data-page="matching">
       <header class="section-heading">
         <span class="eyebrow">PERSONAL MATCHING</span>
         <h2>나에게 맞는 전담 매칭</h2>
@@ -819,10 +816,11 @@ details p {
           </p>
         </article>
       </div>
+      <div class="mw-actions"><a class="mw-btn primary" href="#mw-finder">맞춤 클래스 찾기</a></div>
     </section>
 
     <!-- 상담 가능 시간대 삭제 완료 -->
-    <section class="section" id="teachers">
+    <section class="section" id="teachers" data-page="teachers">
       <header class="section-heading">
         <span class="eyebrow">OUR TEACHERS</span>
         <h2>전담 강사 소개</h2>
@@ -831,8 +829,9 @@ details p {
       <div class="two-columns" id="mw-teachers"><p class="mw-muted">강사 소개를 불러오고 있습니다.</p></div>
     </section>
 
-    <section class="section" id="mw-finder"><header class="section-heading"><span class="eyebrow">FIND YOUR MOOD</span><h2>지금, 나에게 맞는 움직임</h2><p>오늘 필요한 케어와 원하는 분위기를 알려주세요.<br>몇 가지 질문으로 나에게 맞는 클래스를 찾아보세요.</p></header><div class="mw-actions"><button type="button" class="mw-btn primary" data-mw-quiz>나에게 맞는 클래스 찾기</button><a class="mw-btn" href="#crew">전체 시간표 보기</a></div><p class="mw-message" id="mw-load-state" role="status">수업 정보를 불러오고 있습니다.</p></section>
-<section class="section" id="private">
+    <section class="section" id="mw-finder" data-page="mw-finder"><header class="section-heading"><span class="eyebrow">FIND YOUR MOOD</span><h2>지금, 나에게 맞는 움직임</h2><p>오늘 필요한 케어와 원하는 분위기를 알려주세요.<br>몇 가지 질문으로 나에게 맞는 클래스를 찾아보세요.</p></header><div class="mw-actions"><button type="button" class="mw-btn primary" data-mw-quiz>나에게 맞는 클래스 찾기</button><a class="mw-btn" href="#crew">전체 시간표 보기</a></div><p class="mw-message" id="mw-load-state" role="status">수업 정보를 불러오고 있습니다.</p></section>
+<section class="section" id="private" data-page="private">
+<nav class="mw-program-nav" aria-label="프로그램 메뉴"><a href="#core">프로그램 소개</a><a href="#private">개인·프라이빗</a><a href="#crew">정규 크루·시간표</a><a href="#oneday">원데이클래스</a></nav>
       <header class="section-heading">
         <span class="eyebrow">PRIVATE SESSION</span>
         <h2>프라이빗 레슨</h2>
@@ -842,7 +841,8 @@ details p {
       <div class="program-grid" id="private-programs"></div>
     </section>
 
-    <section class="section" id="crew">
+    <section class="section" id="crew" data-page="crew">
+<nav class="mw-program-nav" aria-label="프로그램 메뉴"><a href="#core">프로그램 소개</a><a href="#private">개인·프라이빗</a><a href="#crew">정규 크루·시간표</a><a href="#oneday">원데이클래스</a></nav>
       <header class="section-heading">
         <span class="eyebrow">NOVEMBER REGULAR CREW</span>
         <h2>정규 크루 · 전체 시간표</h2>
@@ -862,9 +862,10 @@ details p {
       <div class="mw-week-wrap" id="mw-timetable" aria-label="정규 크루 주간 시간표"></div><div class="program-grid" id="crew-programs"></div><div class="coming-soon" style="margin-top:36px"><h3>원하는 수업이나 시간이 없으신가요?</h3><p>희망 수업과 시간을 남겨주시면 개설을 검토하고 안내합니다.</p><div class="mw-actions"><button type="button" class="mw-btn primary" data-mw-request>크루 개설 신청하기</button></div></div>
     </section>
 
-    <section class="section" id="oneday"><header class="section-heading"><span class="eyebrow">SPECIAL ONE-DAY</span><h2>원데이클래스</h2><p>함께 경험하는 새로운 웰니스 프로그램</p></header><div class="program-grid" id="mw-oneday-programs"></div></section>
+    <section class="section" id="oneday" data-page="oneday">
+<nav class="mw-program-nav" aria-label="프로그램 메뉴"><a href="#core">프로그램 소개</a><a href="#private">개인·프라이빗</a><a href="#crew">정규 크루·시간표</a><a href="#oneday">원데이클래스</a></nav><header class="section-heading"><span class="eyebrow">SPECIAL ONE-DAY</span><h2>원데이클래스</h2><p>함께 경험하는 새로운 웰니스 프로그램</p></header><div class="program-grid" id="mw-oneday-programs"></div></section>
 
-    <section class="section" id="rules">
+    <section class="section" id="rules" data-page="rules">
       <header class="section-heading">
         <span class="eyebrow">STUDIO GUIDE</span>
         <h2>예약 및 이용 안내</h2>
@@ -905,9 +906,7 @@ details p {
       </div>
     </section>
 
-  </main>
-
-  <footer class="footer">
+  <section class="footer mw-contact-page" id="contact" data-page="contact">
     <span class="eyebrow">ROAD TO WELLNESS</span>
     <h2>Mood Wellness Azit</h2>
     <p>몸과 마음의 건강한 회복을 시작해 보세요.</p>
@@ -935,7 +934,10 @@ details p {
         <p>서울시 강남구 테헤란로 13길 65</p>
       </div>
     </div>
-  </footer>
+  </section>
+  </main>
+
+  <footer class="mw-site-footer"><a href="#home">MOOD WELLNESS</a><div><a href="#rules">이용 안내</a><a href="#contact">문의·오시는 길</a></div><p>서울 강남 · 나만의 웰니스 아지트</p></footer>
 
 </div>
 
