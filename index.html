@@ -1092,5 +1092,45 @@ function renderPrograms(containerId, programs) {
 <dialog id="mw-request" class="mw-dialog" aria-labelledby="mw-request-title"><div class="mw-dialog-head"><h2 id="mw-request-title" data-dialog-title>크루 개설 신청</h2><button type="button" class="mw-close" aria-label="닫기">×</button></div><div class="mw-dialog-body"></div></dialog>
 <dialog id="mw-admin" class="mw-dialog" aria-labelledby="mw-admin-title"><div class="mw-dialog-head"><h2 id="mw-admin-title" data-dialog-title>강사 전용 관리</h2><button type="button" class="mw-close" aria-label="닫기">×</button></div><div class="mw-dialog-body"></div></dialog>
 <dialog id="mw-teacher" class="mw-dialog" aria-labelledby="mw-teacher-title"><div class="mw-dialog-head"><h2 id="mw-teacher-title" data-dialog-title>강사 소개</h2><button type="button" class="mw-close" aria-label="닫기">×</button></div><div class="mw-dialog-body"></div></dialog>
+
+<style>
+#mw-renewal{width:min(440px,calc(100% - 32px));padding:32px;border:1px solid #d6cfbf;border-radius:16px;background:#f5f1e7;color:#39362e;box-shadow:0 24px 80px #0003}
+#mw-renewal::backdrop{background:rgba(35,32,24,.45)}
+#mw-renewal h2{font-family:"Noto Serif KR",serif;font-size:25px;line-height:1.65;margin:12px 0 18px}
+#mw-renewal p{font-size:14px;line-height:1.9;color:#625d51}
+#mw-renewal .renewal-kicker{font-size:11px;letter-spacing:.16em}
+#mw-renewal .renewal-chat{display:block;background:#514c40;color:#fffaf0;border-radius:999px;padding:13px 20px;text-align:center;font-size:14px}
+#mw-renewal .renewal-dismiss{display:block;margin:16px auto 0;padding:8px 18px;background:transparent;border:0;color:#625d51;text-decoration:underline;font:inherit;font-size:13px;cursor:pointer}
+</style>
+<dialog id="mw-renewal" aria-labelledby="mw-renewal-title" aria-describedby="mw-renewal-desc">
+<span class="renewal-kicker">MOOD WELLNESS · NOTICE</span>
+<h2 id="mw-renewal-title">더 나은 만남을 위해<br>새롭게 준비하고 있습니다.</h2>
+<p id="mw-renewal-desc">현재 홈페이지 리뉴얼 중입니다.<br>수업 일정, 예약 및 이용 문의는<br>카카오톡 상담으로 남겨주세요.<br>정성껏 안내해 드리겠습니다.</p>
+<a class="renewal-chat" href="http://pf.kakao.com/_qNxbnn/chat" target="_blank" rel="noopener noreferrer">카카오톡으로 상담하기 ↗</a>
+<button class="renewal-dismiss" type="button">닫고 둘러보기</button>
+</dialog>
+<script>
+(() => {
+  const notice = document.getElementById('mw-renewal');
+  let dismissed = false;
+  try { dismissed = sessionStorage.getItem('mw-renewal-notice-v1') === 'closed'; } catch {}
+  const close = () => {
+    notice.close();
+    try { sessionStorage.setItem('mw-renewal-notice-v1', 'closed'); } catch {}
+  };
+  notice.querySelector('.renewal-dismiss').addEventListener('click', close);
+  notice.addEventListener('cancel', event => { event.preventDefault(); close(); });
+  const show = () => {
+    if (!dismissed && (!location.hash || location.hash === '#home')) {
+      if (!document.querySelector('dialog[open]')) notice.showModal();
+    }
+  };
+  notice.addEventListener('close', () => { dismissed = true; });
+  window.addEventListener('hashchange', show);
+  if (document.readyState === 'complete') show();
+  else window.addEventListener('load', show, { once: true });
+})();
+</script>
+
 </body>
 </html>
