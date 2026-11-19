@@ -611,6 +611,20 @@ details p {
 <script defer src="./vendor/supabase.js"></script>
 <script defer src="./app.js"></script>
 <script defer src="./navigation.js"></script>
+<style>
+.mw-sales-paths{padding:54px clamp(20px,5vw,64px) 65px;background:#e9e5d9;text-align:center}
+.mw-sales-paths h2{font-family:"Noto Serif KR",serif;font-size:clamp(24px,3.2vw,32px);line-height:1.5;margin:0 0 10px}
+.mw-sales-lead,.mw-sales-note{font-size:12px;color:#716b5e}
+.mw-sales-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:30px 0 20px;text-align:left}
+.mw-sales-grid article{display:flex;flex-direction:column;gap:12px;background:#f5f2e9;border:1px solid rgba(70,64,48,.17);border-radius:14px;padding:25px 21px;min-width:0}
+.mw-sales-grid article>span{color:#766e61;font-size:10px;letter-spacing:.1em}
+.mw-sales-grid h3{font-family:"Noto Serif KR",serif;font-size:20px;line-height:1.5;margin:0}
+.mw-sales-grid p{font-size:12px;line-height:1.85;color:#625d51;flex:1;margin:0 0 4px}
+.mw-sales-primary{display:block;text-align:center;border-radius:999px;padding:11px 13px;background:#514c40;color:#fffaf0;font-size:12px}
+.mw-sales-sub{display:block;text-align:center;font-size:12px;text-decoration:underline;text-underline-offset:4px}
+.mw-sales-note{line-height:1.8}
+@media(max-width:780px){.mw-sales-grid{grid-template-columns:1fr}.mw-sales-paths{padding:42px 22px 50px}}
+</style>
 </head>
 
 <body>
@@ -650,7 +664,14 @@ details p {
       </div>
     </section>
 
-    <section class="mw-home-essence" data-page="home" aria-labelledby="mw-home-value-title">
+    <section id="mw-sales-paths" data-page="home" class="mw-sales-paths" aria-labelledby="mw-sales-heading">
+<span class="eyebrow">START YOUR WELLNESS</span><h2 id="mw-sales-heading">어떤 웰니스를 찾고 계신가요?</h2><p class="mw-sales-lead">원하는 참여 방식에 따라 프로그램과 신청 방법을 빠르게 확인하세요.</p>
+<div class="mw-sales-grid">
+<article><span>01 · REGULAR CREW</span><h3>정규 소모임 크루</h3><p>소수정예 테마형 그룹. 현재 시간표를 확인하고 체험 또는 신규 크루 사전신청을 진행하세요.</p><a class="mw-sales-primary" href="#crew">시간표·모집 현황 보기</a><a class="mw-sales-sub" href="#mw-finder">맞춤 클래스 추천</a></article>
+<article><span>02 · PRIVATE</span><h3>1:1 · 듀엣 · 프라이빗</h3><p>목표와 컨디션에 맞춘 개인 케어. 강사별 구성과 체험·상담 가능 여부를 안내해 드립니다.</p><a class="mw-sales-primary" href="#private">프라이빗 프로그램 보기</a><a class="mw-sales-sub" href="https://pf.kakao.com/_qNxbnn/chat" target="_blank" rel="noopener noreferrer">카카오톡 상담</a></article>
+<article><span>03 · BUSINESS WELLNESS</span><h3>기업·모임 웰니스</h3><p>임직원 특강, 방문형 원데이클래스, 브랜드 제휴 등 목적과 규모에 맞춰 제안합니다.</p><a class="mw-sales-primary" href="https://02younge.github.io/mood_edu/partners.html">기업 출강·협업 안내</a><a class="mw-sales-sub" href="https://pf.kakao.com/_qNxbnn/chat" target="_blank" rel="noopener noreferrer">협업 상담</a></article>
+</div><p class="mw-sales-note">체험 예약은 실제 운영 일정·잔여석 확인 후 확정됩니다. 신규 크루는 사전신청 2인 이상 시 개설을 검토합니다.</p></section>
+<section class="mw-home-essence" data-page="home" aria-labelledby="mw-home-value-title">
       <span class="eyebrow">YOUR OWN WELLNESS AZIT</span>
       <h2 id="mw-home-value-title">운동의 정교함에,<br>회복의 깊이를 더합니다.</h2>
       <p>각 분야 전문가들의 전문성과 세심한 케어로<br>나에게 맞는 운동과 회복을 연결합니다.<br>혼자 집중하는 시간부터 함께 이어가는 루틴까지,<br>일상에 오래 머무는 건강한 변화를 만들어갑니다.</p>
@@ -1128,9 +1149,8 @@ function renderPrograms(containerId, programs) {
     }
   };
   notice.addEventListener('close', () => { dismissed = true; });
-  window.addEventListener('hashchange', show);
-  if (document.readyState === 'complete') show();
-  else window.addEventListener('load', show, { once: true });
+  // Keep renewal notice optional; do not interrupt homepage discovery.
+  // Automatic renewal pop-up disabled to keep booking pathways accessible.
 })();
 </script>
 
