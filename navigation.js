@@ -1,9 +1,9 @@
 /* Small hash router for GitHub Pages: each route shows only its own content. */
-const MW_PAGES={home:{title:'무드웰니스',sections:['home'],nav:'home'},approach:{title:'수업의 가치',sections:['approach'],nav:'approach'},intro:{title:'스튜디오 소개',sections:['intro','matching'],nav:'intro'},core:{title:'프로그램 소개',sections:['core'],nav:'core'},private:{title:'개인·프라이빗 레슨',sections:['private'],nav:'core'},crew:{title:'정규 크루·시간표',sections:['crew'],nav:'core'},oneday:{title:'원데이클래스',sections:['oneday'],nav:'core'},teachers:{title:'강사진',sections:['teachers'],nav:'teachers'},'mw-finder':{title:'맞춤 클래스 찾기',sections:['mw-finder'],nav:'mw-finder'},rules:{title:'이용 안내',sections:['rules'],nav:'rules'},contact:{title:'문의·오시는 길',sections:['contact'],nav:'contact'}};
+const MW_PAGES={home:{title:'무드웰니스',sections:['home'],nav:'home'},intro:{title:'우리의 가치',sections:['intro','matching'],nav:'intro'},core:{title:'프로그램 소개',sections:['core'],nav:'core'},private:{title:'개인·프라이빗 레슨',sections:['private'],nav:'core'},crew:{title:'정규 크루·시간표',sections:['crew'],nav:'core'},oneday:{title:'원데이클래스',sections:['oneday'],nav:'core'},teachers:{title:'강사진',sections:['teachers'],nav:'teachers'},'mw-finder':{title:'맞춤 클래스 찾기',sections:['mw-finder'],nav:'mw-finder'},rules:{title:'이용 안내',sections:['rules'],nav:'rules'},contact:{title:'문의·오시는 길',sections:['contact'],nav:'contact'}};
 let mwCurrentPage=null;
 function renderPage(){
  const raw=location.hash.slice(1)||'home';
- const key=raw.startsWith('teacher/')?'teachers':raw==='mw-spa'?'core':raw==='matching'?'intro':Object.hasOwn(MW_PAGES,raw)?raw:'home';
+ const key=raw.startsWith('teacher/')?'teachers':raw==='mw-spa'?'core':raw==='matching'||raw==='approach'?'intro':Object.hasOwn(MW_PAGES,raw)?raw:'home';
  const page=MW_PAGES[key],changed=key!==mwCurrentPage;mwCurrentPage=key;
  document.querySelectorAll('main > [data-page]').forEach(node=>{const active=page.sections.includes(node.dataset.page);node.hidden=!active;node.classList.toggle('is-active',active);});
  document.querySelectorAll('.header > nav a').forEach(a=>{if(a.hash==='#'+page.nav)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
