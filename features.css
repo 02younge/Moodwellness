@@ -32,3 +32,19 @@ main>[data-page]:not(.is-active){display:none!important}#mw-main{min-height:45vh
 .mw-row-status {font-size:12px;font-weight:700;color:#514c40}
 .mw-row-meta {grid-column:1;font-size:13px;color:#625c50}
 .mw-row-arrow {grid-column:2;grid-row:1 / span 2;display:grid;place-items:center;width:32px;height:32px;border:1px solid #a49b87;border-radius:50%}
+
+.mw-row-preview {
+  grid-column: 1;
+  grid-row: 3;
+  color: #625c50;
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.mw-gallery-first { margin: 0 0 24px; }
+.mw-gallery-first h4 { margin: 0 0 10px; }
+.mw-gallery-first .mw-gallery-image { height: clamp(220px, 44dvh, 450px); }
