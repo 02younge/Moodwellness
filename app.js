@@ -41,7 +41,82 @@ let detailReturnFocus;
 function dialog(id,title){const d=document.getElementById(id);d.querySelector('[data-dialog-title]').textContent=title;const body=d.querySelector('.mw-dialog-body');body.replaceChildren();if(!d.open)d.showModal();return body;}
 function closeDialog(id){document.getElementById(id).close();}
 function showDetail(p){detailReturnFocus=document.activeElement;const body=dialog('mw-detail',p.title);body.append(el('span','eyebrow',MW_CATEGORY[p.category]),el('h3','mw-heading',p.title),el('p','mw-muted',p.teacher_name),el('div','mw-status',MW_STATUS[p.status]||p.status),tagList(p),el('p','mw-detail-copy',p.description),el('h4','','수업 일정'),el('p','mw-detail-copy',scheduleText(p)));if(p.duration_minutes||p.capacity)body.append(el('p','mw-muted',`${p.duration_minutes?p.duration_minutes+'분':''}${p.capacity?' · 최대 '+p.capacity+'인':''}`));for(const [name,key]of [['추천 대상','recommended_for'],['장소','location'],['준비물','preparation']]){if(p[key])body.append(el('h4','',name),el('p','mw-detail-copy',p[key]));}body.append(el('h4','','첫 수업·체험 안내'),el('p','mw-trial-badge',MW_TRIAL[p.trial_status]||MW_TRIAL.inquiry));if(p.trial_note)body.append(el('p','mw-detail-copy',p.trial_note));body.append(el('h4','','수강 안내'),el('p','',p.category==='private'?'개인·듀엣·3인 프라이빗 비용과 첫 수업 방식은 담당 강사에게 문의해 주세요.':p.normal_price!==null?`회당 정상가 ${Number(p.normal_price).toLocaleString('ko-KR')}원`:'참여 비용은 문의 시 안내합니다.'));const actions=el('div','mw-actions');const url=p.category==='spa'?MW_CONFIG.spa:safeLink(p.inquiry_url);const ownerProfile=publicProfiles().find(t=>t.owner_id===p.owner_id);const directUrl=url||(p.category!=='spa'?safeLink(ownerProfile?.inquiry_url):null);if(directUrl)actions.append(link(p.category==='spa'?'YJ SPA 정보·예약 보기':p.status==='full'?'담당 강사에게 대기 문의':'담당 강사에게 직접 문의',directUrl,true));else if(ownerProfile){actions.append(button('담당 강사 프로필 보기',()=>{closeDialog('mw-detail');location.hash='#teacher/'+ownerProfile.owner_id;},true));body.append(el('p','mw-muted','담당 강사의 개별 문의 링크가 아직 등록되지 않았습니다. 강사 프로필에서 연결 가능 여부를 확인하세요.'));}else body.append(el('p','mw-muted','담당 강사 문의 경로를 준비 중입니다.'));body.append(actions);if(publicProfiles().some(t=>t.owner_id===p.owner_id))body.append(teacherNameLink(p));const gallery=programGallery(p);if(gallery)body.append(gallery);}
-function renderPublic(){for(const [id,cat]of [['private-programs','private'],['crew-programs','regular'],['mw-oneday-programs','oneday']]){const box=document.getElementById(id);box.replaceChildren();const rows=mwState.programs.filter(p=>p.published&&p.approval_status==='approved'&&p.category===cat&&p.status!=='ended');rows.forEach(p=>box.append(renderCard(p)));if(!rows.length)box.append(el('p','mw-muted',cat==='oneday'?'확정된 원데이클래스가 없습니다. 일정 확정 후 안내합니다.':'공개 준비 중인 프로그램입니다. 센터에 문의해 주세요.'));}renderTimetable();renderTeachers();}
+function renderCompactPrograms(box, rows, category) {
+  const isPrivate = category === 'private';
+  const filterBar = el('div', 'mw-list-filters');
+  const options = isPrivate
+    ? [['capacity', '최대 참여 인원', [['1', '1명'], ['2', '2명'], ['3', '3명']]]]
+    : [
+        ['day', '요일', MW_DAYS.map((day, index) => [String(index + 1), day + '요일'])],
+        ['time', '시간대', [['morning', '오전'], ['afternoon', '낮'], ['evening', '저녁']]],
+        ['status', '모집 상태', Object.entries(MW_STATUS).filter(([status]) => status !== 'ended')]
+      ];
+  const previous = Object.fromEntries([...box.querySelectorAll('select')].map(select => [select.name, select.value]));
+  const filters = {};
+  for (const [name, title, choices] of options) {
+    const label = el('label', '', title);
+    const select = el('select');
+    select.name = name;
+    for (const [value, text] of [['', '전체'], ...choices]) {
+      const option = el('option', '', text);
+      option.value = value;
+      select.append(option);
+    }
+    select.value = previous[name] || '';
+    select.addEventListener('change', update);
+    label.append(select);
+    filterBar.append(label);
+    filters[name] = select;
+  }
+  const count = el('p', 'mw-list-count');
+  count.setAttribute('aria-live', 'polite');
+  const list = el('ul', 'mw-compact-list');
+  const empty = el('p', 'mw-muted');
+  const slots = new Map(rows.map(program => [program.id, currentSlots(program)]));
+  box.replaceChildren(filterBar, count, list, empty);
+  filterBar.hidden = !rows.length;
+  update();
+
+  function update() {
+    const matches = rows.filter(program => {
+      if (isPrivate) return !filters.capacity.value || Number(program.capacity) === Number(filters.capacity.value);
+      const day = filters.day.value;
+      const time = filters.time.value;
+      const status = filters.status.value;
+      if (status && program.status !== status) return false;
+      if (!day && !time) return true;
+      return slots.get(program.id).some(slot => {
+        const hour = Number(slot.start_time.slice(0, 2));
+        const period = hour < 12 ? 'morning' : hour < 17 ? 'afternoon' : 'evening';
+        return (!day || String(slot.weekday) === day) && (!time || period === time);
+      });
+    });
+    count.textContent = matches.length + '개 프로그램';
+    count.hidden = !rows.length;
+    list.replaceChildren();
+    empty.hidden = matches.length > 0;
+    empty.textContent = rows.length ? '선택한 조건에 맞는 프로그램이 없어요. 다른 조건으로 찾아보세요.' : '현재 공개된 프로그램을 준비 중입니다.';
+    for (const program of matches) {
+      const row = el('li');
+      const action = button('', () => showDetail(program));
+      action.className = 'mw-program-row';
+      const headline = el('span', 'mw-row-head');
+      headline.append(el('span', 'mw-row-title', program.title), el('span', 'mw-row-status', MW_STATUS[program.status] || program.status));
+      const programSlots = slots.get(program.id);
+      const times = [...new Set(programSlots.map(slot => MW_DAYS[slot.weekday - 1] + ' ' + slot.start_time.slice(0, 5)))];
+      const timing = times.length ? times.slice(0, 2).join(' · ') + (times.length > 2 ? ' 외 ' + (times.length - 2) + '개' : '') : '일정 문의';
+      const meta = [timing];
+      if (isPrivate && program.capacity) meta.unshift('최대 ' + program.capacity + '인');
+      if (!isPrivate && program.normal_price != null) meta.push('회당 ' + Number(program.normal_price).toLocaleString('ko-KR') + '원');
+      const arrow = el('span', 'mw-row-arrow', '↗');
+      arrow.setAttribute('aria-hidden', 'true');
+      action.append(headline, el('span', 'mw-row-meta', meta.join(' · ')), arrow);
+      row.append(action);
+      list.append(row);
+    }
+  }
+}
+function renderPublic(){for(const [id,cat]of [['private-programs','private'],['crew-programs','regular'],['mw-oneday-programs','oneday']]){const box=document.getElementById(id);box.replaceChildren();const rows=mwState.programs.filter(p=>p.published&&p.approval_status==='approved'&&p.category===cat&&p.status!=='ended');if(cat!=='oneday'){renderCompactPrograms(box,rows,cat);continue;}rows.forEach(p=>box.append(renderCard(p)));if(!rows.length)box.append(el('p','mw-muted',cat==='oneday'?'확정된 원데이클래스가 없습니다. 일정 확정 후 안내합니다.':'공개 준비 중인 프로그램입니다. 센터에 문의해 주세요.'));}renderTimetable();renderTeachers();}
 function renderTimetable(){const box=document.getElementById('mw-timetable');box.replaceChildren();const week=el('div','mw-week');MW_DAYS.forEach((day,i)=>{const col=el('div','mw-day');col.append(el('h3','',day));const slots=mwState.sessions.filter(s=>s.weekday===i+1&&activeDates(s)).sort((a,b)=>a.start_time.localeCompare(b.start_time));let count=0;slots.forEach(s=>{const p=mwState.programs.find(p=>p.id===s.program_id&&p.published&&p.approval_status==='approved'&&p.category==='regular'&&p.status!=='ended');if(!p)return;count++;const b=button(`${s.start_time.slice(0,5)} ${p.title}`,()=>showDetail({...p,status:s.status}));b.className='mw-slot';b.append(el('span','',`${p.teacher_name} · ${MW_STATUS[s.status]}`));col.append(b);});if(!count)col.append(el('p','mw-muted','등록된 수업 없음'));week.append(col);});box.append(week);}
 async function loadData(){if(!mwState.db)return;const [p,s,t]=await Promise.all([mwState.db.from('mw_programs').select('*').order('created_at'),mwState.db.from('mw_sessions').select('*').order('weekday').order('start_time'),mwState.db.from('mw_teacher_profiles').select('*').order('display_name')]);if(p.error||s.error||t.error)throw p.error||s.error||t.error;mwState.programs=p.data;mwState.sessions=s.data;mwState.profiles=t.data;renderPublic();document.getElementById('mw-load-state').hidden=true;}
 const QUESTIONS=[
