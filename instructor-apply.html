@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>공식 강사 지원 | 무드웰니스</title>
+<link rel="stylesheet" href="./instructor-apply.css">
+<script defer src="./vendor/supabase.js"></script>
+<script defer src="./instructor-apply.js"></script>
+</head>
+<body>
+<header><a href="./">MOOD WELLNESS</a><a href="#apply">지원서 작성</a></header>
+<main>
+  <section class="hero">
+    <p class="eyebrow">무드웰니스 공식 강사 모집</p>
+    <h1>내가 기획한 웰니스를<br>내 이름으로 여는 곳</h1>
+    <p>내가 잘하는 일을 하나의 프로그램으로 만들고, 그 가치를 알아보는 고객과 꾸준히 만나고 싶은 선생님을 찾습니다. 무드웰니스는 운동, 움직임, 휴식, 회복 등 다양한 웰니스 프로그램을 함께 만들어갑니다.</p>
+    <a class="button" href="#apply">공식 강사 지원하기</a>
+  </section>
+  <section aria-labelledby="benefits">
+    <h2 id="benefits">무드웰니스에서 할 수 있는 일</h2>
+    <div class="cards">
+      <article><h3>내 기획을 실제 수업으로</h3><p>공간을 기반으로 내가 만나고 싶은 고객과 전하고 싶은 경험을 정하고, 수업 구성과 가격을 직접 제안할 수 있습니다.</p></article>
+      <article><h3>함께 성장할 동료 만나기</h3><p>서로 다른 분야의 선생님들과 수업에 대한 고민을 나누고, 관심사가 맞으면 공동 클래스와 새 프로그램도 기획할 수 있습니다.</p></article>
+      <article><h3>나의 수업을 다시 찾는 고객 만나기</h3><p>센터 홈페이지에서 내 프로필과 프로그램을 소개하고, 내 수업 방식에 공감하는 고객과 관계를 쌓을 수 있습니다.</p></article>
+    </div>
+  </section>
+  <section class="why">
+    <h2>왜 샵인샵으로 운영하나요?</h2>
+    <p>무드웰니스의 경쟁력은 여러 강사님의 전문성이 한 공간에 모여 고객에게 다양한 웰니스 경험을 제공한다는 데 있습니다. 선생님은 정해진 회차를 맡는 데서 더 나아가, 자기 프로그램의 방향과 가치를 결정하는 운영 주체로 참여합니다.</p>
+    <p>강사님은 프로그램을 기획하고 수업과 참여자 소통을 맡습니다. 센터는 공간과 홈페이지 소개를 비롯해 수업을 열고 알릴 기반을 제공합니다. 일정, 가격, 정산과 역할은 프로그램을 검토한 뒤 함께 정합니다.</p>
+  </section>
+  <section id="apply">
+    <h2>공식 강사 지원</h2>
+    <p>운동 지도, 명상, 호흡, 회복 등 웰니스 프로그램을 기획하고 진행하는 선생님이라면 지원할 수 있습니다. 무드웰니스 수료생과 외부 강사 모두 환영합니다.</p>
+    <p>지원서 검토 → 미팅 → 프로그램·운영 방식 협의 → 담당 수업 확정 후 공식 강사 등록</p>
+    <form id="instructor-application">
+      <label>성함<input name="name" autocomplete="name" required maxlength="80"></label>
+      <label>회신 이메일<input type="email" name="email" autocomplete="email" required maxlength="254"></label>
+      <label>무드웰니스 교육을 수료하셨나요?
+        <select name="graduate" required><option value="">선택해 주세요</option><option value="yes">네, 수료했습니다</option><option value="no">아니요, 외부 강사로 지원합니다</option></select>
+      </label>
+      <label><span id="education-label">수료 이력 또는 관련 교육·자격과 지도 경험</span><textarea name="background" required maxlength="800" rows="3"></textarea></label>
+      <label>웰니스 전문 분야<input name="specialty" required maxlength="160" placeholder="예: 요가, 호흡, 명상, 회복 프로그램"></label>
+      <label>무드웰니스에서 열고 싶은 프로그램<textarea name="proposal" required maxlength="3000" rows="5" placeholder="어떤 고객을 만나고, 어떤 경험을 제공하고 싶은지 알려주세요."></textarea></label>
+      <label>운영 가능한 요일과 시간<input name="availability" required maxlength="400"></label>
+      <label>포트폴리오 또는 SNS 주소 (선택)<input type="url" name="website" maxlength="500" pattern="https://.+" placeholder="https://"></label>
+      <label class="consent"><input name="consent" type="checkbox" required> 지원서의 정보를 지원 검토와 연락에 사용하는 데 동의합니다.</label>
+      <button class="button" type="submit">지원서 제출</button>
+    </form>
+    <p id="application-status" role="status" tabindex="-1"></p>
+  </section>
+</main>
+<footer><a href="./">무드웰니스 스튜디오</a></footer>
+</body>
+</html>
