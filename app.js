@@ -178,60 +178,16 @@ function showOnedayRequest(){
   const request = document.getElementById('mw-request');
   if(request.open) return;
   const body = dialog('mw-request','우리 모임 원데이 개설 문의');
-  const form = el('form');
-  const submissionId = crypto.randomUUID();
-  const close = () => {
+  request.addEventListener('close',()=>{
     if(location.hash === '#oneday-inquiry') history.replaceState(null,'','#oneday');
-  };
-  request.addEventListener('close',close,{once:true});
-  body.append(el('p','mw-muted','4인까지 실내, 5인부터 야외 정원에서 진행해요. 접수 후 가능 일정과 비용을 알려드려요.'),form);
-  const party = field(form,'참여 인원','party_size','number','',true);
-  party.min = 1;
-  party.max = 100;
-  field(form,'희망 날짜와 시간','schedule','text','',true).maxLength = 40;
-  const contact = field(form,'회신받을 연락처 (이메일 또는 전화번호)','contact','text','',true);
-  contact.minLength = 3;
-  contact.maxLength = 160;
-  select(form,'원하는 분위기','mood',{recommend:'추천받기',healing:'힐링',energetic:'에너제틱'},'recommend');
-  const consent = el('label','mw-check');
-  const checkbox = el('input');
-  checkbox.type = 'checkbox';
-  checkbox.required = true;
-  consent.append(checkbox,document.createTextNode('연락처와 신청 내용을 개설 상담에 이용하는 데 동의합니다. 처리 완료 후 90일 이내 삭제합니다.'));
-  const send = el('button','mw-btn primary','개설 문의 제출');
-  send.type = 'submit';
-  const status = el('p','mw-message');
-  status.setAttribute('role','status');
-  status.hidden = true;
-  form.append(consent,send,status);
-  body.append(link('이메일로 문의하기','mailto:'+MW_CONFIG.email));
-  form.addEventListener('submit',async event=>{
-    event.preventDefault();
-    const values = new FormData(form);
-    const schedule = String(values.get('schedule')).trim();
-    const reply = String(values.get('contact')).trim();
-    if(!schedule || reply.length<3){
-      message(status,'희망 날짜·시간과 회신 연락처를 확인해 주세요.',true);
-      return;
-    }
-    const mood = {recommend:'추천받기',healing:'힐링',energetic:'에너제틱'}[values.get('mood')];
-    send.disabled = true;
-    try {
-      const response = await fetch(MW_CONFIG.url+'/functions/v1/submit-crew-request',{
-        method:'POST',headers:{'Content-Type':'application/json',apikey:MW_CONFIG.key},
-        body:JSON.stringify({submission_id:submissionId,applicant_name:'모임 원데이 문의',contact:reply,
-          interests:['모임 원데이',mood],preferred_times:[schedule],party_size:Number(values.get('party_size')),
-          message:'스튜디오 방문형 원데이 개설 문의',consent:true,website:''})
-      });
-      if(!response.ok || !(await response.json()).saved) throw Error('request not saved');
-      message(status,'문의가 접수되었어요. 일정을 확인한 뒤 남겨주신 연락처로 안내드릴게요.');
-      form.querySelectorAll('input,select,button').forEach(control=>{control.disabled=true;});
-      send.hidden = true;
-    } catch {
-      message(status,'접수를 확인하지 못했어요. 다시 시도하거나 이메일로 문의해 주세요.',true);
-      send.disabled = false;
-    }
-  });
+  },{once:true});
+  const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSctk0RWNETHsdC1vdSWPipp_9hWe03Rvj4j9hgcrzIeeBImIQ/viewform';
+  const frame = el('iframe');
+  frame.title = '무드웰니스 원데이·출강 문의 양식';
+  frame.src = formUrl+'?embedded=true';
+  frame.style.cssText = 'display:block;width:100%;height:65vh;min-height:360px;border:0';
+  body.append(el('p','mw-muted','문의 유형에 스튜디오 방문 원데이를 적어주세요.'),frame,
+    link('문의 양식을 새 창에서 열기',formUrl));
 }
 async function loadIdentity(){if(!mwState.db)return;const {data:{user},error}=await mwState.db.auth.getUser();mwState.user=error?null:user;mwState.staff=null;if(user){const {data}=await mwState.db.from('mw_staff').select('*').eq('user_id',user.id).maybeSingle();if(data?.active)mwState.staff=data;}}
 async function showAdmin(){const body=dialog('mw-admin','강사 전용 관리');await loadIdentity();if(!mwState.staff){const f=el('form');body.append(el('p','mw-muted','센터에서 등록한 강사 계정으로 로그인해 주세요.'),f);field(f,'이메일','email','email','',true).autocomplete='username';field(f,'비밀번호','password','password','',true).autocomplete='current-password';const msg=el('p');const submit=el('button','mw-btn primary','로그인');submit.type='submit';f.append(submit,msg);if(mwState.user)message(msg,'로그인은 되었지만 활성 강사 명단에 등록되지 않았습니다. 센터에 권한 등록을 요청해 주세요.',true);f.addEventListener('submit',async e=>{e.preventDefault();submit.disabled=true;try{const fd=new FormData(f);const {error}=await mwState.db.auth.signInWithPassword({email:fd.get('email'),password:fd.get('password')});if(error)throw error;await loadIdentity();if(!mwState.staff)throw new Error('센터에서 강사 권한을 등록해야 합니다.');await loadData();await showAdmin();}catch(err){message(msg,err.message.includes('confirmed')?'이메일 인증이 필요합니다. Supabase Authentication에서 해당 계정의 인증 상태를 확인해 주세요.':err.message,true);}finally{submit.disabled=false;}});return;}
