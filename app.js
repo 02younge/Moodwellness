@@ -174,6 +174,65 @@ function select(parent,label,name,options,value){const input=field(parent,label,
 function checks(parent,title,name,values,selected=[]){const fs=el('fieldset','mw-checks');fs.append(el('legend','',title));values.forEach(v=>{const label=el('label','mw-check');const input=el('input');input.type='checkbox';input.name=name;input.value=v;input.checked=selected.includes(v);label.append(input,document.createTextNode(v));fs.append(label);});parent.append(fs);}
 let requestId;
 function showRequest(){const body=dialog('mw-request','신규 크루 개설 신청');const form=el('form');requestId=crypto.randomUUID();body.append(el('p','mw-muted','희망 수업과 시간을 남겨주세요. 신청은 개설 확정이나 예약을 의미하지 않습니다.'),form);field(form,'이름','applicant_name','text','',true).maxLength=60;field(form,'회신받을 연락처 (이메일 또는 전화번호)','contact','text','',true).maxLength=160;checks(form,'관심 분야 (복수 선택)','interests',MW_TAGS);checks(form,'희망 요일 (복수 선택)','days',MW_DAYS);checks(form,'희망 시간대 (복수 선택)','times',['오전','낮','저녁','주말','일정 조율']);field(form,'함께 신청하는 인원','party_size','number',1,true).min=1;field(form,'추가 요청 (자세한 질병·진료 정보는 적지 마세요)','message','textarea').maxLength=2000;const honey=field(form,'웹사이트','website');honey.parentElement.classList.add('mw-honeypot');honey.tabIndex=-1;honey.autocomplete='off';const consent=el('label','mw-check');const ch=el('input');ch.type='checkbox';ch.required=true;consent.append(ch,document.createTextNode('이름·연락처·신청 내용을 개설 상담에 이용하는 데 동의합니다. 처리 완료 후 90일 이내 삭제합니다.'));form.append(consent);const msg=el('p','mw-message');msg.hidden=true;const send=el('button','mw-btn primary','개설 신청 제출');send.type='submit';form.append(el('div','mw-actions'),msg);form.lastChild.before(send);body.append(link('이메일로 직접 문의하기','mailto:'+MW_CONFIG.email));form.addEventListener('submit',async e=>{e.preventDefault();const d=new FormData(form);if(d.get('website'))return;send.disabled=true;try{const response=await fetch(MW_CONFIG.url+'/functions/v1/submit-crew-request',{method:'POST',headers:{'Content-Type':'application/json',apikey:MW_CONFIG.key},body:JSON.stringify({submission_id:requestId,applicant_name:d.get('applicant_name'),contact:d.get('contact'),interests:d.getAll('interests'),preferred_times:[...d.getAll('days'),...d.getAll('times')],party_size:Number(d.get('party_size')),message:d.get('message'),consent:true,website:''})});const result=await response.json();if(!response.ok)throw new Error(result.error||'신청을 저장하지 못했습니다.');message(msg,result.notified?'신청이 저장되었고 센터에 이메일 알림도 보냈습니다.':'신청이 접수되었습니다. 센터에서 내용을 확인한 뒤 연락드릴게요.');send.hidden=true;form.querySelectorAll('input,textarea').forEach(x=>x.disabled=true);}catch(err){message(msg,'신청이 접수되었다는 확인을 받지 못했습니다. 다시 시도하거나 아래 이메일로 문의해 주세요.',true);}finally{send.disabled=false;}});}
+function showOnedayRequest(){
+  const request = document.getElementById('mw-request');
+  if(request.open) return;
+  const body = dialog('mw-request','우리 모임 원데이 개설 문의');
+  const form = el('form');
+  const submissionId = crypto.randomUUID();
+  const close = () => {
+    if(location.hash === '#oneday-inquiry') history.replaceState(null,'','#oneday');
+  };
+  request.addEventListener('close',close,{once:true});
+  body.append(el('p','mw-muted','4인까지 실내, 5인부터 야외 정원에서 진행해요. 접수 후 가능 일정과 비용을 알려드려요.'),form);
+  const party = field(form,'참여 인원','party_size','number','',true);
+  party.min = 1;
+  party.max = 100;
+  field(form,'희망 날짜와 시간','schedule','text','',true).maxLength = 40;
+  const contact = field(form,'회신받을 연락처 (이메일 또는 전화번호)','contact','text','',true);
+  contact.minLength = 3;
+  contact.maxLength = 160;
+  select(form,'원하는 분위기','mood',{recommend:'추천받기',healing:'힐링',energetic:'에너제틱'},'recommend');
+  const consent = el('label','mw-check');
+  const checkbox = el('input');
+  checkbox.type = 'checkbox';
+  checkbox.required = true;
+  consent.append(checkbox,document.createTextNode('연락처와 신청 내용을 개설 상담에 이용하는 데 동의합니다. 처리 완료 후 90일 이내 삭제합니다.'));
+  const send = el('button','mw-btn primary','개설 문의 제출');
+  send.type = 'submit';
+  const status = el('p','mw-message');
+  status.setAttribute('role','status');
+  status.hidden = true;
+  form.append(consent,send,status);
+  body.append(link('이메일로 문의하기','mailto:'+MW_CONFIG.email));
+  form.addEventListener('submit',async event=>{
+    event.preventDefault();
+    const values = new FormData(form);
+    const schedule = String(values.get('schedule')).trim();
+    const reply = String(values.get('contact')).trim();
+    if(!schedule || reply.length<3){
+      message(status,'희망 날짜·시간과 회신 연락처를 확인해 주세요.',true);
+      return;
+    }
+    const mood = {recommend:'추천받기',healing:'힐링',energetic:'에너제틱'}[values.get('mood')];
+    send.disabled = true;
+    try {
+      const response = await fetch(MW_CONFIG.url+'/functions/v1/submit-crew-request',{
+        method:'POST',headers:{'Content-Type':'application/json',apikey:MW_CONFIG.key},
+        body:JSON.stringify({submission_id:submissionId,applicant_name:'모임 원데이 문의',contact:reply,
+          interests:['모임 원데이',mood],preferred_times:[schedule],party_size:Number(values.get('party_size')),
+          message:'스튜디오 방문형 원데이 개설 문의',consent:true,website:''})
+      });
+      if(!response.ok || !(await response.json()).saved) throw Error('request not saved');
+      message(status,'문의가 접수되었어요. 일정을 확인한 뒤 남겨주신 연락처로 안내드릴게요.');
+      form.querySelectorAll('input,select,button').forEach(control=>{control.disabled=true;});
+      send.hidden = true;
+    } catch {
+      message(status,'접수를 확인하지 못했어요. 다시 시도하거나 이메일로 문의해 주세요.',true);
+      send.disabled = false;
+    }
+  });
+}
 async function loadIdentity(){if(!mwState.db)return;const {data:{user},error}=await mwState.db.auth.getUser();mwState.user=error?null:user;mwState.staff=null;if(user){const {data}=await mwState.db.from('mw_staff').select('*').eq('user_id',user.id).maybeSingle();if(data?.active)mwState.staff=data;}}
 async function showAdmin(){const body=dialog('mw-admin','강사 전용 관리');await loadIdentity();if(!mwState.staff){const f=el('form');body.append(el('p','mw-muted','센터에서 등록한 강사 계정으로 로그인해 주세요.'),f);field(f,'이메일','email','email','',true).autocomplete='username';field(f,'비밀번호','password','password','',true).autocomplete='current-password';const msg=el('p');const submit=el('button','mw-btn primary','로그인');submit.type='submit';f.append(submit,msg);if(mwState.user)message(msg,'로그인은 되었지만 활성 강사 명단에 등록되지 않았습니다. 센터에 권한 등록을 요청해 주세요.',true);f.addEventListener('submit',async e=>{e.preventDefault();submit.disabled=true;try{const fd=new FormData(f);const {error}=await mwState.db.auth.signInWithPassword({email:fd.get('email'),password:fd.get('password')});if(error)throw error;await loadIdentity();if(!mwState.staff)throw new Error('센터에서 강사 권한을 등록해야 합니다.');await loadData();await showAdmin();}catch(err){message(msg,err.message.includes('confirmed')?'이메일 인증이 필요합니다. Supabase Authentication에서 해당 계정의 인증 상태를 확인해 주세요.':err.message,true);}finally{submit.disabled=false;}});return;}
  body.append(el('p','mw-muted',mwState.staff.display_name+' · '+(isAdmin()?'관리자':'강사')));const actions=el('div','mw-actions');actions.append(button('새 프로그램 등록',()=>showEditor(),true),button('목록 새로고침',async()=>{await loadData();showAdmin();}),button('내 프로필 등록·수정',()=>showProfileEditor()),button('비밀번호 변경',showPasswordChange),button('로그아웃',async()=>{await mwState.db.auth.signOut();mwState.staff=null;mwState.user=null;await loadData();showAdmin();}));body.append(actions);renderPartnerVision(body);body.append(button('공동 홍보 보드',showPromotionBoard));renderProfileManagement(body);body.append(el('h3','','프로그램 관리'));const rows=mwState.programs.filter(canEdit).sort((a,b)=>(a.approval_status==='pending'?-1:0)-(b.approval_status==='pending'?-1:0));if(!rows.length)body.append(el('p','mw-muted','등록한 프로그램이 없습니다.'));rows.forEach(p=>{const row=el('div','mw-admin-row');const text=el('div');text.append(el('h3','',p.title),el('p','',`${p.teacher_name} · ${MW_APPROVAL[p.approval_status]||'임시 저장'} · ${p.published?'공개':'비공개'} · ${MW_STATUS[p.status]}`));const b=el('div','mw-actions');b.append(button(isAdmin()?'검토·수정':'수정',()=>showEditor(p)),button('미리 보기',()=>showDetail(p)));if(isAdmin()&&p.approval_status==='pending')b.append(button('승인·공개',()=>reviewProgram(p,'approved'),true),button('수정 요청',()=>reviewProgram(p,'rejected')));if(p.review_note)text.append(el('p','mw-muted','검토 의견: '+p.review_note));row.append(text,b);body.append(row);});if(isAdmin()){body.append(button('기존 프로그램을 임시 저장으로 가져오기',seedLegacy),button('개설 신청 확인',showRequests),button('메일 알림 상태',showMailStatus));body.append(el('p','mw-muted','기존 수업 가져오기는 한 번만 사용하세요. 내용과 시간표를 확인한 뒤 공개해 주세요.'));}}
